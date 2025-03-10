@@ -5,81 +5,105 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Personal Website</title>
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            background-color: #f4f4f4;
-            color: #333;
-            padding: 20px;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        header {
-            background: white;
-            padding: 30px;
-            text-align: center;
-            margin-bottom: 20px;
-            border-radius: 5px;
-        }
-        
-        .profile-img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 15px;
-        }
-        
-        nav {
-            background: #333;
-            padding: 15px;
-            margin-bottom: 20px;
-            border-radius: 5px;
-        }
-        
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 15px;
-        }
-        
-        section {
-            background: white;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 5px;
-        }
-        
-        .work-item {
-            margin-bottom: 20px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .blog-post {
-            margin-bottom: 30px;
-        }
-        
-        footer {
-            background: #333;
-            color: white;
-            text-align: center;
-            padding: 20px;
-            border-radius: 5px;
-        }
-    </style>
+    :root {
+        /* Light mode (default) variables */
+        --background-color: #f4f4f4;
+        --text-color: #333;
+        --header-bg: white;
+        --section-bg: white;
+        --nav-bg: #333;
+        --nav-text: white;
+        --footer-bg: #333;
+        --footer-text: white;
+        --border-color: #eee;
+    }
+    
+    /* Dark mode variables */
+    .dark-mode {
+        --background-color: #121212;
+        --text-color: #e1e1ff;
+        --header-bg: #1e1e1e;
+        --section-bg: #1e1e1e;
+        --nav-bg: #000;
+        --nav-text: #e1e1ff;
+        --footer-bg: #000;
+        --footer-text: #e1e1ff;
+        --border-color: #333;
+    }
+    
+    /* Update your existing styles to use variables */
+    body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        background-color: var(--background-color);
+        color: var(--text-color);
+        padding: 20px;
+        transition: all 0.3s ease;
+    }
+    
+    header {
+        background: var(--header-bg);
+        padding: 30px;
+        text-align: center;
+        margin-bottom: 20px;
+        border-radius: 5px;
+    }
+    
+    nav {
+        background: var(--nav-bg);
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+    }
+    
+    nav a {
+        color: var(--nav-text);
+        text-decoration: none;
+        margin: 0 15px;
+    }
+    
+    section {
+        background: var(--section-bg);
+        padding: 20px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+    }
+    
+    .work-item {
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid var(--border-color);
+    }
+    
+    footer {
+        background: var(--footer-bg);
+        color: var(--footer-text);
+        text-align: center;
+        padding: 20px;
+        border-radius: 5px;
+    }
+    
+    /* Add styles for the theme toggle button */
+    .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: #333;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        z-index: 1000;
+    }
+    
+    .theme-toggle:hover {
+        background: #555;
+    }
+</style>
 </head>
 <body>
+    <button class="theme-toggle" id="theme-toggle">Toggle Dark Mode</button>
     <div class="container">
         <header>
             <img src="profile-photo.jpeg" alt="My Profile Picture" class="profile-img">
@@ -158,4 +182,43 @@
         </footer>
     </div>
 </body>
+<script>
+    // Check for saved theme preference or use device preference
+    const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+    
+    // Get the theme toggle button
+    const themeToggle = document.getElementById("theme-toggle");
+    
+    // Function to set the theme
+    function setTheme(theme) {
+        if (theme === "dark") {
+            document.body.classList.add("dark-mode");
+            localStorage.setItem("theme", "dark");
+            themeToggle.textContent = "Toggle Light Mode";
+        } else {
+            document.body.classList.remove("dark-mode");
+            localStorage.setItem("theme", "light");
+            themeToggle.textContent = "Toggle Dark Mode";
+        }
+    }
+    
+    // Check if user has a saved preference
+    const currentTheme = localStorage.getItem("theme");
+    if (currentTheme) {
+        setTheme(currentTheme);
+    } else if (prefersDarkScheme.matches) {
+        // If no saved preference, use device preference
+        setTheme("dark");
+    }
+    
+    // Toggle theme when button is clicked
+    themeToggle.addEventListener("click", () => {
+        if (document.body.classList.contains("dark-mode")) {
+            setTheme("light");
+        } else {
+            setTheme("dark");
+        }
+    });
+</script>
+
 </html>
