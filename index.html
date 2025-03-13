@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tuhin's Webpage</title>
+    <style>
+
+    /* Ensure consistent font-family and box sizing */
+* {
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif; /* Ensures uniform typography */
+}
+
+/* Dark mode variables */
+:root {
+    --background-color: #333333;
+    --text-color: #EDEDED;
+    --header-bg: #1e1e1e;
+    --section-bg: #1e1e1e;
+    --nav-bg: #000;
+    --nav-text: #EDEDED;
+    --footer-bg: #000;
+    --footer-text: #EDEDED;
+    --border-color: #333;
+    --input-text-color: #EDEDED;
+    --header-bg-image: url('background-dark.jpg');
+    --header-text-color: #EDEDED;
+    --tagline-color: #EDEDED;
+}
+
+/* Light mode */
+.light-mode {
+    --background-color: #f4f4f4;
+    --text-color: #333;
+    --header-bg: white;
+    --section-bg: white;
+    --nav-bg: #333;
+    --nav-text: white;
+    --footer-bg: #333;
+    --footer-text: white;
+    --border-color: #eee;
+    --input-text-color: black;
+    --header-bg-image: url('background-light.jpg');
+    --header-text-color: #333;
+    --tagline-color: #333;
+}
+
+
+
+
+
+
+      .header-background {
+        background-image: var(--header-bg-image);
+        background-size: cover;
+        background-position: center;
+        padding: 50px 0;
+        text-align: center;
+        color: var(--header-text-color); /* Dynamic text color */
+        position: relative;
+        transition: background-image 0.5s ease-in-out;
+    }
+    .tagline {
+    font-size: 1.2rem;  /* Increase size */
+    font-weight: 400;  /* Make it bolder */
+    letter-spacing: 1px; /* Slight spacing for elegance */
+    text-transform: uppercase; /* Optional for a bold effect */
+    color: var(--tagline-color); /* Dynamic text color */
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2); /* Subtle depth */
+    margin-top: 10px; /* Add spacing */
+}
+    .profile-img-centered {
+        width: 150px; /* Adjust size as needed */
+        height: 150px;
+        border-radius: 50%;
+        display: block;
+        margin: 0 auto;
+        border: 5px solid white; /* Optional: Adds a white border */
+    }
+      /* Make sure inputs also respect the color scheme */
+      input, textarea, select {
+      color: var(--input-text-color);
+      font-family: 'Poppins', sans-serif;
+      }
+
+      /* Consistent font and text appearance */
+      body {
+          font-family: 'Poppins', sans-serif;
+          background-color: var(--background-color);
+          color: var(--text-color);
+          font-weight: 400; /* Ensures consistency */
+          transition: all 0.3s ease-in-out; /* Smooth transition */
+      }
+
+
+      /* Ensure uniform sizing */
+      .container, header, nav, section, footer {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 20px;
+          border-radius: 5px;
+          transition: all 0.3s ease-in-out; /* Smooth theme switching */
+      }
+
+        header {
+            background: var(--header-bg);
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            position: relative;
+        }
+
+        /* Profile Image Styles - Choose ONE of these options by uncommenting */
+
+        /* OPTION 1: Centered circular image (default) */
+        .profile-img-centered {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center 30%; /* Adjust this value to center your face */
+    display: block;
+    margin: 0 auto;
+    border: 5px solid white;
+}
+
+        /* OPTION 2: Left-aligned image with text to the right */
+        .profile-img-left {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            float: left;
+            margin-right: 20px;
+            border: 3px solid var(--border-color);
+        }
+
+        /* OPTION 3: Right-aligned image with text to the left */
+        .profile-img-right {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            float: right;
+            margin-left: 20px;
+            border: 3px solid var(--border-color);
+        }
+
+        /* OPTION 4: Large banner image */
+        .profile-img-banner {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        /* OPTION 5: Square image */
+        .profile-img-square {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            margin: 0 auto 15px auto;
+            display: block;
+            border: 3px solid var(--border-color);
+        }
+
+        /* OPTION 6: Absolute positioned image (overlapping header) */
+        .profile-img-overlap {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            position: absolute;
+            top: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 5px solid var(--header-bg);
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+
+        /* Clear fix for floating elements */
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        nav {
+            background: var(--nav-bg);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        nav a {
+            color: var(--nav-text);
+            text-decoration: none;
+            margin: 0 15px;
+        }
+
+        section {
+            background: var(--section-bg);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        .work-item {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .blog-post {
+            margin-bottom: 30px;
+        }
+
+        .5-min-post {
+            margin-bottom: 30px;
+        }
+
+        footer {
+            background: var(--footer-bg);
+            color: var(--footer-text);
+            text-align: center;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        /* Theme toggle button */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #333;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        .theme-toggle:hover {
+            background: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <button class="theme-toggle" id="theme-toggle">Toggle Dark Mode</button>
+
+    <div class="container">
+      <header class="header-background">
+        <!-- Centered circular profile image -->
+        <img src="profile-picture.jpeg" class="profile-img-centered">
+
+        <h1>Tuhin Kumar Raut</h1>
+        <p class="tagline">Bio Buff  |  Nature Nerd  |  Gadget Geek</p>
+      </header>
+
+
+      <nav>
+  <a href="index.html#about">About</a>
+  <a href="index.html#work">Projects</a>
+  <a href="How Close Are We.html">How Close Are We?</a>
+  <a href="5-min Papers.html#5-min Papers">5-min Papers</a>
+  <a href="index.html#contact">Contact</a>
+</nav>
+
+
+        <section id="about">
+            <h2>About Me</h2>
+            <p>As a research enthusiast at the intersection of bioinformatics and biotechnology, I'm passionate about learning and implementing computational methods to address complex biological challenges. My work spans molecular dynamics simulations, synthetic biology, and machine learning applications in genomics and proteomics. I have received grants for my work on Nanopores and Biosurfactants from Emergent Ventures (Mercatus Center) and Impact Grants (iGEM).</p>
+            <p>Presently I am pursuing my Bachelors' Degree from Indian institute of Technology, Delhi from the Department of Biochemical Engineering and Biotechnology.</p>
+            <p>Tech enthusiast with a finger on the pulse of computing innovations, equally at home among nature's wonders or headbanging to metal's powerful rhythms.</p>
+        </section>
+
+        <section id="work">
+            <h2>Projects</h2>
+
+            <div class="work-item">
+                <h3>Molecular Dynamics based analysis of Protein Sequencing through Nanopore (Ongoing)</h3>
+                <p>We are studying the interations of protein analyte passing through the CsgG nanopore, usually present in Oxford Nanopore Technology (ONT) devices. This would lend us insights into the residues of CsgG which could be altered. By doing so, we aim to enhance sequencing accuracy and efficiency, offering a promising alternative to traditional protein sequencing methods.</p>
+                <a href="#">View Project</a>
+            </div>
+
+            <div class="work-item">
+                <h3>Using AI to generate novel protein sequences</h3>
+                <p>We developed a Variational Autoencoder model that created a 3D latent space for a protein family, then implemented a logistic regression classifier to distinguish different GO-annotated proteins within this family. The project culminated in the successful generation of novel protein sequences that were statistically indistinguishable from original sequences, as validated by their embedding distances on a Poincare ball hyperboloid.</p>
+                <a href="#">View Project</a>
+            </div>
+
+            <div class="work-item">
+                <h3>Understanding Nicotine Addiction</h3>
+                <p>We simulated the unbinding process of Acetylcholine from the M2R-Go protein complex using specialized molecular dynamics techniques, comparing how the full structure behaves versus just the transmembrane region to understand G protein effects. The analysis revealed important residues, loop interactions, and binding pocket changes during the unbinding process, while energy calculations helped identify critical high-energy conformational changes.</p>
+                <a href="#">View Project</a>
+            </div>
+
+            <div class="work-item">
+                <h3>Tunable Biosurfactant Production using recombinant <i>E. coli</i></h3>
+                <p>We engineered <i>E. coli</i> to produce Alasan and Rhamnolipid biosurfactants using a bi-directional promoter system and evaluated their effectiveness. Additionally, we performed MD simulations to analyze micelle formation by Rhamnolipid in the presence of copper ions and decane, providing insights into their molecular mechanisms.</p>
+                <a href="#">View Project</a>
+            </div>
+        </section>
+
+        <section id="How Close Are We?">
+            <h2>How Close Are We?</h2>
+
+            <article>
+                <h3><em>... to making our own organism from scratch?</em></h3>
+                <p>To be posted on March 19, 2025</p>
+                <p><i>Imagine a world where we could decide the characteristics of an organism we desire and have it custom made to our specifications. It seems like a fever dream, but the reality of how close we actually are might shock you.</i></p>
+                <a href="#">Read More</a>
+            </article>
+        </section>
+
+        <section id="5-min Papers">
+            <h2>5-min Paper</h2>
+
+            <article>
+                <h3><em>... on the latest in protein sequencing</em></h3>
+                <p>To be posted on March 22, 2025</p>
+                <p><i>How close are we to single-molecule protein sequencing at the speed of DNA sequencing? The latest paper gives us some insight.</i></p>
+                <a href="#">Read More</a>
+            </article>
+        </section>
+
+        <section id="contact">
+            <h2>Contact Me</h2>
+            <p>Feel free to reach out to me for collaborations or questions.</p>
+            <p>Email: tuhinraut@gmail.com</p>
+            <p>Phone:+91 9337121303</p>
+
+            <div class="social-links">
+            <a href="https://www.linkedin.com/in/tuhin-kumar-raut-936018223/" target="_blank">LinkedIn</a> |
+            <a href="https://github.com/tuhinraut" target="_blank">GitHub</a>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2025. Tuhin Kumar Raut. All Rights Reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Check for saved theme preference or use device preference
+        const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+
+        // Get the theme toggle button
+        const themeToggle = document.getElementById("theme-toggle");
+
+        // Function to set the theme
+        function setTheme(theme) {
+            if (theme === "dark") {
+                document.body.classList.add("light-mode");
+                localStorage.setItem("theme", "dark");
+                themeToggle.textContent = "Toggle Light Mode";
+            } else {
+                document.body.classList.remove("light-mode");
+                localStorage.setItem("theme", "light");
+                themeToggle.textContent = "Toggle Dark Mode";
+            }
+        }
+
+        // Check if user has a saved preference
+        const currentTheme = localStorage.getItem("theme");
+        if (currentTheme) {
+            setTheme(currentTheme);
+        } else if (prefersDarkScheme.matches) {
+            // If no saved preference, use device preference
+            setTheme("dark");
+        }
+
+        // Toggle theme when button is clicked
+        themeToggle.addEventListener("click", () => {
+            if (document.body.classList.contains("light-mode")) {
+                setTheme("light");
+            } else {
+                setTheme("dark");
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Close Are We?</title>
+    <style>
+    /* Dark mode variables */
+    :root {
+        --background-color: #333333;
+        --text-color: #EDEDED;
+        --header-bg: #1e1e1e;
+        --section-bg: #1e1e1e;
+        --nav-bg: #000;
+        --nav-text: #EDEDED;
+        --footer-bg: #000;
+        --footer-text: #EDEDED;
+        --border-color: #333;
+        --input-text-color: #EDEDED;
+        --header-bg-image: url('background-dark.jpg');
+        --header-text-color: #EDEDED;
+        --tagline-color: #EDEDED;
+    }
+
+    /* Light mode */
+    .light-mode {
+        --background-color: #f4f4f4;
+        --text-color: #333;
+        --header-bg: white;
+        --section-bg: white;
+        --nav-bg: #333;
+        --nav-text: white;
+        --footer-bg: #333;
+        --footer-text: white;
+        --border-color: #eee;
+        --input-text-color: black;
+        --header-bg-image: url('background-light.jpg');
+        --header-text-color: #333;
+        --tagline-color: #333;
+    }
+    /* Consistent font and text appearance */
+    body {
+        font-family: 'Poppins', sans-serif;
+        background-color: var(--background-color);
+        color: var(--text-color);
+        font-weight: 400; /* Ensures consistency */
+        transition: all 0.3s ease-in-out; /* Smooth transition */
+    }
+
+
+    /* Ensure uniform sizing */
+    .container, header, nav, section, footer {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        border-radius: 5px;
+        transition: all 0.3s ease-in-out; /* Smooth theme switching */
+    }
+        header {
+            background-image: var(--header-bg-image);
+            background-size: cover;
+            background-position: center;
+            padding: 60px 0;
+            text-align: center;
+            color: var(--text-color);
+            border-radius: 5px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+        nav {
+            background: var(--nav-bg);
+            padding: 15px;
+            text-align: center;
+            border-radius: 5px;
+        }
+        nav a {
+            color: var(--nav-text);
+            text-decoration: none;
+            margin: 0 15px;
+        }
+        section {
+            background: var(--section-bg);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        footer {
+            background: var(--footer-bg);
+            color: var(--footer-text);
+            text-align: center;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #333;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+/* Paragraph Styling */
+p {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+/* Emphasized Text */
+em {
+    color: #d35400; /* Orange in light mode */
+    font-weight: bold;
+}
+
+/* Dark Mode Emphasized Text */
+body:not(.light-mode) em {
+    color: #ff8c42; /* Light orange in dark mode */
+}
+
+/* Strong Text */
+strong {
+    color: #2c3e50; /* Dark blue in light mode */
+}
+
+/* Dark Mode Strong Text */
+body:not(.light-mode) strong {
+    color: #4db8ff; /* Light blue in dark mode */
+}
+
+/* Highlighted Section */
+.highlight {
+    background-color: #ffeb3b; /* Yellow in light mode */
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #333; /* Ensuring contrast */
+}
+
+/* Dark Mode */
+body:not(.light-mode) .highlight {
+    background-color: #00e5ff; /* Cyan in dark mode */
+    color: #000; /* Ensuring readability */
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .container {
+        padding: 15px;
+    }
+
+    p {
+        font-size: 16px;
+    }
+}
+    </style>
+</head>
+<body>
+
+    <button class="theme-toggle" id="theme-toggle">Toggle Dark Mode</button>
+
+    <div class="container">
+        <header>
+            <h1>How Close Are We?</h1>
+        </header>
+
+        <nav>
+    <a href="index.html">← Back to Home</a>
+    <a href="index.html#about">About</a>
+    <a href="index.html#work">Projects</a>
+    <a href="#How Close Are We?" style="font-weight: bold; text-decoration: underline; color: magenta;">How Close Are We?</a>
+    <a href="5-min Papers.html#5-min Papers">5-min Papers</a>
+    <a href="index.html#contact">Contact</a>
+</nav>
+
+        <section id="about">
+            <h2>About This Section</h2>
+            <p>Have you ever watched a sci-fi movie and wondered, <em>How close are we to making this a reality?</em> Or stumbled upon a mind-blowing YouTube video that left you thinking, <em>How on earth did the researcher even come up with this?!</em></p>
+
+    <p>You're not alone! I’m here to dive deep into the research for you and break it down—hopefully with some fun analogies—so you can catch up on what you’ve been missing and get a glimpse of what the future holds.</p>
+
+            <p>But that’s not all. Every research enthusiast has, at some point, daydreamed about revolutionizing their field. Science isn’t just about breakthroughs—it’s also about failures that pave the way for success. Alongside cutting-edge discoveries, I’ll <em>share some of my own "failed" ideas</em> to give you a peek into a tinkerer’s mind—how we hit roadblocks and push forward or fall flat on our faces..</p>
+
+    <p>Together, we’ll explore the answers to the big questions that everyone wants answers to, like <em>How close are we to solving global warming?</em> (using biology, of course). But we won’t stop there—we’ll also uncover fascinating, lesser-known scientific pursuits, like <em>How close are we to building a fully organic computer?</em></p>
+
+        </section>
+
+        <section id="posts">
+            <h2>Coming Up..</h2>
+
+            <article>
+                <h3><em>... to making our own organism from scratch?</em></h3>
+                <p>To be posted on March 19, 2025</p>
+                <p><i>Imagine a world where we could decide the characteristics of an organism we desire and have it custom made to our specifications. It seems like a fever dream, but the reality of how close we actually are might shock you.</i></p>
+                <a href="#">Read More</a>
+            </article>
+        </section>
+
+        <footer>
+            <p>&copy; 2025. Tuhin Kumar Raut. All Rights Reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        const themeToggle = document.getElementById("theme-toggle");
+        function setTheme(theme) {
+            if (theme === "dark") {
+                document.body.classList.add("light-mode");
+                localStorage.setItem("theme", "dark");
+                themeToggle.textContent = "Toggle Light Mode";
+            } else {
+                document.body.classList.remove("light-mode");
+                localStorage.setItem("theme", "light");
+                themeToggle.textContent = "Toggle Dark Mode";
+            }
+        }
+        const currentTheme = localStorage.getItem("theme");
+        if (currentTheme) setTheme(currentTheme);
+        themeToggle.addEventListener("click", () => {
+            if (document.body.classList.contains("light-mode")) {
+                setTheme("light");
+            } else {
+                setTheme("dark");
+            }
+        });
+    </script>
+</body>
+</html>
