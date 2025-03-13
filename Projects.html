@@ -78,16 +78,32 @@
             border-radius: 5px;
         }
         .theme-toggle {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: #333;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #333; /* Default dark background */
+  color: white;
+  border: none;
+  padding: 10px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+/* Adjust button background for light theme */
+body.light-mode .theme-toggle {
+  background: #f9f9f9; /* Change to your light theme background color */
+  color: #333; /* Adjust text color if needed */
+}
+
+.theme-toggle:hover {
+  background: #555; /* Default dark hover background */
+}
+
+/* Adjust hover background for light theme */
+body.light-mode .theme-toggle:hover {
+  background: #ddd; /* Change to a suitable light hover background */
+}
         /* Emphasized Text */
         em {
             color: #d35400; /* Orange in light mode */
@@ -101,8 +117,9 @@
     </style>
 </head>
 <body>
-    <button class="theme-toggle" id="theme-toggle">Toggle Dark Mode</button>
-
+  <button class="theme-toggle" id="theme-toggle">
+  <img id="theme-icon" src="moon.png" style="width: 20px; height: 20px;">
+  </button>
     <div class="container">
         <header>
             <h1>Projects</h1>
@@ -152,13 +169,13 @@
 // Function to apply the theme
 function applyTheme(theme) {
 if (theme === "dark") {
-    document.body.classList.remove("light-mode");
-    localStorage.setItem("theme", "dark");
-    themeToggle.textContent = "Toggle Light Mode";
+document.body.classList.remove("light-mode");
+localStorage.setItem("theme", "dark");
+document.getElementById("theme-icon").src = "sun.png"; // Change to moon icon
 } else {
-    document.body.classList.add("light-mode");
-    localStorage.setItem("theme", "light");
-    themeToggle.textContent = "Toggle Dark Mode";
+document.body.classList.add("light-mode");
+localStorage.setItem("theme", "light");
+document.getElementById("theme-icon").src = "moon.png"; // Change to sun icon
 }
 }
 
