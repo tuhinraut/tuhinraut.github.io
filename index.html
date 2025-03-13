@@ -57,7 +57,7 @@
         background-image: var(--header-bg-image);
         background-size: cover;
         background-position: center;
-        padding: 50px 0;
+        padding: 20px 0;
         text-align: center;
         color: var(--header-text-color); /* Dynamic text color */
         position: relative;
@@ -125,7 +125,7 @@
     object-position: center 30%; /* Adjust this value to center your face */
     display: block;
     margin: 0 auto;
-    border: 5px solid white;
+    border: 2px solid white;
 }
 
         /* OPTION 2: Left-aligned image with text to the right */
@@ -232,28 +232,94 @@
             border-radius: 5px;
         }
 
-        /* Theme toggle button */
         .theme-toggle {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: #333;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            z-index: 1000;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #333; /* Default dark background */
+  color: white;
+  border: none;
+  padding: 10px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+/* Adjust button background for light theme */
+body.light-mode .theme-toggle {
+  background: #f9f9f9; /* Change to your light theme background color */
+  color: #333; /* Adjust text color if needed */
+}
+
+.theme-toggle:hover {
+  background: #555; /* Default dark hover background */
+}
+
+/* Adjust hover background for light theme */
+body.light-mode .theme-toggle:hover {
+  background: #ddd; /* Change to a suitable light hover background */
+}
+
+        /* Style for the contact icons container */
+        .contact-icons {
+          display: flex;
+          justify-content: center;
+          gap: 15px;
+          margin-top: 10px;
         }
 
-        .theme-toggle:hover {
-            background: #555;
+        /* Base icon styles */
+        .contact-icons .icon {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          transition: background 0.3s ease, transform 0.2s ease;
         }
+
+        /* Light theme styles */
+        .light-theme .contact-icons .icon {
+          background: #f0f0f0;
+        }
+
+        .light-theme .contact-icons .icon:hover {
+          background: #ddd;
+          transform: scale(1.1);
+        }
+
+        /* Dark theme styles */
+        .dark-theme .contact-icons .icon {
+          background: #222;
+        }
+
+        .dark-theme .contact-icons .icon:hover {
+          background: #444;
+          transform: scale(1.1);
+        }
+
+        /* Icon image styles */
+        .contact-icons .icon img {
+          width: 30px;
+          height: 30px;
+          filter: invert(1); /* Default icon color for light theme */
+        }
+
+        /* Dark theme icon color inversion */
+        .light-mode .contact-icons .icon img {
+          filter: invert(0); /* Invert icon color for dark theme */
+        }
+
+
     </style>
 </head>
 <body>
 
-    <button class="theme-toggle" id="theme-toggle">Toggle Dark Mode</button>
+  <button class="theme-toggle" id="theme-toggle">
+<img id="theme-icon" src="moon.png" style="width: 20px; height: 20px;">
+</button>
+
 
     <div class="container">
       <header class="header-background">
@@ -262,51 +328,34 @@
 
         <h1>Tuhin Kumar Raut</h1>
         <p class="tagline">Bio Buff  |  Nature Nerd  |  Gadget Geek</p>
+        <div class="contact-icons">
+  <a href="mailto:tuhinraut@gmail.com" class="icon email" aria-label="Email">
+    <img src="mail.svg" alt="Email Icon">
+  </a>
+  <a href="https://www.linkedin.com/in/tuhin-kumar-raut-936018223/" target="_blank" class="icon linkedin" aria-label="LinkedIn">
+    <img src="linkedin.svg" alt="LinkedIn Icon">
+  </a>
+  <a href="https://github.com/tuhinraut" target="_blank" class="icon github" aria-label="GitHub">
+    <img src="github.svg" alt="GitHub Icon">
+  </a>
+</div>
+
       </header>
 
 
       <nav>
   <a href="index.html#about">About</a>
-  <a href="index.html#work">Projects</a>
+  <a href="Projects.html">Projects</a>
   <a href="How Close Are We.html">How Close Are We?</a>
   <a href="5-min Papers.html#5-min Papers">5-min Papers</a>
-  <a href="index.html#contact">Contact</a>
 </nav>
 
 
         <section id="about">
             <h2>About Me</h2>
             <p>As a research enthusiast at the intersection of bioinformatics and biotechnology, I'm passionate about learning and implementing computational methods to address complex biological challenges. My work spans molecular dynamics simulations, synthetic biology, and machine learning applications in genomics and proteomics. I have received grants for my work on Nanopores and Biosurfactants from Emergent Ventures (Mercatus Center) and Impact Grants (iGEM).</p>
-            <p>Presently I am pursuing my Bachelors' Degree from Indian institute of Technology, Delhi from the Department of Biochemical Engineering and Biotechnology.</p>
-            <p>Tech enthusiast with a finger on the pulse of computing innovations, equally at home among nature's wonders or headbanging to metal's powerful rhythms.</p>
-        </section>
-
-        <section id="work">
-            <h2>Projects</h2>
-
-            <div class="work-item">
-                <h3>Molecular Dynamics based analysis of Protein Sequencing through Nanopore (Ongoing)</h3>
-                <p>We are studying the interations of protein analyte passing through the CsgG nanopore, usually present in Oxford Nanopore Technology (ONT) devices. This would lend us insights into the residues of CsgG which could be altered. By doing so, we aim to enhance sequencing accuracy and efficiency, offering a promising alternative to traditional protein sequencing methods.</p>
-                <a href="#">View Project</a>
-            </div>
-
-            <div class="work-item">
-                <h3>Using AI to generate novel protein sequences</h3>
-                <p>We developed a Variational Autoencoder model that created a 3D latent space for a protein family, then implemented a logistic regression classifier to distinguish different GO-annotated proteins within this family. The project culminated in the successful generation of novel protein sequences that were statistically indistinguishable from original sequences, as validated by their embedding distances on a Poincare ball hyperboloid.</p>
-                <a href="#">View Project</a>
-            </div>
-
-            <div class="work-item">
-                <h3>Understanding Nicotine Addiction</h3>
-                <p>We simulated the unbinding process of Acetylcholine from the M2R-Go protein complex using specialized molecular dynamics techniques, comparing how the full structure behaves versus just the transmembrane region to understand G protein effects. The analysis revealed important residues, loop interactions, and binding pocket changes during the unbinding process, while energy calculations helped identify critical high-energy conformational changes.</p>
-                <a href="#">View Project</a>
-            </div>
-
-            <div class="work-item">
-                <h3>Tunable Biosurfactant Production using recombinant <i>E. coli</i></h3>
-                <p>We engineered <i>E. coli</i> to produce Alasan and Rhamnolipid biosurfactants using a bi-directional promoter system and evaluated their effectiveness. Additionally, we performed MD simulations to analyze micelle formation by Rhamnolipid in the presence of copper ions and decane, providing insights into their molecular mechanisms.</p>
-                <a href="#">View Project</a>
-            </div>
+            <p>Presently I am pursuing my Bachelor's Degree from Indian institute of Technology, Delhi from the Department of Biochemical Engineering and Biotechnology.</p>
+            <p>Along side my love for biology, I am a tech nerd with a finger on the pulse of computing innovations, equally at home among nature's wonders or headbanging to metal's powerful rhythms.</p>
         </section>
 
         <section id="How Close Are We?">
@@ -331,60 +380,36 @@
             </article>
         </section>
 
-        <section id="contact">
-            <h2>Contact Me</h2>
-            <p>Feel free to reach out to me for collaborations or questions.</p>
-            <p>Email: tuhinraut@gmail.com</p>
-            <p>Phone:+91 9337121303</p>
-
-            <div class="social-links">
-            <a href="https://www.linkedin.com/in/tuhin-kumar-raut-936018223/" target="_blank">LinkedIn</a> |
-            <a href="https://github.com/tuhinraut" target="_blank">GitHub</a>
-            </div>
-        </section>
-
         <footer>
             <p>&copy; 2025. Tuhin Kumar Raut. All Rights Reserved.</p>
         </footer>
     </div>
 
     <script>
-        // Check for saved theme preference or use device preference
-        const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+    // Function to apply the theme
+function applyTheme(theme) {
+  if (theme === "dark") {
+    document.body.classList.remove("light-mode");
+    localStorage.setItem("theme", "dark");
+    document.getElementById("theme-icon").src = "sun.png"; // Change to moon icon
+  } else {
+    document.body.classList.add("light-mode");
+    localStorage.setItem("theme", "light");
+    document.getElementById("theme-icon").src = "moon.png"; // Change to sun icon
+  }
+}
 
-        // Get the theme toggle button
-        const themeToggle = document.getElementById("theme-toggle");
+// Get the saved theme from localStorage or fallback to dark mode
+const savedTheme = localStorage.getItem("theme") || "dark";
+const themeToggle = document.getElementById("theme-toggle");
+applyTheme(savedTheme);
 
-        // Function to set the theme
-        function setTheme(theme) {
-            if (theme === "dark") {
-                document.body.classList.add("light-mode");
-                localStorage.setItem("theme", "dark");
-                themeToggle.textContent = "Toggle Light Mode";
-            } else {
-                document.body.classList.remove("light-mode");
-                localStorage.setItem("theme", "light");
-                themeToggle.textContent = "Toggle Dark Mode";
-            }
-        }
+// Add event listener to toggle button
+themeToggle.addEventListener("click", () => {
+  const currentTheme = document.body.classList.contains("light-mode") ? "dark" : "light";
+  applyTheme(currentTheme);
+});
+</script>
 
-        // Check if user has a saved preference
-        const currentTheme = localStorage.getItem("theme");
-        if (currentTheme) {
-            setTheme(currentTheme);
-        } else if (prefersDarkScheme.matches) {
-            // If no saved preference, use device preference
-            setTheme("dark");
-        }
-
-        // Toggle theme when button is clicked
-        themeToggle.addEventListener("click", () => {
-            if (document.body.classList.contains("light-mode")) {
-                setTheme("light");
-            } else {
-                setTheme("dark");
-            }
-        });
-    </script>
 </body>
 </html>

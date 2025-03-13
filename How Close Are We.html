@@ -46,6 +46,7 @@
         color: var(--text-color);
         font-weight: 400; /* Ensures consistency */
         transition: all 0.3s ease-in-out; /* Smooth transition */
+        padding: 20px 0;
     }
 
 
@@ -171,10 +172,9 @@ body:not(.light-mode) .highlight {
         <nav>
     <a href="index.html">← Back to Home</a>
     <a href="index.html#about">About</a>
-    <a href="index.html#work">Projects</a>
+    <a href="Projects.html">Projects</a>
     <a href="#How Close Are We?" style="font-weight: bold; text-decoration: underline; color: magenta;">How Close Are We?</a>
     <a href="5-min Papers.html#5-min Papers">5-min Papers</a>
-    <a href="index.html#contact">Contact</a>
 </nav>
 
         <section id="about">
@@ -206,27 +206,30 @@ body:not(.light-mode) .highlight {
     </div>
 
     <script>
-        const themeToggle = document.getElementById("theme-toggle");
-        function setTheme(theme) {
-            if (theme === "dark") {
-                document.body.classList.add("light-mode");
-                localStorage.setItem("theme", "dark");
-                themeToggle.textContent = "Toggle Light Mode";
-            } else {
-                document.body.classList.remove("light-mode");
-                localStorage.setItem("theme", "light");
-                themeToggle.textContent = "Toggle Dark Mode";
-            }
+    // Function to apply the theme
+    function applyTheme(theme) {
+        if (theme === "dark") {
+            document.body.classList.remove("light-mode");
+            localStorage.setItem("theme", "dark");
+            themeToggle.textContent = "Toggle Light Mode";
+        } else {
+            document.body.classList.add("light-mode");
+            localStorage.setItem("theme", "light");
+            themeToggle.textContent = "Toggle Dark Mode";
         }
-        const currentTheme = localStorage.getItem("theme");
-        if (currentTheme) setTheme(currentTheme);
-        themeToggle.addEventListener("click", () => {
-            if (document.body.classList.contains("light-mode")) {
-                setTheme("light");
-            } else {
-                setTheme("dark");
-            }
-        });
-    </script>
+    }
+
+    // Get the saved theme from localStorage or fallback to dark mode
+    const savedTheme = localStorage.getItem("theme") || "dark";
+    const themeToggle = document.getElementById("theme-toggle");
+    applyTheme(savedTheme);
+
+    // Add event listener to toggle button
+    themeToggle.addEventListener("click", () => {
+        const currentTheme = document.body.classList.contains("light-mode") ? "dark" : "light";
+        applyTheme(currentTheme);
+    });
+</script>
+
 </body>
 </html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects</title>
+    <style>
+        :root {
+            --background-color: #333333;
+            --text-color: #EDEDED;
+            --header-bg: #1e1e1e;
+            --section-bg: #1e1e1e;
+            --nav-bg: #000;
+            --nav-text: #EDEDED;
+            --footer-bg: #000;
+            --footer-text: #EDEDED;
+            --header-bg-image: url('background-dark.jpg');
+        }
+
+        .light-mode {
+            --background-color: #f4f4f4;
+            --text-color: #333;
+            --header-bg: white;
+            --section-bg: white;
+            --nav-bg: #333;
+            --nav-text: white;
+            --footer-bg: #333;
+            --footer-text: white;
+            --header-bg-image: url('background-light.jpg');
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            transition: all 0.3s ease-in-out;
+            padding: 20px 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background-image: var(--header-bg-image);
+            background-size: cover;
+            text-align: center;
+            padding: 60px 0;
+        }
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+        nav {
+            background: var(--nav-bg);
+            padding: 15px;
+            text-align: center;
+            border-radius: 5px;
+        }
+        nav a {
+            color: var(--nav-text);
+            text-decoration: none;
+            margin: 0 15px;
+        }
+        section {
+            background: var(--section-bg);
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        footer {
+            background: var(--footer-bg);
+            color: var(--footer-text);
+            text-align: center;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #333;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        /* Emphasized Text */
+        em {
+            color: #d35400; /* Orange in light mode */
+            font-weight: bold;
+        }
+
+        /* Dark Mode Emphasized Text */
+        body:not(.light-mode) em {
+            color: #ff8c42; /* Light orange in dark mode */
+        }
+    </style>
+</head>
+<body>
+    <button class="theme-toggle" id="theme-toggle">Toggle Dark Mode</button>
+
+    <div class="container">
+        <header>
+            <h1>Projects</h1>
+        </header>
+
+        <nav>
+            <a href="index.html">← Back to Home</a>
+            <a href="index.html#about">About</a>
+            <a href="Projects.html"style="font-weight: bold; text-decoration: underline; color: magenta;">Projects</a>
+            <a href="How Close Are We.html">How Close Are We?</a>
+            <a href="5-min Papers.html">5-min Papers</a>
+        </nav>
+
+<section id="work">
+    <h2>Projects</h2>
+
+    <div class="work-item">
+        <h3>Molecular Dynamics based analysis of Protein Sequencing through Nanopore (Ongoing)</h3>
+        <p>We are studying the interations of protein analyte passing through the CsgG nanopore, usually present in Oxford Nanopore Technology (ONT) devices. This would lend us insights into the residues of CsgG which could be altered. By doing so, we aim to enhance sequencing accuracy and efficiency, offering a promising alternative to traditional protein sequencing methods.</p>
+        <a href="#">View Project</a>
+    </div>
+
+    <div class="work-item">
+        <h3>Using AI to generate novel protein sequences</h3>
+        <p>We developed a Variational Autoencoder model that created a 3D latent space for a protein family, then implemented a logistic regression classifier to distinguish different GO-annotated proteins within this family. The project culminated in the successful generation of novel protein sequences that were statistically indistinguishable from original sequences, as validated by their embedding distances on a Poincare ball hyperboloid.</p>
+        <a href="#">View Project</a>
+    </div>
+
+    <div class="work-item">
+        <h3>Understanding Nicotine Addiction</h3>
+        <p>We simulated the unbinding process of Acetylcholine from the M2R-Go protein complex using specialized molecular dynamics techniques, comparing how the full structure behaves versus just the transmembrane region to understand G protein effects. The analysis revealed important residues, loop interactions, and binding pocket changes during the unbinding process, while energy calculations helped identify critical high-energy conformational changes.</p>
+        <a href="#">View Project</a>
+    </div>
+
+    <div class="work-item">
+        <h3>Tunable Biosurfactant Production using recombinant <i>E. coli</i></h3>
+        <p>We engineered <i>E. coli</i> to produce Alasan and Rhamnolipid biosurfactants using a bi-directional promoter system and evaluated their effectiveness. Additionally, we performed MD simulations to analyze micelle formation by Rhamnolipid in the presence of copper ions and decane, providing insights into their molecular mechanisms.</p>
+        <a href="#">View Project</a>
+    </div>
+</section>
+<footer>
+    <p>&copy; 2025. Tuhin Kumar Raut. All Rights Reserved.</p>
+</footer>
+</div>
+
+<script>
+// Function to apply the theme
+function applyTheme(theme) {
+if (theme === "dark") {
+    document.body.classList.remove("light-mode");
+    localStorage.setItem("theme", "dark");
+    themeToggle.textContent = "Toggle Light Mode";
+} else {
+    document.body.classList.add("light-mode");
+    localStorage.setItem("theme", "light");
+    themeToggle.textContent = "Toggle Dark Mode";
+}
+}
+
+// Get the saved theme from localStorage or fallback to dark mode
+const savedTheme = localStorage.getItem("theme") || "dark";
+const themeToggle = document.getElementById("theme-toggle");
+applyTheme(savedTheme);
+
+// Add event listener to toggle button
+themeToggle.addEventListener("click", () => {
+const currentTheme = document.body.classList.contains("light-mode") ? "dark" : "light";
+applyTheme(currentTheme);
+});
+</script>
+
+</body>
+</html>
