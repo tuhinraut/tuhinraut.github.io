@@ -92,7 +92,11 @@
           background-color: var(--background-color);
           color: var(--text-color);
           font-weight: 400; /* Ensures consistency */
-          transition: all 0.3s ease-in-out; /* Smooth transition */
+      }
+
+      /* Smooth transition only for theme switching */
+      body.theme-transition {
+          transition: all 0.3s ease-in-out;
       }
 
 
@@ -247,7 +251,7 @@
 
 /* Adjust button background for light theme */
 body.light-mode .theme-toggle {
-  background: #f9f9f9; /* Change to your light theme background color */
+  background: #f4f4f4; /* Change to your light theme background color */
   color: #333; /* Adjust text color if needed */
 }
 
@@ -281,7 +285,7 @@ body.light-mode .theme-toggle:hover {
 
         /* Light theme styles */
         .light-theme .contact-icons .icon {
-          background: #f0f0f0;
+          background: #f4f4f4;
         }
 
         .light-theme .contact-icons .icon:hover {
@@ -344,7 +348,6 @@ body.light-mode .theme-toggle:hover {
 
 
       <nav>
-  <a href="index.html#about">About</a>
   <a href="Projects.html">Projects</a>
   <a href="How Close Are We.html">How Close Are We?</a>
   <a href="5-min Papers.html#5-min Papers">5-min Papers</a>
@@ -386,29 +389,41 @@ body.light-mode .theme-toggle:hover {
     </div>
 
     <script>
-    // Function to apply the theme
-function applyTheme(theme) {
-  if (theme === "dark") {
-    document.body.classList.remove("light-mode");
-    localStorage.setItem("theme", "dark");
-    document.getElementById("theme-icon").src = "sun.png"; // Change to moon icon
-  } else {
-    document.body.classList.add("light-mode");
-    localStorage.setItem("theme", "light");
-    document.getElementById("theme-icon").src = "moon.png"; // Change to sun icon
-  }
-}
+    function applyTheme(theme, isUserAction = false) {
+      if (theme === "dark") {
+        document.body.classList.remove("light-mode");
+        localStorage.setItem("theme", "dark");
+        document.getElementById("theme-icon").src = "sun.png";
+      } else {
+        document.body.classList.add("light-mode");
+        localStorage.setItem("theme", "light");
+        document.getElementById("theme-icon").src = "moon.png";
+      }
 
-// Get the saved theme from localStorage or fallback to dark mode
-const savedTheme = localStorage.getItem("theme") || "dark";
-const themeToggle = document.getElementById("theme-toggle");
-applyTheme(savedTheme);
+      // Only add transition class if it's a user-initiated action
+      if (isUserAction) {
+        document.body.classList.add("theme-transition");
+      }
+    }
 
-// Add event listener to toggle button
-themeToggle.addEventListener("click", () => {
-  const currentTheme = document.body.classList.contains("light-mode") ? "dark" : "light";
-  applyTheme(currentTheme);
-});
+    // Get the saved theme or fallback to dark mode
+    const savedTheme = localStorage.getItem("theme") || "dark";
+    const themeToggle = document.getElementById("theme-toggle");
+
+    // Apply theme without transition on initial load
+    applyTheme(savedTheme);
+
+    // Ensure theme transitions only happen after page load
+    setTimeout(() => {
+      document.body.classList.add("theme-transition");
+    }, 100);
+
+    // Add event listener for user theme change
+    themeToggle.addEventListener("click", () => {
+      const currentTheme = document.body.classList.contains("light-mode") ? "dark" : "light";
+      applyTheme(currentTheme, true);
+    });
+
 </script>
 
 </body>
