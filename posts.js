@@ -6,7 +6,7 @@ const postsData = [
     "image": "platypus.png",
     "content": "<i>Imagine a world where we could decide the characteristics of an organism we desire and have it custom made to our specifications. It seems like a fever dream, but the reality of how close we actually are might shock you.</i>",
     "link": "#",
-    "status": "coming soon" // This post has already been posted
+    "status": "posted" // This post has already been posted
   },
   {
     "title": "... to building a fully organic computer?",
