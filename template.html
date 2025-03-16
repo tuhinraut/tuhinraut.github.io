@@ -789,6 +789,16 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('DOMContentLoaded', function() {
   const sidebar = document.querySelector('.sidebar');
   const pullTab = document.getElementById('pull-tab');
+  const isMobile = window.innerWidth < 768; // Check if it's a mobile device
+
+  // Set the default sidebar state based on screen size
+  if (isMobile) {
+    // Collapse the sidebar by default on mobile
+    sidebar.classList.add('collapsed');
+  } else {
+    // Expand the sidebar by default on desktop
+    sidebar.classList.remove('collapsed');
+  }
 
   // Replace the existing SVG with a thinner, smaller hamburger menu icon
   pullTab.innerHTML = `
@@ -806,6 +816,33 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Add event listener to the pull tab
   pullTab.addEventListener('click', toggleSidebar);
+
+  // Adjust the main content margin based on sidebar state
+  function adjustMainContentMargin() {
+    const mainContent = document.querySelector('.main-content');
+    if (sidebar.classList.contains('collapsed')) {
+      mainContent.style.marginLeft = '40px'; // Leave space for the pull tab
+      mainContent.style.width = 'calc(100% - 40px)';
+    } else {
+      mainContent.style.marginLeft = '260px'; // Expand to full sidebar width
+      mainContent.style.width = 'calc(100% - 260px)';
+    }
+  }
+
+  // Adjust the main content margin on page load
+  adjustMainContentMargin();
+
+  // Adjust the main content margin when the sidebar is toggled
+  sidebar.addEventListener('transitionend', adjustMainContentMargin);
+
+  // Adjust the main content margin when the window is resized
+  window.addEventListener('resize', function() {
+    const newIsMobile = window.innerWidth < 768;
+    if (newIsMobile !== isMobile) {
+      // Reload the page if the screen size crosses the mobile/desktop threshold
+      window.location.reload();
+    }
+  });
 });
 </script>
 </body>

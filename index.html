@@ -891,7 +891,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const isMobile = window.innerWidth < 768;
 
   if (!isMobile) {
-    // Create content wrapper for side-by-side sections only if not on mobile
+    // For desktop, create a content wrapper for side-by-side sections
     const contentWrapper = document.createElement('div');
     contentWrapper.className = 'content-wrapper';
 
@@ -934,7 +934,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add the wrapper to the container
     contentContainer.appendChild(contentWrapper);
   } else {
-    // If on mobile, create separate sections for each category
+    // For mobile, create a single-column layout
     // Create How Close Are We section
     const hcawSection = document.createElement('div');
     hcawSection.className = 'content-section';
@@ -950,6 +950,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Populate How Close Are We posts
     populateGrid(hcawGrid, postsData);
+
+    // Add the How Close Are We section to the container
+    contentContainer.appendChild(hcawSection);
 
     // Create 5-min Papers section
     const papersSection = document.createElement('div');
@@ -967,8 +970,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Populate 5-min Papers posts
     populateGrid(papersGrid, papersData);
 
-    // Add both sections to the container
-    contentContainer.appendChild(hcawSection);
+    // Add the 5-min Papers section to the container
     contentContainer.appendChild(papersSection);
   }
 
@@ -1019,7 +1021,7 @@ function adjustPlacardWidths() {
   placards.forEach(placard => {
     if (isMobile) {
       // For mobile, set width to 100% (1 post per row)
-      placard.style.width = '200%';
+      placard.style.width = '100%';
     } else {
       // For desktop, set width to 1/3 of the container width (3 posts per row)
       const contentContainer = document.querySelector('.content-container');
@@ -1044,6 +1046,16 @@ window.addEventListener('resize', adjustPlacardWidths);
 document.addEventListener('DOMContentLoaded', function() {
   const sidebar = document.querySelector('.sidebar');
   const pullTab = document.getElementById('pull-tab');
+  const isMobile = window.innerWidth < 768; // Check if it's a mobile device
+
+  // Set the default sidebar state based on screen size
+  if (isMobile) {
+    // Collapse the sidebar by default on mobile
+    sidebar.classList.add('collapsed');
+  } else {
+    // Expand the sidebar by default on desktop
+    sidebar.classList.remove('collapsed');
+  }
 
   // Replace the existing SVG with a thinner, smaller hamburger menu icon
   pullTab.innerHTML = `
@@ -1061,6 +1073,33 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Add event listener to the pull tab
   pullTab.addEventListener('click', toggleSidebar);
+
+  // Adjust the main content margin based on sidebar state
+  function adjustMainContentMargin() {
+    const mainContent = document.querySelector('.main-content');
+    if (sidebar.classList.contains('collapsed')) {
+      mainContent.style.marginLeft = '40px'; // Leave space for the pull tab
+      mainContent.style.width = 'calc(100% - 40px)';
+    } else {
+      mainContent.style.marginLeft = '260px'; // Expand to full sidebar width
+      mainContent.style.width = 'calc(100% - 260px)';
+    }
+  }
+
+  // Adjust the main content margin on page load
+  adjustMainContentMargin();
+
+  // Adjust the main content margin when the sidebar is toggled
+  sidebar.addEventListener('transitionend', adjustMainContentMargin);
+
+  // Adjust the main content margin when the window is resized
+  window.addEventListener('resize', function() {
+    const newIsMobile = window.innerWidth < 768;
+    if (newIsMobile !== isMobile) {
+      // Reload the page if the screen size crosses the mobile/desktop threshold
+      window.location.reload();
+    }
+  });
 });
 </script>
   </body>
