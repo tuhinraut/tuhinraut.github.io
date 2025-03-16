@@ -77,10 +77,6 @@
     z-index: 1000;
   }
 
-  .sidebar.collapsed {
-    transform: translateX(-260px);
-  }
-
   .site-title {
     text-align: center;
     padding: 1.5rem 1rem;
@@ -597,21 +593,26 @@ font-size: 12px;
   }
 
   .read-more-btn {
-    display: inline-block;
-    margin: 1rem;
-    padding: 0.5rem 1rem;
-    background-color: rgba(211, 84, 0, 0.7);
-    color: white;
-    text-decoration: none;
-    border-radius: 4px;
-    transition: all 0.2s ease;
+      display: inline-block;
+      margin: 0.5rem; /* Reduced margin for a more compact look */
+      padding: 0.4rem 0.8rem; /* Smaller padding for a smaller button */
+      background-color: rgba(211, 84, 0, 0.7); /* Slightly darker and more solid blue-grey */
+      color: white;
+      border-radius: 20px; /* Rounded corners for a pill-like shape */
+      font-size: 0.8rem; /* Smaller font size */
+      font-weight: 500;
+      text-transform: uppercase; /* Uppercase text for a sleek look */
+      letter-spacing: 0.05rem; /* Slight letter spacing for better readability */
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+      transition: all 0.3s ease; /* Smooth transition for hover effects */
+      cursor: default; /* Indicates it's not clickable */
   }
 
   .read-more-btn:hover {
     background-color: rgba(211, 84, 0, 1);
-    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Slightly larger shadow on hover */
+    transform: translateY(-1px); /* Slight lift effect on hover */
   }
-
   /* Responsive design */
   @media (max-width: 768px) {
     .sidebar {
@@ -630,11 +631,120 @@ font-size: 12px;
       font-style: italic;
       color: #d35400; /* This is a common orange color, adjust if needed to match exactly */
   }
+  .coming-soon {
+    display: inline-block;
+    margin: 0.5rem; /* Reduced margin for a more compact look */
+    padding: 0.4rem 0.8rem; /* Smaller padding for a smaller button */
+    background-color: rgba(96, 125, 139, 0.9); /* Slightly darker and more solid blue-grey */
+    color: white;
+    border-radius: 20px; /* Rounded corners for a pill-like shape */
+    font-size: 0.8rem; /* Smaller font size */
+    font-weight: 500;
+    text-transform: uppercase; /* Uppercase text for a sleek look */
+    letter-spacing: 0.05rem; /* Slight letter spacing for better readability */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+    cursor: default; /* Indicates it's not clickable */
+  }
+
+  .coming-soon:hover {
+    background-color: rgba(96, 125, 139, 1); /* Solid color on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Slightly larger shadow on hover */
+    transform: translateY(-1px); /* Slight lift effect on hover */
+  }
+
+  /* Adjust the sidebar border to create a seamless integration with the pull tab */
+  .sidebar {
+    position: fixed;
+    width: 260px;
+    height: 100vh;
+    background-color: var(--sidebar-bg);
+    border-right: 1px solid var(--border-color);
+    /* Remove the border-right for the top 40px */
+    border-right-width: 0px;
+    border-top-right-radius: 0;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+    z-index: 1000;
+  }
+
+  /* Add a pseudo-element to create the border but with a gap at the top */
+  .sidebar::after {
+    content: "";
+    position: absolute;
+    top: 40px; /* Start the border after the pull tab height */
+    right: 0;
+    width: 1px;
+    height: calc(100% - 40px);
+    background-color: var(--border-color);
+  }
+
+  /* Modify pull tab to have border only on the bottom and right */
+  .pull-tab {
+    position: fixed;
+    top: 0;
+    left: 260px;
+    width: 40px;
+    height: 40px;
+    background-color: var(--sidebar-bg);
+    border: none; /* Remove all borders */
+    border-right: 1px solid var(--border-color); /* Add right border */
+    border-bottom: 1px solid var(--border-color); /* Add bottom border */
+    border-radius: 0 8px 8px 0; /* Round only the bottom-right corner */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1001;
+  }
+
+  /* When sidebar is collapsed, only move the sidebar itself */
+  .sidebar.collapsed {
+    transform: translateX(-260px);
+  }
+
+  /* Main content adjustment */
+  .main-content {
+    margin-left: 260px;
+    width: calc(100% - 260px);
+    transition: margin-left 0.3s ease, width 0.3s ease;
+  }
+
+  .sidebar.collapsed ~ .main-content {
+    margin-left: 40px; /* Leave space for the pull tab */
+    width: calc(100% - 40px);
+  }
+
+  /* For mobile devices */
+  @media (max-width: 768px) {
+    .sidebar {
+      transform: translateX(0);
+    }
+
+    .pull-tab {
+      left: 260px;
+    }
+
+    .sidebar.collapsed {
+      transform: translateX(-260px);
+    }
+
+    .main-content {
+      margin-left: 260px;
+    }
+
+    .sidebar.collapsed ~ .main-content {
+      margin-left: 40px;
+    }
+  }
   </style>
 </head>
 <body>
   <!-- Sidebar -->
   <aside class="sidebar">
+    <div class="pull-tab" id="pull-tab">
+    </div>
     <div class="site-title">
       <img src="profile-picture.jpeg" alt="Tuhin Kumar Raut" class="profile-img">
       <!-- Modal for profile picture -->
@@ -741,37 +851,14 @@ font-size: 12px;
           <p>Together, we’ll explore the answers to the big questions that everyone wants answers to, like <em>How close are we to solving global warming?</em> (using biology, of course). But we won’t stop there—we’ll also uncover fascinating, lesser-known scientific pursuits, like <em>How close are we to building a fully organic computer?</em></p>
         </div>
       </div>
-    </section>
-
-      <!-- Posts Section -->
-      <div class="posts-grid">
-        <article class="post-placard">
-          <img src="platypus.png" alt="Post 1 Image" class="post-image">
-          <div class="post-date">March 19, 2025</div>
-          <h3>... to making our own organism from scratch?</h3>
-          <p><i>Imagine a world where we could decide the characteristics of an organism we desire and have it custom made to our specifications. It seems like a fever dream, but the reality of how close we actually are might shock you.</i></p>
-          <a href="#" class="read-more-btn">Read More</a>
-        </article>
-
-        <article class="post-placard">
-          <img src="organic_computer.png" alt="Post 2 Image" class="post-image">
-          <div class="post-date">April 10, 2025</div>
-          <h3>... to building a fully organic computer?</h3>
-          <p><i>Organic computers could revolutionize the way we think about technology. But how close are we to making this a reality? Let's dive into the science behind it.</i></p>
-          <a href="#" class="read-more-btn">Read More</a>
-        </article>
-
-        <article class="post-placard">
-          <img src="global_warming.png" alt="Post 3 Image" class="post-image">
-          <div class="post-date">May 5, 2025</div>
-          <h3>... to solving global warming with biology?</h3>
-          <p><i>Global warming is one of the biggest challenges of our time. But could biology hold the key to solving it? Let's explore the possibilities.</i></p>
-          <a href="#" class="read-more-btn">Read More</a>
-        </article>
-      </div>
-    </section>
+      <section>
+       <div class="posts-grid" id="posts-grid">
+         <!-- Posts will be dynamically inserted here by JavaScript -->
+       </div>
+     </section>
   </div>
 </main>
+
 
   <script>
 function applyTheme(theme, isUserAction = false) {
@@ -975,6 +1062,63 @@ document.addEventListener('DOMContentLoaded', function () {
       event.stopPropagation();
     }
   });
+});
+</script>
+<script src="posts.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Sort posts by status and date
+    postsData.sort((a, b) => {
+      // Prioritize "posted" posts over "coming soon"
+      if (a.status === "posted" && b.status === "coming soon") return -1;
+      if (a.status === "coming soon" && b.status === "posted") return 1;
+
+      // Sort by date (earliest first)
+      return new Date(a.date) - new Date(b.date);
+    });
+
+    // Get the posts grid container
+    const postsGrid = document.querySelector('.posts-grid');
+
+    // Clear any existing placeholder content
+    postsGrid.innerHTML = '';
+
+    // Populate the posts grid
+    postsData.forEach(post => {
+      const postElement = document.createElement('article');
+      postElement.className = 'post-placard';
+      postElement.innerHTML = `
+        <img src="${post.image}" alt="${post.title}" class="post-image">
+        <div class="post-date">${post.date}</div>
+        <h3>${post.title}</h3>
+        <p>${post.content}</p>
+        ${post.status === "coming soon" ? '<div class="coming-soon">Coming Soon</div>' : `<a href="${post.link}" class="read-more-btn">Read More</a>`}
+      `;
+      postsGrid.appendChild(postElement);
+    });
+  });
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const sidebar = document.querySelector('.sidebar');
+  const pullTab = document.getElementById('pull-tab');
+
+  // Replace the existing SVG with a thinner, smaller hamburger menu icon
+  pullTab.innerHTML = `
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  `;
+
+  // Function to toggle sidebar without changing icons
+  function toggleSidebar() {
+    sidebar.classList.toggle('collapsed');
+  }
+
+  // Add event listener to the pull tab
+  pullTab.addEventListener('click', toggleSidebar);
 });
 </script>
 </body>

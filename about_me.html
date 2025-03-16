@@ -54,24 +54,6 @@
       transition: background-color 0.3s, color 0.3s;
     }
 
-    /* Sidebar styling */
-    .sidebar {
-      position: fixed;
-      width: 260px;
-      height: 100vh;
-      background-color: var(--sidebar-bg);
-      border-right: 1px solid var(--border-color);
-      display: flex;
-      flex-direction: column;
-      transition: all 0.3s ease;
-      z-index: 1000;
-    }
-
-    .sidebar.collapsed {
-      transform: translateX(-260px);
-    }
-
-
     .site-title {
       text-align: center;
       padding: 1.5rem 1rem;
@@ -349,18 +331,6 @@ background: #ddd; /* Change to a suitable light hover background */
       font-size: 12px;
     }
 
-    @media (max-width: 768px) {
-      .sidebar {
-        transform: translateX(-100%);
-      }
-      .sidebar.active {
-        transform: translateX(0);
-      }
-      .main-content {
-        margin-left: 0;
-        width: 100%;
-      }
-    }
     sidep {
   font-size: 12px;
 }
@@ -592,11 +562,99 @@ h2 {
             margin: 0 auto;
             padding: 20px;
         }
+
+        /* Adjust the sidebar border to create a seamless integration with the pull tab */
+        .sidebar {
+          position: fixed;
+          width: 260px;
+          height: 100vh;
+          background-color: var(--sidebar-bg);
+          border-right: 1px solid var(--border-color);
+          /* Remove the border-right for the top 40px */
+          border-right-width: 0px;
+          border-top-right-radius: 0;
+          display: flex;
+          flex-direction: column;
+          transition: transform 0.3s ease;
+          z-index: 1000;
+        }
+
+        /* Add a pseudo-element to create the border but with a gap at the top */
+        .sidebar::after {
+          content: "";
+          position: absolute;
+          top: 40px; /* Start the border after the pull tab height */
+          right: 0;
+          width: 1px;
+          height: calc(100% - 40px);
+          background-color: var(--border-color);
+        }
+
+        /* Modify pull tab to have border only on the bottom and right */
+        .pull-tab {
+          position: fixed;
+          top: 0;
+          left: 260px;
+          width: 40px;
+          height: 40px;
+          background-color: var(--sidebar-bg);
+          border: none; /* Remove all borders */
+          border-right: 1px solid var(--border-color); /* Add right border */
+          border-bottom: 1px solid var(--border-color); /* Add bottom border */
+          border-radius: 0 8px 8px 0; /* Round only the bottom-right corner */
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          z-index: 1001;
+        }
+
+        /* When sidebar is collapsed, only move the sidebar itself */
+        .sidebar.collapsed {
+          transform: translateX(-260px);
+        }
+
+        /* Main content adjustment */
+        .main-content {
+          margin-left: 260px;
+          width: calc(100% - 260px);
+          transition: margin-left 0.3s ease, width 0.3s ease;
+        }
+
+        .sidebar.collapsed ~ .main-content {
+          margin-left: 40px; /* Leave space for the pull tab */
+          width: calc(100% - 40px);
+        }
+
+        /* For mobile devices */
+        @media (max-width: 768px) {
+          .sidebar {
+            transform: translateX(0);
+          }
+
+          .pull-tab {
+            left: 260px;
+          }
+
+          .sidebar.collapsed {
+            transform: translateX(-260px);
+          }
+
+          .main-content {
+            margin-left: 260px;
+          }
+
+          .sidebar.collapsed ~ .main-content {
+            margin-left: 40px;
+          }
+        }
   </style>
 </head>
 <body>
   <!-- Sidebar -->
   <aside class="sidebar">
+    <div class="pull-tab" id="pull-tab">
+    </div>
     <div class="site-title">
       <img src="profile-picture.jpeg" alt="Tuhin Kumar Raut" class="profile-img">
       <!-- Modal for profile picture -->
@@ -761,7 +819,7 @@ h2 {
       <h2 class="about-title" style="font-size: 3rem; margin-top: 4rem;">Contact</h2>
 
       <div class="about-section">
-<p>Here, feel free to share those seemingly wild biological ideas that you've tucked away as too outlandish. I'd love to explore them together! Whether it's speculative science or just chatting about life's journey, I'm always up for thoughtful conversations. :)</p>        <!-- Contact form would go here -->
+<p>Here, feel free to share those seemingly wild biological ideas that you've tucked away as too outlandish. I'd love to explore them together! Whether it's speculative science or just chatting about life's journey, I'm always up for thoughtful conversations.</p><p> Also please do let me know your thoughts on the blog. Any critiques are welcome.</p>        <!-- Contact form would go here -->
         <form id="contactForm" class="contact-form" action="https://formspree.io/f/xoveveeg" method="POST">
           <div class="form-group">
             <label for="name">Name</label>
@@ -775,7 +833,7 @@ h2 {
 
           <div class="form-group">
             <label for="message">Message</label>
-            <textarea id="message" name="message" rows="5" required placeholder="Your message"></textarea>
+            <textarea id="message" name="message" rows="5" required placeholder="Your message. (you can just provide a random email in this if you don't want to share personal details. That works too. Say yes to data privacy :)"></textarea>
           </div>
 
           <button type="submit" class="submit-btn">Send Message</button>
@@ -1017,6 +1075,29 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 });
+  </script>
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const sidebar = document.querySelector('.sidebar');
+    const pullTab = document.getElementById('pull-tab');
+
+    // Replace the existing SVG with a thinner, smaller hamburger menu icon
+    pullTab.innerHTML = `
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    `;
+
+    // Function to toggle sidebar without changing icons
+    function toggleSidebar() {
+      sidebar.classList.toggle('collapsed');
+    }
+
+    // Add event listener to the pull tab
+    pullTab.addEventListener('click', toggleSidebar);
+  });
   </script>
   </body>
   </html>

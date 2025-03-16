@@ -53,24 +53,6 @@
       min-height: 100vh;
       transition: background-color 0.3s, color 0.3s;
     }
-
-    /* Sidebar styling */
-    .sidebar {
-      position: fixed;
-      width: 260px;
-      height: 100vh;
-      background-color: var(--sidebar-bg);
-      border-right: 1px solid var(--border-color);
-      display: flex;
-      flex-direction: column;
-      transition: all 0.3s ease;
-      z-index: 1000;
-    }
-
-    .sidebar.collapsed {
-      transform: translateX(-260px);
-    }
-
     .site-title {
       text-align: center;
       padding: 1.5rem 1rem;
@@ -145,18 +127,6 @@
       width: 100%;
     }
 
-    .topbar {
-      background-color: var(--topbar-bg);
-      border-bottom: 1px solid var(--border-color);
-      padding: 0.75rem 1.5rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      transition: background-color 0.3s;
-    }
 
     .menu-toggle {
       background: none;
@@ -173,60 +143,6 @@
       max-width: 1100px;
       margin: 0 auto;
       padding: 2rem;
-    }
-
-    .post-card {
-      background-color: var(--card-bg);
-      border-radius: var(--card-border-radius);
-      margin-bottom: 1.5rem;
-      overflow: hidden;
-      transition: transform 0.2s, box-shadow 0.2s;
-      border: 1px solid var(--border-color);
-    }
-
-    .post-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-    }
-
-    .post-card-header {
-      padding: 1.5rem 1.5rem 0;
-    }
-
-    .post-card-content {
-      padding: 1rem 1.5rem 1.5rem;
-    }
-
-    .post-card h2 {
-      color: var(--heading-color);
-      margin-bottom: 0.75rem;
-    }
-
-    .post-card h3 {
-      color: var(--heading-color);
-      margin-bottom: 0.5rem;
-      font-weight: 600;
-    }
-
-    .post-meta {
-      display: flex;
-      align-items: center;
-      margin-bottom: 1rem;
-      font-size: 0.85rem;
-      color: var(--text-color);
-      opacity: 0.7;
-    }
-
-    .post-meta > span {
-      display: flex;
-      align-items: center;
-      margin-right: 1rem;
-    }
-
-    .post-meta svg {
-      margin-right: 0.35rem;
-      width: 16px;
-      height: 16px;
     }
 
     .tag-list {
@@ -347,19 +263,6 @@ background: #ddd; /* Change to a suitable light hover background */
     .sidep {
       font-size: 12px;
     }
-
-    @media (max-width: 768px) {
-      .sidebar {
-        transform: translateX(-100%);
-      }
-      .sidebar.active {
-        transform: translateX(0);
-      }
-      .main-content {
-        margin-left: 0;
-        width: 100%;
-      }
-    }
     sidep {
   font-size: 12px;
 }
@@ -447,12 +350,229 @@ background: #ddd; /* Change to a suitable light hover background */
   line-height: 1.4;
   font-size: 0.75rem;
 }
+/* Enhanced Typography */
+section p {
+  font-size: 17px;
+  line-height: 1.7;
+  margin-bottom: 24px;
+  letter-spacing: 0.015em;
+}
 
+.content-section h2 {
+  font-size: 2.2rem;
+  margin-bottom: 10px;
+  background: linear-gradient(90deg, var(--text-color) 70%, #d35400);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
+}
+
+.posts-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-top: 10px;
+
+}
+
+.post-placard {
+  background-color: var(--card-bg);
+  border-radius: var(--card-border-radius);
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 1px solid var(--border-color);
+  display: inline-block; /* Changed from flex to inline-block */
+  /* Width will be set by JavaScript */
+  vertical-align: top;
+
+}
+
+.post-placard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.empty-space {
+  background-color: transparent; /* Make empty spaces invisible */
+  border: none; /* Remove border */
+}
+.post-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.post-date {
+  font-size: 0.85rem;
+  color: var(--text-color);
+  opacity: 0.7;
+  padding: 1rem 1rem 0;
+}
+
+.post-placard h3 {
+  color: var(--heading-color);
+  margin: 0.5rem 1rem 0;
+  font-size: 1.25rem;
+}
+
+.post-placard p {
+  font-size: 0.9rem;
+  color: var(--text-color);
+  padding: 0 1rem 1rem;
+  flex-grow: 1;
+}
+
+.read-more-btn {
+  display: inline-block;
+  margin: 0.5rem; /* Reduced margin for a more compact look */
+  padding: 0.4rem 0.8rem; /* Smaller padding for a smaller button */
+  background-color: rgba(211, 84, 0, 0.7); /* Slightly darker and more solid blue-grey */
+  color: white;
+  border-radius: 20px; /* Rounded corners for a pill-like shape */
+  font-size: 0.8rem; /* Smaller font size */
+  font-weight: 500;
+  text-transform: uppercase; /* Uppercase text for a sleek look */
+  letter-spacing: 0.05rem; /* Slight letter spacing for better readability */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  transition: all 0.3s ease; /* Smooth transition for hover effects */
+  cursor: default; /* Indicates it's not clickable */
+}
+
+.read-more-btn:hover {
+  background-color: rgba(211, 84, 0, 1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Slightly larger shadow on hover */
+  transform: translateY(-1px); /* Slight lift effect on hover */
+}
+
+/* Add this to your existing CSS */
+.content-wrapper {
+  display: flex;
+  gap: 2rem;
+}
+
+.content-section {
+  flex: 1;
+  width: 50%;
+}
+em {
+    font-style: italic;
+    color: #d35400; /* This is a common orange color, adjust if needed to match exactly */
+}
+.coming-soon {
+  display: inline-block;
+  margin: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: rgba(96, 125, 139, 0.7); /* Blue-ish grey color */
+  color: white;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+newh1 {
+  font-family: 'Poppins', sans-serif; /* Consistent with your existing font */
+  font-size: 2.5rem; /* Large size for prominence */
+  font-weight: 700; /* Bold for emphasis */
+  color: var(--heading-color); /* Use your existing heading color variable */
+  margin-bottom: 1.5rem; /* Spacing below the heading */
+  letter-spacing: 0.05em; /* Slightly increased letter spacing for elegance */
+  background: linear-gradient(90deg, var(--link-color), #d35400); /* Gradient text effect */
+  -webkit-background-clip: text; /* Clip background to text */
+  -webkit-text-fill-color: transparent; /* Make text transparent to show gradient */
+  display: inline-block; /* Ensure gradient applies correctly */
+}
+/* Adjust the sidebar border to create a seamless integration with the pull tab */
+.sidebar {
+  position: fixed;
+  width: 260px;
+  height: 100vh;
+  background-color: var(--sidebar-bg);
+  border-right: 1px solid var(--border-color);
+  /* Remove the border-right for the top 40px */
+  border-right-width: 0px;
+  border-top-right-radius: 0;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease;
+  z-index: 1000;
+}
+
+/* Add a pseudo-element to create the border but with a gap at the top */
+.sidebar::after {
+  content: "";
+  position: absolute;
+  top: 40px; /* Start the border after the pull tab height */
+  right: 0;
+  width: 1px;
+  height: calc(100% - 40px);
+  background-color: var(--border-color);
+}
+
+/* Modify pull tab to have border only on the bottom and right */
+.pull-tab {
+  position: fixed;
+  top: 0;
+  left: 260px;
+  width: 40px;
+  height: 40px;
+  background-color: var(--sidebar-bg);
+  border: none; /* Remove all borders */
+  border-right: 1px solid var(--border-color); /* Add right border */
+  border-bottom: 1px solid var(--border-color); /* Add bottom border */
+  border-radius: 0 8px 8px 0; /* Round only the bottom-right corner */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+/* When sidebar is collapsed, only move the sidebar itself */
+.sidebar.collapsed {
+  transform: translateX(-260px);
+}
+
+/* Main content adjustment */
+.main-content {
+  margin-left: 260px;
+  width: calc(100% - 260px);
+  transition: margin-left 0.3s ease, width 0.3s ease;
+}
+
+.sidebar.collapsed ~ .main-content {
+  margin-left: 40px; /* Leave space for the pull tab */
+  width: calc(100% - 40px);
+}
+
+/* For mobile devices */
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(0);
+  }
+
+  .pull-tab {
+    left: 260px;
+  }
+
+  .sidebar.collapsed {
+    transform: translateX(-260px);
+  }
+
+  .main-content {
+    margin-left: 260px;
+  }
+
+  .sidebar.collapsed ~ .main-content {
+    margin-left: 40px;
+  }
+}
   </style>
 </head>
 <body>
   <!-- Sidebar -->
   <aside class="sidebar">
+    <div class="pull-tab" id="pull-tab">
+    </div>
     <div class="site-title">
       <img src="profile-picture.jpeg" alt="Tuhin Kumar Raut" class="profile-img">
       <!-- Modal for profile picture -->
@@ -537,39 +657,11 @@ background: #ddd; /* Change to a suitable light hover background */
   <!-- Main Content -->
   <main class="main-content" id="main-content">
     <button class="theme-toggle" id="theme-toggle">
-<img id="theme-icon" src="moon.png" style="width: 20px; height: 20px;">
-</button>
+      <img id="theme-icon" src="moon.png" style="width: 20px; height: 20px;">
+    </button>
     <div class="content-container">
-
-      <article class="post-card">
-        <div class="post-card-header">
-          <h2>How Close Are We?</h2>
-          <div class="post-meta">
-            <span>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
-              To be posted on March 19, 2025
-            </span>
-          </div>
-        </div>
-        <div class="post-card-content">
-          <p><em>... to making our own organism from scratch?</em></p>
-          <p><em>Imagine a world where we could decide the characteristics of an organism we desire and have it custom made to our specifications. It seems like a fever dream, but the reality of how close we actually are might shock you.</em></p>
-          <a href="blog-post.html" class="read-more">Read More</a>
-        </div>
-      </article>
-
-      <article class="post-card">
-        <div class="post-card-header">
-          <h2>5-min Papers</h2>
-        </div>
-        <div class="post-card-content">
-          <p><em>... on the latest in protein sequencing</em></p>
-          <p><em>How close are we to single-molecule protein sequencing at the speed of DNA sequencing? The latest paper gives us some insight.</em></p>
-          <a href="blog-post2.html" class="read-more">Read More</a>
-        </div>
-      </article>
+      <!-- Placeholder for the most recent post -->
+      <div id="recent-post"></div>
     </div>
   </main>
 
@@ -777,6 +869,151 @@ background: #ddd; /* Change to a suitable light hover background */
     });
   });
   </script>
-  </script>
+
+<script src="posts.js"></script>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const contentContainer = document.querySelector('.content-container');
+
+  // Clear existing content
+  contentContainer.innerHTML = '';
+
+  // Create main heading "New Posts"
+  const mainHeading = document.createElement('newh1');
+  mainHeading.textContent = "New Posts";
+  mainHeading.style.fontSize = "2.5rem"; // Adjust font size as needed
+  mainHeading.style.marginBottom = "2rem"; // Add spacing below the main heading
+  contentContainer.appendChild(mainHeading);
+
+  // Create content wrapper for side-by-side sections
+  const contentWrapper = document.createElement('div');
+  contentWrapper.className = 'content-wrapper';
+
+  // Create How Close Are We section
+  const hcawSection = document.createElement('div');
+  hcawSection.className = 'content-section';
+
+  const hcawTitle = document.createElement('h2');
+  hcawTitle.textContent = "How Close Are We?";
+  hcawTitle.style.fontSize = "2rem"; // Adjust font size as needed
+  hcawSection.appendChild(hcawTitle);
+
+  const hcawGrid = document.createElement('div');
+  hcawGrid.className = 'posts-grid';
+  hcawSection.appendChild(hcawGrid);
+
+  // Populate How Close Are We posts
+  populateGrid(hcawGrid, postsData);
+
+  // Create 5-min Papers section
+  const papersSection = document.createElement('div');
+  papersSection.className = 'content-section';
+
+  const papersTitle = document.createElement('h2');
+  papersTitle.textContent = "5-min Papers";
+  papersTitle.style.fontSize = "2rem"; // Adjust font size as needed
+  papersSection.appendChild(papersTitle);
+
+  const papersGrid = document.createElement('div');
+  papersGrid.className = 'posts-grid';
+  papersSection.appendChild(papersGrid);
+
+  // Populate 5-min Papers posts
+  populateGrid(papersGrid, papersData);
+
+  // Add both sections to the wrapper
+  contentWrapper.appendChild(hcawSection);
+  contentWrapper.appendChild(papersSection);
+
+  // Add the wrapper to the container
+  contentContainer.appendChild(contentWrapper);
+});
+
+// The populateGrid function remains the same as before
+function populateGrid(gridElement, dataArray) {
+  // Sort posts by status and date
+  dataArray.sort((a, b) => {
+    if (a.status === "posted" && b.status === "coming soon") return -1;
+    if (a.status === "coming soon" && b.status === "posted") return 1;
+    return new Date(b.date) - new Date(a.date);
+  });
+
+  // Get the most recent posted item
+  const recentPosted = dataArray.find(item => item.status === "posted");
+
+  if (recentPosted) {
+    // Add the recent posted item
+    const postElement = document.createElement('div');
+    postElement.className = 'post-placard';
+    postElement.innerHTML = `
+      <img src="${recentPosted.image}" alt="${recentPosted.title}" class="post-image">
+      <div class="post-date">${recentPosted.date}</div>
+      <h3>${recentPosted.title}</h3>
+      <p>${recentPosted.content}</p>
+      <a href="${recentPosted.link}" class="read-more-btn">Read More</a>
+    `;
+    gridElement.appendChild(postElement);
+
+    // Since we're only showing one post per section, we don't need empty spaces
+  } else {
+    const noPostsMessage = document.createElement('p');
+    noPostsMessage.textContent = "No posts available at the moment. Check back soon!";
+    noPostsMessage.style.textAlign = 'center';
+    noPostsMessage.style.color = 'var(--text-color)';
+    gridElement.appendChild(noPostsMessage);
+  }
+}
+
+// Add this to your existing JavaScript
+function adjustPlacardWidths() {
+  // Get the content container width
+  const contentContainer = document.querySelector('.content-container');
+  const containerWidth = contentContainer.clientWidth;
+
+  // Calculate desired width (1/3 of available space minus some gap space)
+  const placardWidth = (containerWidth / 3) - 16; // 16px for some spacing
+
+  // Apply this width to all post placards
+  const placards = document.querySelectorAll('.post-placard');
+  placards.forEach(placard => {
+    placard.style.width = placardWidth + 'px';
+    placard.style.display = 'inline-block';
+    placard.style.margin = '0rem';
+  });
+}
+
+// Run on page load
+window.addEventListener('load', adjustPlacardWidths);
+
+// Also run when window is resized
+window.addEventListener('resize', adjustPlacardWidths);
+</script>
+<script src="posts.js"></script>
+<script src="papers.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const sidebar = document.querySelector('.sidebar');
+  const pullTab = document.getElementById('pull-tab');
+
+  // Replace the existing SVG with a thinner, smaller hamburger menu icon
+  pullTab.innerHTML = `
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  `;
+
+  // Function to toggle sidebar without changing icons
+  function toggleSidebar() {
+    sidebar.classList.toggle('collapsed');
+  }
+
+  // Add event listener to the pull tab
+  pullTab.addEventListener('click', toggleSidebar);
+});
+</script>
   </body>
   </html>
