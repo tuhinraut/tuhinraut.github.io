@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tuhin Kumar Raut - {{PAGE_TITLE}}</title>
+  <title>How Close Are We?</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
   <style>
   /* Chirpy theme-inspired styling */
@@ -25,7 +25,7 @@
 
   .light-mode {
     --body-bg: #f8f9fa;
-    --sidebar-bg: #ffffff;
+    --sidebar-bg: #f4f4f4;
     --topbar-bg: #ffffff;
     --text-color: #333333;
     --heading-color: #212529;
@@ -192,7 +192,6 @@
     margin-bottom: 1.5rem;
     overflow: hidden;
     transition: transform 0.2s, box-shadow 0.2s;
-    border: 1px solid var(--border-color);
     cursor: pointer;
   }
 
@@ -239,7 +238,7 @@
   .post-card-content.expanded {
     max-height: 1000px;
     padding: 1rem 1.5rem 1.5rem;
-    background-color: var(--card-bg);
+    background-color: var(--body-bg);
   }
 
   .post-card h2 {
@@ -311,22 +310,32 @@
   }
 
   .theme-toggle {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background: var(--body-bg);
-    color: var(--text-color);
-    border: 1px solid var(--border-color);
-    padding: 10px 12px;
-    border-radius: 5px;
-    cursor: pointer;
-    z-index: 1000;
-    transition: background 0.3s, color 0.3s;
-  }
+position: fixed;
+top: 20px;
+right: 20px;
+background: #1e1e1e; /* Default dark background */
+color: white;
+border: none;
+padding: 10px 12px;
+border-radius: 5px;
+cursor: pointer;
+z-index: 1000;
+}
 
-  .theme-toggle:hover {
-    background: var(--btn-hover-bg);
-  }
+/* Adjust button background for light theme */
+body.light-mode .theme-toggle {
+background: #f8f9fa; /* Change to your light theme background color */
+color: #333; /* Adjust text color if needed */
+}
+
+.theme-toggle:hover {
+background: #555; /* Default dark hover background */
+}
+
+/* Adjust hover background for light theme */
+body.light-mode .theme-toggle:hover {
+background: #ddd; /* Change to a suitable light hover background */
+}
 
   /* Profile section */
   .profile-section {
@@ -616,6 +625,11 @@ font-size: 12px;
       width: 100%;
     }
   }
+
+  em {
+      font-style: italic;
+      color: #d35400; /* This is a common orange color, adjust if needed to match exactly */
+  }
   </style>
 </head>
 <body>
@@ -721,9 +735,9 @@ font-size: 12px;
         </div>
         <div class="post-card-content">
           <p></p>
-          <p>Have you ever watched a sci-fi movie and wondered, <em>How close are we to making this a reality?</em> Or stumbled upon a mind-blowing YouTube video that left you thinking, <em>How on earth did the researcher even come up with this?!</em></p>
-          <p>You're not alone! I’m here to dive deep into the research for you and break it down—hopefully with some fun analogies—so you can catch up on what you’ve been missing and get a glimpse of what the future holds.</p>
-          <p>But that’s not all. Every research enthusiast has, at some point, daydreamed about revolutionizing their field. Science isn’t just about breakthroughs—it’s also about failures that pave the way for success. Alongside cutting-edge discoveries, I’ll <em>share some of my own "failed" ideas</em> to give you a peek into a tinkerer’s mind—how we hit roadblocks and push forward or fall flat on our faces.</p>
+          <p>Have you ever watched a sci-fi movie and wondered, <em>How close are we to making this a reality?</em> Or stumbled upon a mind-blowing YouTube video that left you thinking, <em>How on earth did the researcher even come up with this!</em></p>
+          <p>You're not alone! I’m here to dive deep into the research for you and break it down—hopefully with some fun analogies—so <em>you can catch up on what you’ve missed in the ongoing entourage of scientific accomplishments</em> and get a glimpse of what the future holds.</p>
+          <p>But that’s not all. Every research enthusiast has, at some point, daydreamed about revolutionizing their field. Science isn’t just about breakthroughs—it’s also about failures that pave the way for success. Alongside cutting-edge discoveries, <em>I’ll share some of my own "failed" ideas</em> to give you a peek into a tinkerer’s mind—how we hit roadblocks and push forward or fall flat on our faces.</p>
           <p>Together, we’ll explore the answers to the big questions that everyone wants answers to, like <em>How close are we to solving global warming?</em> (using biology, of course). But we won’t stop there—we’ll also uncover fascinating, lesser-known scientific pursuits, like <em>How close are we to building a fully organic computer?</em></p>
         </div>
       </div>
@@ -732,7 +746,7 @@ font-size: 12px;
       <!-- Posts Section -->
       <div class="posts-grid">
         <article class="post-placard">
-          <img src="post1.jpg" alt="Post 1 Image" class="post-image">
+          <img src="platypus.png" alt="Post 1 Image" class="post-image">
           <div class="post-date">March 19, 2025</div>
           <h3>... to making our own organism from scratch?</h3>
           <p><i>Imagine a world where we could decide the characteristics of an organism we desire and have it custom made to our specifications. It seems like a fever dream, but the reality of how close we actually are might shock you.</i></p>
@@ -740,7 +754,7 @@ font-size: 12px;
         </article>
 
         <article class="post-placard">
-          <img src="post2.jpg" alt="Post 2 Image" class="post-image">
+          <img src="organic_computer.png" alt="Post 2 Image" class="post-image">
           <div class="post-date">April 10, 2025</div>
           <h3>... to building a fully organic computer?</h3>
           <p><i>Organic computers could revolutionize the way we think about technology. But how close are we to making this a reality? Let's dive into the science behind it.</i></p>
@@ -748,7 +762,7 @@ font-size: 12px;
         </article>
 
         <article class="post-placard">
-          <img src="post3.jpg" alt="Post 3 Image" class="post-image">
+          <img src="global_warming.png" alt="Post 3 Image" class="post-image">
           <div class="post-date">May 5, 2025</div>
           <h3>... to solving global warming with biology?</h3>
           <p><i>Global warming is one of the biggest challenges of our time. But could biology hold the key to solving it? Let's explore the possibilities.</i></p>
@@ -843,7 +857,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Create the HTML structure for the nature nugget
   const nuggetHTML = `
   <div class="nature-nugget">
-    <h3>Nature Nugget</h3>
+    <h3>Neat Nature Nuggets</h3>
     <div class="nugget-content">
       <i><p id="daily-trivia"></p></i>
     </div>
@@ -858,7 +872,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Create an array of nature facts directly in the JavaScript
     const triviaItems = [
-  "The Amazon rainforest creates its own rainfall through transpiration, with trees releasing water vapor that forms clouds.",
   "Trees communicate with each other through an underground network of fungi called the \"Wood Wide Web,\" sharing nutrients and warning about threats.",
   "The Turritopsis dohrnii jellyfish is biologically immortal, able to revert to its juvenile form after reaching maturity.",
   "There are underwater \"lakes\" on the ocean floor with their own shorelines, formed by highly saline water that doesn't mix with surrounding seawater.",
@@ -956,7 +969,6 @@ document.addEventListener('DOMContentLoaded', function () {
     postContent.classList.toggle('expanded', !isExpanded);
   });
 
-  // Prevent clicks inside the content area from toggling the dropdown again
   postContent.addEventListener('click', function(event) {
     // Only prevent propagation if the dropdown is already expanded
     if (toggleButton.getAttribute('aria-expanded') === 'true') {

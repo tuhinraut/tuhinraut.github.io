@@ -21,6 +21,7 @@
       --card-border-radius: 6px;
       --btn-border-color: #30363d;
       --btn-hover-bg: #30363d;
+      --mobile-header-height: 60px;
     }
 
     .light-mode {
@@ -52,6 +53,49 @@
       display: flex;
       min-height: 100vh;
       transition: background-color 0.3s, color 0.3s;
+      overflow-x: hidden;
+    }
+
+    /* Mobile Header */
+    .mobile-header {
+      display: none;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      height: var(--mobile-header-height);
+      background-color: var(--topbar-bg);
+      border-bottom: 1px solid var(--border-color);
+      padding: 0 1rem;
+      z-index: 1010;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .mobile-toggle {
+      background: none;
+      border: none;
+      color: var(--text-color);
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 0.5rem;
+      z-index: 1020;
+    }
+
+    .mobile-title {
+      display: flex;
+      align-items: center;
+    }
+
+    .mobile-title img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+
+    .mobile-title h1 {
+      font-size: 1.2rem;
+      color: var(--heading-color);
     }
 
     /* Sidebar styling */
@@ -63,14 +107,27 @@
       border-right: 1px solid var(--border-color);
       display: flex;
       flex-direction: column;
-      transition: all 0.3s ease;
+      transition: transform 0.3s ease;
       z-index: 1000;
+      overflow-y: auto;
     }
 
-    .sidebar.collapsed {
-      transform: translateX(-260px);
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+      transition: opacity 0.3s;
+      opacity: 0;
     }
 
+    .sidebar-overlay.active {
+      opacity: 1;
+    }
 
     .site-title {
       text-align: center;
@@ -138,12 +195,7 @@
     .main-content {
       margin-left: 260px;
       width: calc(100% - 260px);
-      transition: all 0.3s ease;
-    }
-
-    .main-content.expanded {
-      margin-left: 0;
-      width: 100%;
+      transition: margin-left 0.3s ease, width 0.3s ease;
     }
 
     .topbar {
@@ -267,32 +319,32 @@
     }
 
     .theme-toggle {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background: #1e1e1e; /* Default dark background */
-  color: white;
-  border: none;
-  padding: 10px 12px;
-  border-radius: 5px;
-  cursor: pointer;
-  z-index: 1000;
-}
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #1e1e1e; /* Default dark background */
+      color: white;
+      border: none;
+      padding: 10px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      z-index: 1000;
+    }
 
-/* Adjust button background for light theme */
-body.light-mode .theme-toggle {
-background: #f8f9fa; /* Change to your light theme background color */
-color: #333; /* Adjust text color if needed */
-}
+    /* Adjust button background for light theme */
+    body.light-mode .theme-toggle {
+      background: #f8f9fa; /* Change to your light theme background color */
+      color: #333; /* Adjust text color if needed */
+    }
 
-.theme-toggle:hover {
-background: #555; /* Default dark hover background */
-}
+    .theme-toggle:hover {
+      background: #555; /* Default dark hover background */
+    }
 
-/* Adjust hover background for light theme */
-body.light-mode .theme-toggle:hover {
-background: #ddd; /* Change to a suitable light hover background */
-}
+    /* Adjust hover background for light theme */
+    body.light-mode .theme-toggle:hover {
+      background: #ddd; /* Change to a suitable light hover background */
+    }
 
     /* Profile section */
     .profile-section {
@@ -349,112 +401,176 @@ background: #ddd; /* Change to a suitable light hover background */
       font-size: 12px;
     }
 
+    /* Profile picture modal */
+    .profile-modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal-content {
+      position: relative;
+      margin: auto;
+      padding: 0;
+      width: 80%;
+      max-width: 700px;
+      top: 50%;
+      transform: translateY(-50%) scale(0.9);
+      transition: transform 0.3s ease;
+    }
+
+    .modal-content img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .close-button {
+      position: absolute;
+      top: -40px;
+      right: 0;
+      color: white;
+      font-size: 35px;
+      font-weight: bold;
+      cursor: pointer;
+      z-index: 2001;
+      transition: color 0.2s;
+    }
+
+    .close-button:hover {
+      color: var(--link-color);
+    }
+
+    .profile-modal.show {
+      display: block;
+      opacity: 1;
+    }
+
+    .profile-modal.show .modal-content {
+      transform: translateY(-50%) scale(1);
+    }
+
+    /* Make profile picture clickable */
+    .profile-img {
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .profile-img:hover {
+      transform: scale(1.05);
+    }
+
+    /* Nature Nugget styling for sidebar */
+    .nature-nugget {
+      padding: 1rem 1.5rem;
+      border-top: 1px solid var(--border-color);
+      font-size: 0.9rem;
+    }
+
+    .nature-nugget h3 {
+      color: var(--link-color);
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+    }
+
+    .nugget-content {
+      margin-bottom: 0.5rem;
+      line-height: 1.4;
+      font-size: 0.75rem;
+    }
+
+    /* Mobile Styles */
     @media (max-width: 768px) {
+      .mobile-header {
+        display: flex;
+      }
+
       .sidebar {
         transform: translateX(-100%);
+        width: 80%;
+        max-width: 300px;
+        top: 0;
+        height: 100%;
+        z-index: 1010;
       }
+
       .sidebar.active {
         transform: translateX(0);
       }
+
+      .sidebar-overlay.show {
+        display: block;
+      }
+
       .main-content {
         margin-left: 0;
         width: 100%;
+        padding-top: var(--mobile-header-height);
+      }
+
+      .content-container {
+        padding: 1rem;
+      }
+
+      .theme-toggle {
+        top: auto;
+        bottom: 20px;
+        right: 20px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .profile-section {
+        padding: 1rem 0;
+      }
+
+      .profile-img {
+        width: 120px;
+        height: 120px;
+      }
+
+      .profile-title {
+        font-size: 1.7rem;
+      }
+
+      .post-card-header, .post-card-content {
+        padding: 1rem;
+      }
+
+      .post-meta {
+        flex-wrap: wrap;
+      }
+
+      .post-meta > span {
+        margin-bottom: 0.5rem;
       }
     }
-    sidep {
-  font-size: 12px;
-}
-/* Profile picture modal */
-.profile-modal {
-  display: none;
-  position: fixed;
-  z-index: 2000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
+    </style>
+  </head>
+  <body>
+    <!-- Mobile Header - Add this before the sidebar -->
+<header class="mobile-header">
+  <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle Menu">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </button>
+  <div class="mobile-title">
+    <img src="profile-picture.jpeg" alt="Tuhin Kumar Raut">
+    <h1>Tuhin Kumar</h1>
+  </div>
+  <div style="width: 24px;"></div> <!-- Empty space for balance -->
+</header>
 
-.modal-content {
-  position: relative;
-  margin: auto;
-  padding: 0;
-  width: 80%;
-  max-width: 700px;
-  top: 50%;
-  transform: translateY(-50%) scale(0.9);
-  transition: transform 0.3s ease;
-}
-
-.modal-content img {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-}
-
-.close-button {
-  position: absolute;
-  top: -40px;
-  right: 0;
-  color: white;
-  font-size: 35px;
-  font-weight: bold;
-  cursor: pointer;
-  z-index: 2001;
-  transition: color 0.2s;
-}
-
-.close-button:hover {
-  color: var(--link-color);
-}
-
-.profile-modal.show {
-  display: block;
-  opacity: 1;
-}
-
-.profile-modal.show .modal-content {
-  transform: translateY(-50%) scale(1);
-}
-
-/* Make profile picture clickable */
-.profile-img {
-  cursor: pointer;
-  transition: transform 0.2s;
-}
-
-.profile-img:hover {
-  transform: scale(1.05);
-}
-
-/* Nature Nugget styling for sidebar */
-.nature-nugget {
-  padding: 1rem 1.5rem;
-  border-top: 1px solid var(--border-color);
-  font-size: 0.9rem;
-}
-
-.nature-nugget h3 {
-  color: var(--link-color);
-  margin-bottom: 0.5rem;
-  font-size: 1rem;
-}
-
-.nugget-content {
-  margin-bottom: 0.5rem;
-  line-height: 1.4;
-  font-size: 0.75rem;
-}
-
-
-
-  </style>
-</head>
-<body>
   <!-- Sidebar -->
   <aside class="sidebar">
     <div class="site-title">
@@ -538,20 +654,42 @@ background: #ddd; /* Change to a suitable light hover background */
       </li>
     </ul>
   </aside>
+<!-- Sidebar Overlay - Add this before the sidebar -->
+<div class="sidebar-overlay" id="sidebar-overlay"></div>
 
-
-  <!-- Main Content -->
-  <main class="main-content" id="main-content">
-      <button class="theme-toggle" id="theme-toggle">
-  <img id="theme-icon" src="moon.png" style="width: 20px; height: 20px;">
-</button>
-    <div class="content-container">
-      <!-- Content will be inserted here -->
-      {{PAGE_CONTENT}}
-    </div>
-  </main>
+<!-- The rest of your sidebar and main content remain the same -->
 
 <script>
+document.addEventListener('DOMContentLoaded', function() {
+  const mobileToggle = document.getElementById('mobile-toggle');
+  const sidebar = document.querySelector('.sidebar');
+  const sidebarOverlay = document.getElementById('sidebar-overlay');
+
+  // Toggle mobile menu
+  mobileToggle.addEventListener('click', function() {
+    sidebar.classList.toggle('active');
+    sidebarOverlay.classList.toggle('show');
+    document.body.classList.toggle('no-scroll');
+  });
+
+  // Close sidebar when clicking the overlay
+  sidebarOverlay.addEventListener('click', function() {
+    sidebar.classList.remove('active');
+    sidebarOverlay.classList.remove('show');
+    document.body.classList.remove('no-scroll');
+  });
+
+  // Close sidebar when window is resized to desktop size
+  window.addEventListener('resize', function() {
+    if (window.innerWidth > 768) {
+      sidebar.classList.remove('active');
+      sidebarOverlay.classList.remove('show');
+      document.body.classList.remove('no-scroll');
+    }
+  });
+
+
+});
 function applyTheme(theme, isUserAction = false) {
   if (theme === "dark") {
     document.body.classList.remove("light-mode");
