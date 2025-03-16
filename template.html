@@ -637,8 +637,7 @@ document.addEventListener('DOMContentLoaded', function() {
   <div class="nature-nugget">
     <h3>Nature Nugget</h3>
     <div class="nugget-content">
-      <p id="daily-trivia"></p>
-      <small class="fact-source">Updated: ${new Date().toLocaleDateString()}</small>
+      <i><p id="daily-trivia"></p></i>
     </div>
   </div>
 `;
@@ -649,74 +648,74 @@ document.addEventListener('DOMContentLoaded', function() {
     nuggetContainer.innerHTML = nuggetHTML;
     sidebar.appendChild(nuggetContainer);
 
-    // Function to load and display trivia
-    function loadAndDisplayTrivia() {
-      // Fetch the trivia text file
-      fetch('nature-trivia.txt')
-        .then(response => response.text())
-        .then(text => {
-          // Split the text file into individual trivia items
-          const triviaItems = text.split(/\d+\.\s/).filter(item => item.trim() !== '');
+    // Create an array of nature facts directly in the JavaScript
+    const triviaItems = [
+  "The Amazon rainforest creates its own rainfall through transpiration, with trees releasing water vapor that forms clouds.",
+  "Trees communicate with each other through an underground network of fungi called the \"Wood Wide Web,\" sharing nutrients and warning about threats.",
+  "The Turritopsis dohrnii jellyfish is biologically immortal, able to revert to its juvenile form after reaching maturity.",
+  "There are underwater \"lakes\" on the ocean floor with their own shorelines, formed by highly saline water that doesn't mix with surrounding seawater.",
+  "Crows can recognize and remember human faces for years, and will teach other crows which humans to avoid.",
+  "Over 80% of the ocean remains unexplored, with thousands of species still undiscovered.",
+  "Octopuses have three hearts - two pump blood to the gills while the third pumps it to the rest of the body.",
+  "Mount Everest continues to grow about 4mm taller each year due to ongoing tectonic plate collision.",
+  "Hummingbirds have heart rates that can reach 1,200 beats per minute during flight.",
+  "Butterflies taste with their feet, using sensors to determine if plants are suitable for laying eggs.",
+  "Dolphins use unique whistles that function like names to identify individuals within their pod.",
+  "The General Sherman sequoia tree weighs an estimated 2.7 million pounds, making it the largest known living tree.",
+  "Some mushroom species are bioluminescent, glowing in the dark to attract insects for spore dispersal.",
+  "Elephants are the only land mammals that cannot jump due to their mass and limb structure.",
+  "The Sahara Desert was lush and green with rivers and lakes about 6,000 years ago before desertification.",
+  "Ocean phytoplankton produce over 50% of the world's oxygen.",
+  "Certain frog species can survive being frozen during winter by stopping their hearts and later thawing when temperatures rise.",
+  "\"Watermelon snow\" exists - it's pink or red snow caused by algae that even smells faintly of watermelon.",
+  "Squirrels accidentally plant millions of trees by forgetting where they buried their nuts.",
+  "Only 3% of Earth's water is freshwater, and over two-thirds of that is locked in glaciers and ice caps.",
+  "A blue whale's tongue can weigh as much as an adult elephant.",
+  "Plants can detect when they're being eaten and release defensive chemicals in response to vibrations.",
+  "The largest living organism is a single fungus in Oregon's Malheur National Forest, covering about 2,400 acres.",
+  "Giraffes have the same number of neck vertebrae as humans - just seven.",
+  "Starfish can regenerate entire bodies from a single arm in some species.",
+  "Vultures have stomach acid strong enough to dissolve anthrax and other pathogens.",
+  "Giant pandas eat bamboo for up to 14 hours daily, consuming around 40 pounds to get enough nutrients.",
+  "Trees have a form of circadian rhythm, with branches and leaves drooping slightly at night to conserve energy.",
+  "The Wallace's flying frog can glide using its huge webbed feet to control descent and steer in mid-air.",
+  "Flamingos are pink on the inside too - the carotenoid pigments from their diet color their tissues, skin, and blood.",
+  "Jacanas can \"walk on water\" using their extremely long toes to distribute weight on floating vegetation.",
+  "Armadillo shells are so strong they have been known to deflect bullets.",
+  "Kangaroos hop efficiently because large, stretchy tendons in their hind legs act like springs, storing and releasing energy.",
+  "The honey fungus is considered the largest living organism on Earth, with networks spanning miles.",
+  "Some fungi can create their own wind to help spread their spores.",
+  "Certain fungi species have thousands of different sexes.",
+  "Some fungi can turn ants into \"zombies\" by controlling their behavior.",
+  "Hummingbirds are the only birds that can fly backwards.",
+  "Bamboo is the world's fastest growing plant, growing up to 4 cm per hour.",
+  "Carrots were originally purple - they were bred to be orange.",
+  "There are more trees on Earth (about 1 trillion) than stars in the Milky Way (200-400 billion).",
+  "Sloths only defecate once a week, descending from their trees for this risky but necessary activity.",
+  "Dolphins sleep by shutting down only half their brain at a time, allowing them to remain alert.",
+  "Bees communicate through a complex \"waggle dance\" that indicates direction and distance to food sources.",
+  "Spider silk is five times stronger than steel of the same diameter.",
+  "Ants can carry up to 50 times their own body weight.",
+  "Some species of newt use their ribs as \"barbs\" for defense, pushing them through their skin when threatened.",
+  "Only 1 in 1,000 to 1 in 10,000 marine turtles survive to adulthood.",
+  "Sharks can sense electric fields as small as half a billionth of a volt.",
+  "About 3 million years ago, four distinct human species coexisted on Earth at the same time."
+];
 
-          // Get current date in IST
-          const now = new Date();
-          const options = { timeZone: 'Asia/Kolkata' };
-          const istDate = new Date(now.toLocaleString('en-US', options));
+    // Display a random trivia fact
+    function displayRandomTrivia() {
+      // Generate a random index
+      const randomIndex = Math.floor(Math.random() * triviaItems.length);
 
-          // Use the day of the year as index to select trivia
-          const start = new Date(istDate.getFullYear(), 0, 0);
-          const diff = istDate - start;
-          const oneDay = 1000 * 60 * 60 * 24;
-          const dayOfYear = Math.floor(diff / oneDay);
-
-          // Use modulo to cycle through the array
-          const index = dayOfYear % triviaItems.length;
-
-          // Update the trivia text
-          const triviaElement = document.getElementById('daily-trivia');
-          if (triviaElement) {
-            triviaElement.textContent = triviaItems[index].trim();
-          }
-
-          // Update the date
-          const sourceElement = document.querySelector('.fact-source');
-          if (sourceElement) {
-            sourceElement.textContent = 'Updated: ' + new Date().toLocaleDateString();
-          }
-        })
-        .catch(error => {
-          console.error('Error loading trivia:', error);
-          document.getElementById('daily-trivia').textContent = 'Nature is full of fascinating surprises!';
-        });
+      // Update the trivia text
+      const triviaElement = document.getElementById('daily-trivia');
+      if (triviaElement) {
+        triviaElement.textContent = triviaItems[randomIndex];
+      }
     }
 
-    // Load the trivia immediately when the page loads
-    loadAndDisplayTrivia();
-
-    // Function to check if it's midnight and update if needed
-    function scheduleNextUpdate() {
-      const now = new Date();
-      const options = { timeZone: 'Asia/Kolkata' };
-      const istDate = new Date(now.toLocaleString('en-US', options));
-
-      // Calculate time until next midnight
-      const tomorrow = new Date(istDate);
-      tomorrow.setDate(tomorrow.getDate() + 1);
-      tomorrow.setHours(0, 0, 0, 0);
-
-      // Time difference in milliseconds
-      const timeUntilMidnight = tomorrow - istDate;
-
-      // Schedule the update at midnight
-      setTimeout(() => {
-        loadAndDisplayTrivia();
-        // Set up the next day's update
-        scheduleNextUpdate();
-      }, timeUntilMidnight);
-    }
-
-    // Start the scheduling
-    scheduleNextUpdate();
+    // Display a random trivia fact when the page loads
+    displayRandomTrivia();
   }
 });
 

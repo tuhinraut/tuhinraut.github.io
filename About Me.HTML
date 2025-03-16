@@ -53,7 +53,24 @@
       min-height: 100vh;
       transition: background-color 0.3s, color 0.3s;
     }
+    /* Styling for the "About me" and "Contact" headings */
+    .about-title {
+      font-size: 2.2rem;
+      margin-bottom: 30px;
+      background: linear-gradient(90deg, var(--text-color) 70%, #d35400);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: inline-block;
+    }
 
+    /* Ensure the gradient text works in light mode */
+    body.light-mode .about-title {
+      background: linear-gradient(90deg, var(--text-color) 70%, #d35400);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
     /* Sidebar styling */
     .sidebar {
       position: fixed;
@@ -131,24 +148,6 @@
       width: 20px;
       height: 20px;
       opacity: 0.7;
-    }
-
-    .sidebar-bottom {
-      padding: 1rem 1.5rem;
-      border-top: 1px solid var(--border-color);
-      display: flex;
-      justify-content: space-around;
-    }
-
-    .sidebar-bottom a {
-      color: var(--text-color);
-      font-size: 1.1rem;
-      opacity: 0.7;
-      transition: opacity 0.2s;
-    }
-
-    .sidebar-bottom a:hover {
-      opacity: 1;
     }
 
     /* Main content styling */
@@ -490,12 +489,6 @@ background: #ddd; /* Change to a suitable light hover background */
   height: 20px;
 }
 
-/* Fix for sidebar bottom icons */
-.sidebar-bottom svg {
-  width: 20px;
-  height: 20px;
-}
-
 /* Contact form styling */
 .contact-form {
   max-width: 600px;
@@ -573,6 +566,24 @@ background: #ddd; /* Change to a suitable light hover background */
   margin-bottom: 2rem; /* Increases space below the title */
 }
 
+/* Nature Nugget styling for sidebar */
+.nature-nugget {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--border-color);
+  font-size: 0.9rem;
+}
+
+.nature-nugget h3 {
+  color: var(--link-color);
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.nugget-content {
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+  font-size: 0.75rem;
+}
 
   </style>
 </head>
@@ -658,23 +669,6 @@ background: #ddd; /* Change to a suitable light hover background */
         </a>
       </li>
     </ul>
-    <div class="sidebar-bottom">
-      <a href="mailto:tuhinraut@gmail.com" aria-label="Email">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-        </svg>
-      </a>
-      <a href="https://www.linkedin.com/in/tuhin-kumar-raut-936018223/" target="_blank" aria-label="LinkedIn">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-        </svg>
-      </a>
-      <a href="https://github.com/tuhinraut" target="_blank" aria-label="GitHub">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
-        </svg>
-      </a>
-    </div>
   </aside>
 
 
@@ -892,6 +886,93 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+  // Create the HTML structure for the nature nugget
+  const nuggetHTML = `
+  <div class="nature-nugget">
+    <h3>Nature Nugget</h3>
+    <div class="nugget-content">
+      <i><p id="daily-trivia"></p></i>
+    </div>
+  </div>
+`;
+  // Add the nugget HTML to the sidebar
+  const sidebar = document.querySelector('.sidebar');
+  if (sidebar) {
+    const nuggetContainer = document.createElement('div');
+    nuggetContainer.innerHTML = nuggetHTML;
+    sidebar.appendChild(nuggetContainer);
+
+    // Create an array of nature facts directly in the JavaScript
+    const triviaItems = [
+  "The Amazon rainforest creates its own rainfall through transpiration, with trees releasing water vapor that forms clouds.",
+  "Trees communicate with each other through an underground network of fungi called the \"Wood Wide Web,\" sharing nutrients and warning about threats.",
+  "The Turritopsis dohrnii jellyfish is biologically immortal, able to revert to its juvenile form after reaching maturity.",
+  "There are underwater \"lakes\" on the ocean floor with their own shorelines, formed by highly saline water that doesn't mix with surrounding seawater.",
+  "Crows can recognize and remember human faces for years, and will teach other crows which humans to avoid.",
+  "Over 80% of the ocean remains unexplored, with thousands of species still undiscovered.",
+  "Octopuses have three hearts - two pump blood to the gills while the third pumps it to the rest of the body.",
+  "Mount Everest continues to grow about 4mm taller each year due to ongoing tectonic plate collision.",
+  "Hummingbirds have heart rates that can reach 1,200 beats per minute during flight.",
+  "Butterflies taste with their feet, using sensors to determine if plants are suitable for laying eggs.",
+  "Dolphins use unique whistles that function like names to identify individuals within their pod.",
+  "The General Sherman sequoia tree weighs an estimated 2.7 million pounds, making it the largest known living tree.",
+  "Some mushroom species are bioluminescent, glowing in the dark to attract insects for spore dispersal.",
+  "Elephants are the only land mammals that cannot jump due to their mass and limb structure.",
+  "The Sahara Desert was lush and green with rivers and lakes about 6,000 years ago before desertification.",
+  "Ocean phytoplankton produce over 50% of the world's oxygen.",
+  "Certain frog species can survive being frozen during winter by stopping their hearts and later thawing when temperatures rise.",
+  "\"Watermelon snow\" exists - it's pink or red snow caused by algae that even smells faintly of watermelon.",
+  "Squirrels accidentally plant millions of trees by forgetting where they buried their nuts.",
+  "Only 3% of Earth's water is freshwater, and over two-thirds of that is locked in glaciers and ice caps.",
+  "A blue whale's tongue can weigh as much as an adult elephant.",
+  "Plants can detect when they're being eaten and release defensive chemicals in response to vibrations.",
+  "The largest living organism is a single fungus in Oregon's Malheur National Forest, covering about 2,400 acres.",
+  "Giraffes have the same number of neck vertebrae as humans - just seven.",
+  "Starfish can regenerate entire bodies from a single arm in some species.",
+  "Vultures have stomach acid strong enough to dissolve anthrax and other pathogens.",
+  "Giant pandas eat bamboo for up to 14 hours daily, consuming around 40 pounds to get enough nutrients.",
+  "Trees have a form of circadian rhythm, with branches and leaves drooping slightly at night to conserve energy.",
+  "The Wallace's flying frog can glide using its huge webbed feet to control descent and steer in mid-air.",
+  "Flamingos are pink on the inside too - the carotenoid pigments from their diet color their tissues, skin, and blood.",
+  "Jacanas can \"walk on water\" using their extremely long toes to distribute weight on floating vegetation.",
+  "Armadillo shells are so strong they have been known to deflect bullets.",
+  "Kangaroos hop efficiently because large, stretchy tendons in their hind legs act like springs, storing and releasing energy.",
+  "The honey fungus is considered the largest living organism on Earth, with networks spanning miles.",
+  "Some fungi can create their own wind to help spread their spores.",
+  "Certain fungi species have thousands of different sexes.",
+  "Some fungi can turn ants into \"zombies\" by controlling their behavior.",
+  "Hummingbirds are the only birds that can fly backwards.",
+  "Bamboo is the world's fastest growing plant, growing up to 4 cm per hour.",
+  "Carrots were originally purple - they were bred to be orange.",
+  "There are more trees on Earth (about 1 trillion) than stars in the Milky Way (200-400 billion).",
+  "Sloths only defecate once a week, descending from their trees for this risky but necessary activity.",
+  "Dolphins sleep by shutting down only half their brain at a time, allowing them to remain alert.",
+  "Bees communicate through a complex \"waggle dance\" that indicates direction and distance to food sources.",
+  "Spider silk is five times stronger than steel of the same diameter.",
+  "Ants can carry up to 50 times their own body weight.",
+  "Some species of newt use their ribs as \"barbs\" for defense, pushing them through their skin when threatened.",
+  "Only 1 in 1,000 to 1 in 10,000 marine turtles survive to adulthood.",
+  "Sharks can sense electric fields as small as half a billionth of a volt.",
+  "About 3 million years ago, four distinct human species coexisted on Earth at the same time."
+];
+
+    // Display a random trivia fact
+    function displayRandomTrivia() {
+      // Generate a random index
+      const randomIndex = Math.floor(Math.random() * triviaItems.length);
+
+      // Update the trivia text
+      const triviaElement = document.getElementById('daily-trivia');
+      if (triviaElement) {
+        triviaElement.textContent = triviaItems[randomIndex];
+      }
+    }
+
+    // Display a random trivia fact when the page loads
+    displayRandomTrivia();
+  }
+});
   </script>
   </body>
   </html>
