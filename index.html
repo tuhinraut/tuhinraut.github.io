@@ -887,48 +887,66 @@ document.addEventListener('DOMContentLoaded', function() {
   mainHeading.style.marginBottom = "2rem"; // Add spacing below the main heading
   contentContainer.appendChild(mainHeading);
 
-  // Create content wrapper for side-by-side sections
-  const contentWrapper = document.createElement('div');
-  contentWrapper.className = 'content-wrapper';
+  // Check if the user is on a mobile device
+  const isMobile = window.innerWidth < 768;
 
-  // Create How Close Are We section
-  const hcawSection = document.createElement('div');
-  hcawSection.className = 'content-section';
+  if (!isMobile) {
+    // Create content wrapper for side-by-side sections only if not on mobile
+    const contentWrapper = document.createElement('div');
+    contentWrapper.className = 'content-wrapper';
 
-  const hcawTitle = document.createElement('h2');
-  hcawTitle.textContent = "How Close Are We?";
-  hcawTitle.style.fontSize = "2rem"; // Adjust font size as needed
-  hcawSection.appendChild(hcawTitle);
+    // Create How Close Are We section
+    const hcawSection = document.createElement('div');
+    hcawSection.className = 'content-section';
 
-  const hcawGrid = document.createElement('div');
-  hcawGrid.className = 'posts-grid';
-  hcawSection.appendChild(hcawGrid);
+    const hcawTitle = document.createElement('h2');
+    hcawTitle.textContent = "How Close Are We?";
+    hcawTitle.style.fontSize = "2rem"; // Adjust font size as needed
+    hcawSection.appendChild(hcawTitle);
 
-  // Populate How Close Are We posts
-  populateGrid(hcawGrid, postsData);
+    const hcawGrid = document.createElement('div');
+    hcawGrid.className = 'posts-grid';
+    hcawSection.appendChild(hcawGrid);
 
-  // Create 5-min Papers section
-  const papersSection = document.createElement('div');
-  papersSection.className = 'content-section';
+    // Populate How Close Are We posts
+    populateGrid(hcawGrid, postsData);
 
-  const papersTitle = document.createElement('h2');
-  papersTitle.textContent = "5-min Papers";
-  papersTitle.style.fontSize = "2rem"; // Adjust font size as needed
-  papersSection.appendChild(papersTitle);
+    // Create 5-min Papers section
+    const papersSection = document.createElement('div');
+    papersSection.className = 'content-section';
 
-  const papersGrid = document.createElement('div');
-  papersGrid.className = 'posts-grid';
-  papersSection.appendChild(papersGrid);
+    const papersTitle = document.createElement('h2');
+    papersTitle.textContent = "5-min Papers";
+    papersTitle.style.fontSize = "2rem"; // Adjust font size as needed
+    papersSection.appendChild(papersTitle);
 
-  // Populate 5-min Papers posts
-  populateGrid(papersGrid, papersData);
+    const papersGrid = document.createElement('div');
+    papersGrid.className = 'posts-grid';
+    papersSection.appendChild(papersGrid);
 
-  // Add both sections to the wrapper
-  contentWrapper.appendChild(hcawSection);
-  contentWrapper.appendChild(papersSection);
+    // Populate 5-min Papers posts
+    populateGrid(papersGrid, papersData);
 
-  // Add the wrapper to the container
-  contentContainer.appendChild(contentWrapper);
+    // Add both sections to the wrapper
+    contentWrapper.appendChild(hcawSection);
+    contentWrapper.appendChild(papersSection);
+
+    // Add the wrapper to the container
+    contentContainer.appendChild(contentWrapper);
+  } else {
+    // If on mobile, create a single grid for all posts
+    const mobileGrid = document.createElement('div');
+    mobileGrid.className = 'posts-grid';
+
+    // Combine both postsData and papersData into one array
+    const allPosts = [...postsData, ...papersData];
+
+    // Populate the mobile grid with all posts
+    populateGrid(mobileGrid, allPosts);
+
+    // Add the mobile grid to the container
+    contentContainer.appendChild(mobileGrid);
+  }
 });
 
 // The populateGrid function remains the same as before
