@@ -934,7 +934,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add the wrapper to the container
     contentContainer.appendChild(contentWrapper);
   } else {
-    // For mobile, create a single-column layout with subheadings and posts
+    // For mobile, create a single-column layout
     // Create How Close Are We section
     const hcawSection = document.createElement('div');
     hcawSection.className = 'content-section';
@@ -944,13 +944,12 @@ document.addEventListener('DOMContentLoaded', function() {
     hcawTitle.style.fontSize = "2rem"; // Adjust font size as needed
     hcawSection.appendChild(hcawTitle);
 
-    // Create a container for How Close Are We posts
-    const hcawPostsContainer = document.createElement('div');
-    hcawPostsContainer.className = 'mobile-posts-container';
-    hcawSection.appendChild(hcawPostsContainer);
+    const hcawGrid = document.createElement('div');
+    hcawGrid.className = 'posts-grid';
+    hcawSection.appendChild(hcawGrid);
 
     // Populate How Close Are We posts
-    populateMobilePosts(hcawPostsContainer, postsData);
+    populateGrid(hcawGrid, postsData);
 
     // Add the How Close Are We section to the container
     contentContainer.appendChild(hcawSection);
@@ -964,13 +963,12 @@ document.addEventListener('DOMContentLoaded', function() {
     papersTitle.style.fontSize = "2rem"; // Adjust font size as needed
     papersSection.appendChild(papersTitle);
 
-    // Create a container for 5-min Papers posts
-    const papersPostsContainer = document.createElement('div');
-    papersPostsContainer.className = 'mobile-posts-container';
-    papersSection.appendChild(papersPostsContainer);
+    const papersGrid = document.createElement('div');
+    papersGrid.className = 'posts-grid';
+    papersSection.appendChild(papersGrid);
 
     // Populate 5-min Papers posts
-    populateMobilePosts(papersPostsContainer, papersData);
+    populateGrid(papersGrid, papersData);
 
     // Add the 5-min Papers section to the container
     contentContainer.appendChild(papersSection);
@@ -980,7 +978,7 @@ document.addEventListener('DOMContentLoaded', function() {
   adjustPlacardWidths();
 });
 
-// Function to populate posts in a grid layout (for desktop)
+// The populateGrid function remains the same as before
 function populateGrid(gridElement, dataArray) {
   // Sort posts by status and date
   dataArray.sort((a, b) => {
@@ -1015,47 +1013,10 @@ function populateGrid(gridElement, dataArray) {
   }
 }
 
-// Function to populate posts in a mobile-friendly single-column layout
-function populateMobilePosts(container, dataArray) {
-  // Sort posts by status and date
-  dataArray.sort((a, b) => {
-    if (a.status === "posted" && b.status === "coming soon") return -1;
-    if (a.status === "coming soon" && b.status === "posted") return 1;
-    return new Date(b.date) - new Date(a.date);
-  });
-
-  // Loop through the posts and create elements for each
-  dataArray.forEach(post => {
-    if (post.status === "posted") {
-      const postElement = document.createElement('div');
-      postElement.className = 'mobile-post-placard';
-
-      postElement.innerHTML = `
-        <img src="${post.image}" alt="${post.title}" class="post-image">
-        <div class="post-date">${post.date}</div>
-        <h3>${post.title}</h3>
-        <p>${post.content}</p>
-        <a href="${post.link}" class="read-more-btn">Read More</a>
-      `;
-
-      container.appendChild(postElement);
-    }
-  });
-
-  // If no posts are available, display a message
-  if (container.children.length === 0) {
-    const noPostsMessage = document.createElement('p');
-    noPostsMessage.textContent = "No posts available at the moment. Check back soon!";
-    noPostsMessage.style.textAlign = 'center';
-    noPostsMessage.style.color = 'var(--text-color)';
-    container.appendChild(noPostsMessage);
-  }
-}
-
 // Adjust placard widths based on screen size
 function adjustPlacardWidths() {
   const isMobile = window.innerWidth < 768; // Check if it's a mobile device
-  const placards = document.querySelectorAll('.post-placard, .mobile-post-placard');
+  const placards = document.querySelectorAll('.post-placard');
 
   placards.forEach(placard => {
     if (isMobile) {
