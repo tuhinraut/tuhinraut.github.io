@@ -6,293 +6,277 @@
   <title>Tuhin Kumar Raut - {{PAGE_TITLE}}</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    /* Chirpy theme-inspired styling */
-    :root {
-      --body-bg: #1e1e1e;
-      --sidebar-bg: #252525;
-      --topbar-bg: #252525;
-      --text-color: #c9d1d9;
-      --heading-color: #ffffff;
-      --link-color: #58a6ff;
-      --link-hover-color: #79c0ff;
-      --sidebar-active-color: #ffffff;
-      --border-color: #30363d;
-      --card-bg: #2d333b;
-      --card-border-radius: 6px;
-      --btn-border-color: #30363d;
-      --btn-hover-bg: #30363d;
-    }
+  /* Chirpy theme-inspired styling */
+  :root {
+    --body-bg: #1e1e1e;
+    --sidebar-bg: #252525;
+    --topbar-bg: #252525;
+    --text-color: #c9d1d9;
+    --heading-color: #ffffff;
+    --link-color: #58a6ff;
+    --link-hover-color: #79c0ff;
+    --sidebar-active-color: #ffffff;
+    --border-color: #30363d;
+    --card-bg: #2d333b;
+    --card-border-radius: 6px;
+    --btn-border-color: #30363d;
+    --btn-hover-bg: #30363d;
+  }
 
-    .light-mode {
-      --body-bg: #f8f9fa;
-      --sidebar-bg: #ffffff;
-      --topbar-bg: #ffffff;
-      --text-color: #333333;
-      --heading-color: #212529;
-      --link-color: #0064cf;
-      --link-hover-color: #0056b3;
-      --sidebar-active-color: #212529;
-      --border-color: #e5e5e5;
-      --card-bg: #ffffff;
-      --card-border-radius: 6px;
-      --btn-border-color: #e5e5e5;
-      --btn-hover-bg: #e9ecef;
-    }
+  .light-mode {
+    --body-bg: #f8f9fa;
+    --sidebar-bg: #ffffff;
+    --topbar-bg: #ffffff;
+    --text-color: #333333;
+    --heading-color: #212529;
+    --link-color: #0064cf;
+    --link-hover-color: #0056b3;
+    --sidebar-active-color: #212529;
+    --border-color: #e5e5e5;
+    --card-bg: #ffffff;
+    --card-border-radius: 6px;
+    --btn-border-color: #e5e5e5;
+    --btn-hover-bg: #e9ecef;
+  }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
 
-    body {
-      font-family: 'Poppins', sans-serif;
-      background-color: var(--body-bg);
-      color: var(--text-color);
-      display: flex;
-      min-height: 100vh;
-      transition: background-color 0.3s, color 0.3s;
-    }
-    /* Styling for the "About me" and "Contact" headings */
-    .about-title {
-      font-size: 2.2rem;
-      margin-bottom: 30px;
-      background: linear-gradient(90deg, var(--text-color) 70%, #d35400);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      display: inline-block;
-    }
+  body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--body-bg);
+    color: var(--text-color);
+    display: flex;
+    min-height: 100vh;
+    transition: background-color 0.3s, color 0.3s;
+  }
 
-    /* Ensure the gradient text works in light mode */
-    body.light-mode .about-title {
-      background: linear-gradient(90deg, var(--text-color) 70%, #d35400);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    /* Sidebar styling */
-    .sidebar {
-      position: fixed;
-      width: 260px;
-      height: 100vh;
-      background-color: var(--sidebar-bg);
-      border-right: 1px solid var(--border-color);
-      display: flex;
-      flex-direction: column;
-      transition: all 0.3s ease;
-      z-index: 1000;
-    }
+  /* Sidebar styling */
+  .sidebar {
+    position: fixed;
+    width: 260px;
+    height: 100vh;
+    background-color: var(--sidebar-bg);
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+    z-index: 1000;
+  }
 
-    .sidebar.collapsed {
-      transform: translateX(-260px);
-    }
+  .sidebar.collapsed {
+    transform: translateX(-260px);
+  }
 
-    .site-title {
-      text-align: center;
-      padding: 1.5rem 1rem;
-      border-bottom: 1px solid var(--border-color);
-    }
 
-    .site-title img {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      margin-bottom: 0.75rem;
-    }
+  .site-title {
+    text-align: center;
+    padding: 1.5rem 1rem;
+    border-bottom: 1px solid var(--border-color);
+  }
 
-    .site-title h1 {
-      font-size: 1.5rem;
-      margin: 0;
-      color: var(--heading-color);
-    }
+  .site-title img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 0.75rem;
+  }
 
-    .site-title p {
-      font-size: 0.9rem;
-      margin: 0.5rem 0 0;
-      color: var(--text-color);
-      opacity: 0.8;
-    }
+  .site-title h1 {
+    font-size: 1.5rem;
+    margin: 0;
+    color: var(--heading-color);
+  }
 
-    .sidebar-menu {
-      list-style: none;
-      padding: 1.5rem 0;
-      flex-grow: 1;
-    }
+  .site-title p {
+    font-size: 0.9rem;
+    margin: 0.5rem 0 0;
+    color: var(--text-color);
+    opacity: 0.8;
+  }
 
-    .sidebar-menu li {
-      margin-bottom: 0.25rem;
-    }
+  .sidebar-menu {
+    list-style: none;
+    padding: 1.5rem 0;
+    flex-grow: 1;
+  }
 
-    .sidebar-menu a {
-      display: flex;
-      align-items: center;
-      padding: 0.5rem 1.5rem;
-      color: var(--text-color);
-      text-decoration: none;
-      transition: background-color 0.2s, color 0.2s;
-    }
+  .sidebar-menu li {
+    margin-bottom: 0.25rem;
+  }
 
-    .sidebar-menu a:hover, .sidebar-menu a.active {
-      background-color: rgba(255, 255, 255, 0.1);
-      color: var(--sidebar-active-color);
-    }
+  .sidebar-menu a {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1.5rem;
+    color: var(--text-color);
+    text-decoration: none;
+    transition: background-color 0.2s, color 0.2s;
+  }
 
-    .sidebar-menu a.active {
-      border-left: 3px solid var(--link-color);
-      padding-left: calc(1.5rem - 3px);
-    }
+  .sidebar-menu a:hover, .sidebar-menu a.active {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--sidebar-active-color);
+  }
 
-    .sidebar-menu svg {
-      margin-right: 0.75rem;
-      width: 20px;
-      height: 20px;
-      opacity: 0.7;
-    }
+  .sidebar-menu a.active {
+    border-left: 3px solid var(--link-color);
+    padding-left: calc(1.5rem - 3px);
+  }
 
-    /* Main content styling */
-    .main-content {
-      margin-left: 260px;
-      width: calc(100% - 260px);
-      transition: all 0.3s ease;
-    }
+  .sidebar-menu svg {
+    margin-right: 0.75rem;
+    width: 20px;
+    height: 20px;
+    opacity: 0.7;
+  }
 
-    .main-content.expanded {
-      margin-left: 0;
-      width: 100%;
-    }
+  /* Main content styling */
+  .main-content {
+    margin-left: 260px;
+    width: calc(100% - 260px);
+    transition: all 0.3s ease;
+  }
 
-    .topbar {
-      background-color: var(--topbar-bg);
-      border-bottom: 1px solid var(--border-color);
-      padding: 0.75rem 1.5rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      transition: background-color 0.3s;
-    }
+  .main-content.expanded {
+    margin-left: 0;
+    width: 100%;
+  }
 
-    .menu-toggle {
-      background: none;
-      border: none;
-      color: var(--text-color);
-      font-size: 1.5rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      padding: 0.25rem;
-    }
+  .topbar {
+    background-color: var(--topbar-bg);
+    border-bottom: 1px solid var(--border-color);
+    padding: 0.75rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    transition: background-color 0.3s;
+  }
 
-    .content-container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 2rem;
-    }
+  .menu-toggle {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 0.25rem;
+  }
 
-    .post-card {
-      background-color: var(--card-bg);
-      border-radius: var(--card-border-radius);
-      margin-bottom: 1.5rem;
-      overflow: hidden;
-      transition: transform 0.2s, box-shadow 0.2s;
-      border: 1px solid var(--border-color);
-    }
+  .content-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
 
-    .post-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-    }
+  .post-card {
+    background-color: var(--card-bg);
+    border-radius: var(--card-border-radius);
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 1px solid var(--border-color);
+  }
 
-    .post-card-header {
-      padding: 1.5rem 1.5rem 0;
-    }
+  .post-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  }
 
-    .post-card-content {
-      padding: 1rem 1.5rem 1.5rem;
-    }
+  .post-card-header {
+    padding: 1.5rem 1.5rem 0;
+  }
 
-    .post-card h2 {
-      color: var(--heading-color);
-      margin-bottom: 0.75rem;
-    }
+  .post-card-content {
+    padding: 1rem 1.5rem 1.5rem;
+  }
 
-    .post-card h3 {
-      color: var(--heading-color);
-      margin-bottom: 0.5rem;
-      font-weight: 600;
-    }
+  .post-card h2 {
+    color: var(--heading-color);
+    margin-bottom: 0.75rem;
+  }
 
-    .post-meta {
-      display: flex;
-      align-items: center;
-      margin-bottom: 1rem;
-      font-size: 0.85rem;
-      color: var(--text-color);
-      opacity: 0.7;
-    }
+  .post-card h3 {
+    color: var(--heading-color);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
 
-    .post-meta > span {
-      display: flex;
-      align-items: center;
-      margin-right: 1rem;
-    }
+  .post-meta {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    font-size: 0.85rem;
+    color: var(--text-color);
+    opacity: 0.7;
+  }
 
-    .post-meta svg {
-      margin-right: 0.35rem;
-      width: 16px;
-      height: 16px;
-    }
+  .post-meta > span {
+    display: flex;
+    align-items: center;
+    margin-right: 1rem;
+  }
 
-    .tag-list {
-      display: flex;
-      flex-wrap: wrap;
-      margin-top: 1.5rem;
-    }
+  .post-meta svg {
+    margin-right: 0.35rem;
+    width: 16px;
+    height: 16px;
+  }
 
-    .tag {
-      background-color: rgba(88, 166, 255, 0.1);
-      color: var(--link-color);
-      padding: 0.25rem 0.5rem;
-      border-radius: 4px;
-      font-size: 0.75rem;
-      margin-right: 0.5rem;
-      margin-bottom: 0.5rem;
-      text-decoration: none;
-      transition: background-color 0.2s;
-    }
+  .tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+  }
 
-    .tag:hover {
-      background-color: rgba(88, 166, 255, 0.2);
-    }
+  .tag {
+    background-color: rgba(88, 166, 255, 0.1);
+    color: var(--link-color);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+    text-decoration: none;
+    transition: background-color 0.2s;
+  }
 
-    .read-more {
-      display: inline-block;
-      margin-top: 1rem;
-      color: var(--link-color);
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.2s;
-    }
+  .tag:hover {
+    background-color: rgba(88, 166, 255, 0.2);
+  }
 
-    .read-more:hover {
-      color: var(--link-hover-color);
-      text-decoration: underline;
-    }
+  .read-more {
+    display: inline-block;
+    margin-top: 1rem;
+    color: var(--link-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
 
-    .theme-toggle {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background: #1e1e1e; /* Default dark background */
-  color: white;
-  border: none;
-  padding: 10px 12px;
-  border-radius: 5px;
-  cursor: pointer;
-  z-index: 1000;
+  .read-more:hover {
+    color: var(--link-hover-color);
+    text-decoration: underline;
+  }
+
+  .theme-toggle {
+position: fixed;
+top: 20px;
+right: 20px;
+background: #1e1e1e; /* Default dark background */
+color: white;
+border: none;
+padding: 10px 12px;
+border-radius: 5px;
+cursor: pointer;
+z-index: 1000;
 }
 
 /* Adjust button background for light theme */
@@ -310,142 +294,162 @@ body.light-mode .theme-toggle:hover {
 background: #ddd; /* Change to a suitable light hover background */
 }
 
-    /* Profile section */
-    .profile-section {
-      padding: 2rem 0;
-      text-align: center;
-      margin-bottom: 2rem;
-    }
+  /* Profile section */
+  .profile-section {
+    padding: 2rem 0;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
 
-    .profile-img {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 5px solid var(--border-color);
-    }
+  .profile-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid var(--border-color);
+  }
 
-    .profile-title {
-      margin: 1rem 0 0.5rem;
-      font-size: 2rem;
-      color: var(--heading-color);
-    }
+  .profile-title {
+    margin: 1rem 0 0.5rem;
+    font-size: 2rem;
+    color: var(--heading-color);
+  }
 
-    .profile-tagline {
-      font-size: 1.1rem;
-      margin-bottom: 1rem;
-      opacity: 0.9;
-    }
+  .profile-tagline {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    opacity: 0.9;
+  }
 
-    .profile-links {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin-top: 1rem;
-    }
+  .profile-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
 
-    .profile-links a {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background-color: rgba(255, 255, 255, 0.1);
-      color: var(--text-color);
-      transition: background-color 0.2s, transform 0.2s;
-    }
+  .profile-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--text-color);
+    transition: background-color 0.2s, transform 0.2s;
+  }
 
-    .profile-links a:hover {
-      background-color: rgba(255, 255, 255, 0.2);
-      transform: scale(1.1);
-    }
+  .profile-links a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+  }
 
-    .sidep {
-      font-size: 12px;
-    }
+  .sidep {
+    font-size: 12px;
+  }
 
-    @media (max-width: 768px) {
-      .sidebar {
-        transform: translateX(-100%);
-      }
-      .sidebar.active {
-        transform: translateX(0);
-      }
-      .main-content {
-        margin-left: 0;
-        width: 100%;
-      }
+  @media (max-width: 768px) {
+    .sidebar {
+      transform: translateX(-100%);
     }
-    sidep {
-  font-size: 12px;
+    .sidebar.active {
+      transform: translateX(0);
+    }
+    .main-content {
+      margin-left: 0;
+      width: 100%;
+    }
+  }
+  sidep {
+font-size: 12px;
 }
 /* Profile picture modal */
 .profile-modal {
-  display: none;
-  position: fixed;
-  z-index: 2000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
-  opacity: 0;
-  transition: opacity 0.3s ease;
+display: none;
+position: fixed;
+z-index: 2000;
+left: 0;
+top: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0, 0, 0, 0.8);
+opacity: 0;
+transition: opacity 0.3s ease;
 }
 
 .modal-content {
-  position: relative;
-  margin: auto;
-  padding: 0;
-  width: 80%;
-  max-width: 700px;
-  top: 50%;
-  transform: translateY(-50%) scale(0.9);
-  transition: transform 0.3s ease;
+position: relative;
+margin: auto;
+padding: 0;
+width: 80%;
+max-width: 700px;
+top: 50%;
+transform: translateY(-50%) scale(0.9);
+transition: transform 0.3s ease;
 }
 
 .modal-content img {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+width: 100%;
+height: auto;
+border-radius: 8px;
+box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
 }
 
 .close-button {
-  position: absolute;
-  top: -40px;
-  right: 0;
-  color: white;
-  font-size: 35px;
-  font-weight: bold;
-  cursor: pointer;
-  z-index: 2001;
-  transition: color 0.2s;
+position: absolute;
+top: -40px;
+right: 0;
+color: white;
+font-size: 35px;
+font-weight: bold;
+cursor: pointer;
+z-index: 2001;
+transition: color 0.2s;
 }
 
 .close-button:hover {
-  color: var(--link-color);
+color: var(--link-color);
 }
 
 .profile-modal.show {
-  display: block;
-  opacity: 1;
+display: block;
+opacity: 1;
 }
 
 .profile-modal.show .modal-content {
-  transform: translateY(-50%) scale(1);
+transform: translateY(-50%) scale(1);
 }
 
 /* Make profile picture clickable */
 .profile-img {
-  cursor: pointer;
-  transition: transform 0.2s;
+cursor: pointer;
+transition: transform 0.2s;
 }
 
 .profile-img:hover {
-  transform: scale(1.05);
+transform: scale(1.05);
 }
+
+/* Nature Nugget styling for sidebar */
+.nature-nugget {
+padding: 1rem 1.5rem;
+border-top: 1px solid var(--border-color);
+font-size: 0.9rem;
+}
+
+.nature-nugget h3 {
+color: var(--link-color);
+margin-bottom: 0.5rem;
+font-size: 1rem;
+}
+
+.nugget-content {
+margin-bottom: 0.5rem;
+line-height: 1.4;
+font-size: 0.75rem;
+}
+
 /* Fix for all SVG icons in the main content */
 .main-content svg {
   width: 20px;
@@ -566,24 +570,6 @@ background: #ddd; /* Change to a suitable light hover background */
   margin-bottom: 2rem; /* Increases space below the title */
 }
 
-/* Nature Nugget styling for sidebar */
-.nature-nugget {
-  padding: 1rem 1.5rem;
-  border-top: 1px solid var(--border-color);
-  font-size: 0.9rem;
-}
-
-.nature-nugget h3 {
-  color: var(--link-color);
-  margin-bottom: 0.5rem;
-  font-size: 1rem;
-}
-
-.nugget-content {
-  margin-bottom: 0.5rem;
-  line-height: 1.4;
-  font-size: 0.75rem;
-}
 
   </style>
 </head>
@@ -758,12 +744,12 @@ background: #ddd; /* Change to a suitable light hover background */
         <form id="contactForm" class="contact-form" action="https://formspree.io/f/xoveveeg" method="POST">
           <div class="form-group">
             <label for="name">Name</label>
-            <input type="text" id="name" name="name" required placeholder="Tuhin Kumar Raut">
+            <input type="text" id="name" name="name" required placeholder="John Do">
           </div>
 
           <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" id="email" name="email" required placeholder="tuhinraut@gmail.com">
+            <input type="email" id="email" name="email" required placeholder="abcdxyz@email.com">
           </div>
 
           <div class="form-group">
@@ -972,6 +958,44 @@ document.addEventListener('DOMContentLoaded', function() {
     // Display a random trivia fact when the page loads
     displayRandomTrivia();
   }
+});
+document.addEventListener('DOMContentLoaded', function () {
+  const postCard = document.querySelector('.post-card');
+  const toggleButton = document.querySelector('.dropdown-toggle');
+  const postHeader = document.querySelector('.post-card-header');
+  const postContent = document.querySelector('.post-card-content');
+
+  // Function to toggle dropdown
+  function toggleDropdown(event) {
+    // Prevent clicks on child elements from triggering multiple toggles
+    if (event.target === toggleButton || toggleButton.contains(event.target)) {
+      // If clicked on the toggle button, let its own handler do the work
+      return;
+    }
+
+    const isExpanded = toggleButton.getAttribute('aria-expanded') === 'true';
+    toggleButton.setAttribute('aria-expanded', !isExpanded);
+    postContent.classList.toggle('expanded', !isExpanded);
+  }
+
+  // Add click event to the entire post card
+  postCard.addEventListener('click', toggleDropdown);
+
+  // Keep the original toggle button functionality
+  toggleButton.addEventListener('click', function(event) {
+    event.stopPropagation(); // Prevent triggering the postCard click handler
+    const isExpanded = toggleButton.getAttribute('aria-expanded') === 'true';
+    toggleButton.setAttribute('aria-expanded', !isExpanded);
+    postContent.classList.toggle('expanded', !isExpanded);
+  });
+
+  // Prevent clicks inside the content area from toggling the dropdown again
+  postContent.addEventListener('click', function(event) {
+    // Only prevent propagation if the dropdown is already expanded
+    if (toggleButton.getAttribute('aria-expanded') === 'true') {
+      event.stopPropagation();
+    }
+  });
 });
   </script>
   </body>
