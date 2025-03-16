@@ -934,18 +934,42 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add the wrapper to the container
     contentContainer.appendChild(contentWrapper);
   } else {
-    // If on mobile, create a single grid for all posts
-    const mobileGrid = document.createElement('div');
-    mobileGrid.className = 'posts-grid';
+    // If on mobile, create separate sections for each category
+    // Create How Close Are We section
+    const hcawSection = document.createElement('div');
+    hcawSection.className = 'content-section';
 
-    // Combine both postsData and papersData into one array
-    const allPosts = [...postsData, ...papersData];
+    const hcawTitle = document.createElement('h2');
+    hcawTitle.textContent = "How Close Are We?";
+    hcawTitle.style.fontSize = "2rem"; // Adjust font size as needed
+    hcawSection.appendChild(hcawTitle);
 
-    // Populate the mobile grid with all posts
-    populateGrid(mobileGrid, allPosts);
+    const hcawGrid = document.createElement('div');
+    hcawGrid.className = 'posts-grid';
+    hcawSection.appendChild(hcawGrid);
 
-    // Add the mobile grid to the container
-    contentContainer.appendChild(mobileGrid);
+    // Populate How Close Are We posts
+    populateGrid(hcawGrid, postsData);
+
+    // Create 5-min Papers section
+    const papersSection = document.createElement('div');
+    papersSection.className = 'content-section';
+
+    const papersTitle = document.createElement('h2');
+    papersTitle.textContent = "5-min Papers";
+    papersTitle.style.fontSize = "2rem"; // Adjust font size as needed
+    papersSection.appendChild(papersTitle);
+
+    const papersGrid = document.createElement('div');
+    papersGrid.className = 'posts-grid';
+    papersSection.appendChild(papersGrid);
+
+    // Populate 5-min Papers posts
+    populateGrid(papersGrid, papersData);
+
+    // Add both sections to the container
+    contentContainer.appendChild(hcawSection);
+    contentContainer.appendChild(papersSection);
   }
 
   // Adjust placard widths based on screen size
