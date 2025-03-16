@@ -1026,6 +1026,8 @@ document.addEventListener('DOMContentLoaded', function() {
     displayRandomTrivia();
   }
 });
+</script>
+<script>
 document.addEventListener('DOMContentLoaded', function () {
   const postCard = document.querySelector('.post-card');
   const toggleButton = document.querySelector('.dropdown-toggle');
@@ -1066,37 +1068,54 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
 <script src="posts.js"></script>
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    // Sort posts by status and date
-    postsData.sort((a, b) => {
-      // Prioritize "posted" posts over "coming soon"
-      if (a.status === "posted" && b.status === "coming soon") return -1;
-      if (a.status === "coming soon" && b.status === "posted") return 1;
+document.addEventListener('DOMContentLoaded', function() {
+  // Sort posts by status and date
+  postsData.sort((a, b) => {
+    // Prioritize "posted" posts over "coming soon"
+    if (a.status === "posted" && b.status === "coming soon") return -1;
+    if (a.status === "coming soon" && b.status === "posted") return 1;
 
-      // Sort by date (earliest first)
-      return new Date(a.date) - new Date(b.date);
-    });
-
-    // Get the posts grid container
-    const postsGrid = document.querySelector('.posts-grid');
-
-    // Clear any existing placeholder content
-    postsGrid.innerHTML = '';
-
-    // Populate the posts grid
-    postsData.forEach(post => {
-      const postElement = document.createElement('article');
-      postElement.className = 'post-placard';
-      postElement.innerHTML = `
-        <img src="${post.image}" alt="${post.title}" class="post-image">
-        <div class="post-date">${post.date}</div>
-        <h3>${post.title}</h3>
-        <p>${post.content}</p>
-        ${post.status === "coming soon" ? '<div class="coming-soon">Coming Soon</div>' : `<a href="${post.link}" class="read-more-btn">Read More</a>`}
-      `;
-      postsGrid.appendChild(postElement);
-    });
+    // Sort by date (earliest first)
+    return new Date(a.date) - new Date(b.date);
   });
+
+  // Get the posts grid container
+  const postsGrid = document.querySelector('.posts-grid');
+
+  // Clear any existing placeholder content
+  postsGrid.innerHTML = '';
+
+  // Function to adjust grid layout based on screen width
+  function adjustGridLayout() {
+    if (window.matchMedia("(max-width: 768px)").matches) {
+      // Mobile layout: 1 column
+      postsGrid.style.gridTemplateColumns = 'repeat(1, 1fr)';
+    } else {
+      // Desktop layout: 3 columns
+      postsGrid.style.gridTemplateColumns = 'repeat(3, 1fr)';
+    }
+  }
+
+  // Adjust grid layout on initial load
+  adjustGridLayout();
+
+  // Adjust grid layout on window resize
+  window.addEventListener('resize', adjustGridLayout);
+
+  // Populate the posts grid
+  postsData.forEach(post => {
+    const postElement = document.createElement('article');
+    postElement.className = 'post-placard';
+    postElement.innerHTML = `
+      <img src="${post.image}" alt="${post.title}" class="post-image">
+      <div class="post-date">${post.date}</div>
+      <h3>${post.title}</h3>
+      <p>${post.content}</p>
+      ${post.status === "coming soon" ? '<div class="coming-soon">Coming Soon</div>' : `<a href="${post.link}" class="read-more-btn">Read More</a>`}
+    `;
+    postsGrid.appendChild(postElement);
+  });
+});
 </script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
