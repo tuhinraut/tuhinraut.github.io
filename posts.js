@@ -4,24 +4,27 @@ const postsData = [
     "title": "... to making our own organism from scratch?",
     "date": "March 25, 2025",
     "image": "platypus.png",
-    "content": "<i>Imagine a world where we could decide the characteristics of an organism we desire and have it custom made to our specifications. It seems like a fever dream, but the reality of how close we actually are might shock you.</i>",
+    "content": "<i>Imagine a world where we could custom-design organisms to our exact specifications. It seems like a fever dream, but the reality of how close we are might shock you.</i>",
     "link": "#",
-    "status": "posted" // This post has already been posted
+    "status": "posted", // This post has already been posted
+    "tags": ["biology", "synthetic biology", "genetics"]
   },
   {
     "title": "... to building a fully organic computer?",
     "date": "April 10, 2025",
     "image": "organic_computer.png",
-    "content": "<i>Organic computers could revolutionize the way we think about technology. But how close are we to making this a reality? Let's dive into the science behind it.</i>",
+    "content": "<i>You've seen those sci-fi scenes where a human brain pilots a spaceship, right? While that might've been a physical depiction of AI, the concept of creating a truly \"organic computer\" remains fascinatingly within reach.</i>",
     "link": "#",
-    "status": "coming soon" // This post is coming soon
+    "status": "coming soon", // This post is coming soon
+    "tags": ["technology", "organic computing", "biology"]
   },
   {
     "title": "... to solving global warming with biology?",
     "date": "May 5, 2025",
     "image": "global_warming.png",
-    "content": "<i>Global warming is one of the biggest challenges of our time. But could biology hold the key to solving it? Let's explore the possibilities.</i>",
+    "content": "<i>Aah.. the age old, but very important nonetheless, topic of \"Global Warming\". It needs to be solved, but can it be done by using biology?</i>",
     "link": "#",
-    "status": "coming soon" // This post is coming soon
+    "status": "coming soon", // This post is coming soon
+    "tags": ["climate change", "biology", "environment"]
   },
 ];

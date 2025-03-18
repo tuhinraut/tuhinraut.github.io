@@ -158,96 +158,6 @@
       padding: 2rem;
     }
 
-    .post-card {
-      background-color: var(--card-bg);
-      border-radius: var(--card-border-radius);
-      margin-bottom: 1.5rem;
-      overflow: hidden;
-      transition: transform 0.2s, box-shadow 0.2s;
-      border: 1px solid var(--border-color);
-    }
-
-    .post-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-    }
-
-    .post-card-header {
-      padding: 1.5rem 1.5rem 0;
-    }
-
-    .post-card-content {
-      padding: 1rem 1.5rem 1.5rem;
-    }
-
-    .post-card h2 {
-      color: var(--heading-color);
-      margin-bottom: 0.75rem;
-    }
-
-    .post-card h3 {
-      color: var(--heading-color);
-      margin-bottom: 0.5rem;
-      font-weight: 600;
-    }
-
-    .post-meta {
-      display: flex;
-      align-items: center;
-      margin-bottom: 1rem;
-      font-size: 0.85rem;
-      color: var(--text-color);
-      opacity: 0.7;
-    }
-
-    .post-meta > span {
-      display: flex;
-      align-items: center;
-      margin-right: 1rem;
-    }
-
-    .post-meta svg {
-      margin-right: 0.35rem;
-      width: 16px;
-      height: 16px;
-    }
-
-    .tag-list {
-      display: flex;
-      flex-wrap: wrap;
-      margin-top: 1.5rem;
-    }
-
-    .tag {
-      background-color: rgba(88, 166, 255, 0.1);
-      color: var(--link-color);
-      padding: 0.25rem 0.5rem;
-      border-radius: 4px;
-      font-size: 0.75rem;
-      margin-right: 0.5rem;
-      margin-bottom: 0.5rem;
-      text-decoration: none;
-      transition: background-color 0.2s;
-    }
-
-    .tag:hover {
-      background-color: rgba(88, 166, 255, 0.2);
-    }
-
-    .read-more {
-      display: inline-block;
-      margin-top: 1rem;
-      color: var(--link-color);
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.2s;
-    }
-
-    .read-more:hover {
-      color: var(--link-hover-color);
-      text-decoration: underline;
-    }
-
     .theme-toggle {
   position: fixed;
   top: 20px;
@@ -274,6 +184,20 @@ background: #555; /* Default dark hover background */
 /* Adjust hover background for light theme */
 body.light-mode .theme-toggle:hover {
 background: #ddd; /* Change to a suitable light hover background */
+}
+
+.sidebar-icon {
+  width: 20px; /* Match the width of other icons */
+  height: 20px; /* Match the height of other icons */
+  margin-right: 0.75rem; /* Match the margin of other icons */
+  opacity: 0.7; /* Match the opacity of other icons */
+  filter: invert(0); /* Default: no inversion */
+  transition: filter 0.3s ease, opacity 0.3s ease; /* Smooth transition for dark mode */
+}
+
+/* Invert the icon in dark mode */
+body:not(.light-mode) .sidebar-icon {
+  filter: invert(1); /* Invert colors for dark mode */
 }
 
     /* Profile section */
@@ -648,6 +572,15 @@ h2 {
             margin-left: 40px;
           }
         }
+        :root {
+          --body-bg: #1e1e1e;
+          --dot-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .light-mode {
+          --body-bg: #f8f9fa;
+          --dot-color: rgba(0, 0, 0, 0.05);
+        }
   </style>
 </head>
 <body>
@@ -710,21 +643,19 @@ h2 {
         </a>
       </li>
       <li>
-        <a href="5-min Papers.html">
+        <a href="Research Reel.html">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
           </svg>
-          5-min Papers
+          Research Reel
         </a>
       </li>
       <li>
-        <a href="#">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
-          </svg>
-          Tags
-        </a>
-      </li>
+  <a href="Biology-with-Analogy.html">
+    <img src="brain-icon.png" alt="Brain Icon" class="sidebar-icon">
+    Biology-with-Analogy
+  </a>
+</li>
       <li>
         <a href="#" class="active">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -828,12 +759,13 @@ h2 {
 
           <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" id="email" name="email" required placeholder="abcdxyz@email.com">
+            <input type="email" id="email" name="email" required placeholder="Fill this for post updates or if you want to get in touch.">
           </div>
 
           <div class="form-group">
             <label for="message">Message</label>
-            <textarea id="message" name="message" rows="5" required placeholder="Your message. (you can just provide a random email in this if you don't want to share personal details. That works too. Say yes to data privacy :)"></textarea>
+            <textarea id="message" name="message" rows="5" required placeholder="Use tags #postupdate and/or #getintouch.
+You can just provide a random email in this if you don't want to share personal details. That works too. Say yes to data privacy :)"></textarea>
           </div>
 
           <button type="submit" class="submit-btn">Send Message</button>

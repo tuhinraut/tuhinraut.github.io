@@ -17,7 +17,7 @@
       --link-hover-color: #79c0ff;
       --sidebar-active-color: #ffffff;
       --border-color: #30363d;
-      --card-bg: #2d333b;
+      --card-bg: #191919;
       --card-border-radius: 6px;
       --btn-border-color: #30363d;
       --btn-hover-bg: #30363d;
@@ -368,35 +368,84 @@ section p {
   display: inline-block;
 }
 
-.posts-grid {
+.sidebar-icon {
+  width: 20px; /* Match the width of other icons */
+  height: 20px; /* Match the height of other icons */
+  margin-right: 0.75rem; /* Match the margin of other icons */
+  opacity: 0.7; /* Match the opacity of other icons */
+  filter: invert(0); /* Default: no inversion */
+  transition: filter 0.3s ease, opacity 0.3s ease; /* Smooth transition for dark mode */
+}
+
+/* Invert the icon in dark mode */
+body:not(.light-mode) .sidebar-icon {
+  filter: invert(1); /* Invert colors for dark mode */
+}
+
+.columns-wrapper {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  margin-top: 10px;
-
+  gap: 1.5rem;
+  align-items: stretch; /* Ensure all columns stretch to the same height */
 }
 
-.post-placard {
-  background-color: var(--card-bg);
-  border-radius: var(--card-border-radius);
-  overflow: hidden;
-  transition: transform 0.2s, box-shadow 0.2s;
-  border: 1px solid var(--border-color);
-  display: inline-block; /* Changed from flex to inline-block */
-  /* Width will be set by JavaScript */
-  vertical-align: top;
-
+.post-column {
+  flex: 1; /* Each column takes equal space */
+  display: flex; /* Make the column a flex container */
+  flex-direction: column; /* Stack content vertically */
 }
 
-.post-placard:hover {
+
+
+
+
+
+
+.post-column:hover {
   transform: translateY(-3px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
 
-.empty-space {
-  background-color: transparent; /* Make empty spaces invisible */
-  border: none; /* Remove border */
+/* Style for subheadings */
+.post-column h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--heading-color);
+  background: linear-gradient(90deg, var(--link-color), #d35400);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
 }
+
+.post-placard {
+  flex: 1; /* Make the placard fill the available height */
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.05)
+  );
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+.post-placard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3), 0 3px 6px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0.15),
+    rgba(255, 255, 255, 0.1)
+  );
+}
+
+
 .post-image {
   width: 100%;
   height: 200px;
@@ -419,67 +468,57 @@ section p {
 .post-placard p {
   font-size: 0.9rem;
   color: var(--text-color);
-  padding: 0 1rem 1rem;
-  flex-grow: 1;
+  padding: 1rem 1rem 1rem;
+  flex-grow: 1
 }
 
+/* Updated Read More Button */
 .read-more-btn {
   display: inline-block;
-  margin: 0.5rem; /* Reduced margin for a more compact look */
-  padding: 0.4rem 0.8rem; /* Smaller padding for a smaller button */
-  background-color: rgba(211, 84, 0, 0.7); /* Slightly darker and more solid blue-grey */
-  color: white;
-  border-radius: 20px; /* Rounded corners for a pill-like shape */
-  font-size: 0.8rem; /* Smaller font size */
+  margin: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: linear-gradient(
+    to bottom right,
+    rgba(88, 166, 255, 0.2),
+    rgba(88, 166, 255, 0.1)
+  );
+  border: 1px solid rgba(88, 166, 255, 0.3);
+  border-radius: 20px;
+  color: var(--link-color);
+  font-size: 0.8rem;
   font-weight: 500;
-  text-transform: uppercase; /* Uppercase text for a sleek look */
-  letter-spacing: 0.05rem; /* Slight letter spacing for better readability */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-  transition: all 0.3s ease; /* Smooth transition for hover effects */
-  cursor: default; /* Indicates it's not clickable */
+  text-transform: capitalize;
+  letter-spacing: 0.05rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
 }
 
 .read-more-btn:hover {
-  background-color: rgba(211, 84, 0, 1);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Slightly larger shadow on hover */
-  transform: translateY(-1px); /* Slight lift effect on hover */
+  background: linear-gradient(
+    to bottom right,
+    rgba(88, 166, 255, 0.3),
+    rgba(88, 166, 255, 0.2)
+  );
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+  color: var(--link-hover-color);
 }
 
-/* Add this to your existing CSS */
-.content-wrapper {
-  display: flex;
-  gap: 2rem;
-}
 
-.content-section {
-  flex: 1;
-  width: 50%;
-}
-em {
-    font-style: italic;
-    color: #d35400; /* This is a common orange color, adjust if needed to match exactly */
-}
-.coming-soon {
-  display: inline-block;
-  margin: 1rem;
-  padding: 0.5rem 1rem;
-  background-color: rgba(96, 125, 139, 0.7); /* Blue-ish grey color */
-  color: white;
-  border-radius: 4px;
-  font-size: 0.9rem;
-  font-weight: 500;
-}
-newh1 {
-  font-family: 'Poppins', sans-serif; /* Consistent with your existing font */
-  font-size: 2.5rem; /* Large size for prominence */
-  font-weight: 700; /* Bold for emphasis */
-  color: var(--heading-color); /* Use your existing heading color variable */
-  margin-bottom: 1.5rem; /* Spacing below the heading */
-  letter-spacing: 0.05em; /* Slightly increased letter spacing for elegance */
-  background: linear-gradient(90deg, var(--link-color), #d35400); /* Gradient text effect */
-  -webkit-background-clip: text; /* Clip background to text */
-  -webkit-text-fill-color: transparent; /* Make text transparent to show gradient */
-  display: inline-block; /* Ensure gradient applies correctly */
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+  .columns-wrapper {
+    flex-direction: column; /* Stack columns vertically on small screens */
+  }
+
+  .post-column {
+    width: 100%; /* Full width for each column on small screens */
+  }
 }
 /* Adjust the sidebar border to create a seamless integration with the pull tab */
 .sidebar {
@@ -566,6 +605,15 @@ newh1 {
     margin-left: 40px;
   }
 }
+:root {
+  --body-bg: #1e1e1e;
+  --dot-color: rgba(255, 255, 255, 0.05);
+}
+
+.light-mode {
+  --body-bg: #f8f9fa;
+  --dot-color: rgba(0, 0, 0, 0.05);
+}
   </style>
 </head>
 <body>
@@ -628,21 +676,19 @@ newh1 {
         </a>
       </li>
       <li>
-        <a href="5-min Papers.html">
+        <a href="Research Reel.html">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
           </svg>
-          5-min Papers
+          Research Reel
         </a>
       </li>
       <li>
-        <a href="#">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
-          </svg>
-          Tags
-        </a>
-      </li>
+  <a href="Biology-with-Analogy.html">
+    <img src="brain-icon.png" alt="Brain Icon" class="sidebar-icon">
+    Biology-with-Analogy
+  </a>
+</li>
       <li>
         <a href="about_me.html">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -660,9 +706,33 @@ newh1 {
       <img id="theme-icon" src="moon.png" style="width: 20px; height: 20px;">
     </button>
     <div class="content-container">
-      <!-- Placeholder for the most recent post -->
-      <div id="recent-post"></div>
-    </div>
+  <!-- Main heading -->
+  <newh1>New Posts</newh1>
+
+  <!-- How Close Are We Section -->
+  <div class="content-container">
+  <!-- Main heading -->
+  <newh1>New Posts</newh1>
+
+  <!-- How Close Are We Section -->
+  <section id="how-close-are-we">
+    <h2>How Close Are We</h2>
+    <div class="posts-grid" id="how-close-grid"></div>
+  </section>
+
+  <!-- Research Reel Section -->
+  <section id="Research Reel">
+    <h2>Research Reel</h2>
+    <div class="posts-grid" id="papers-grid"></div>
+  </section>
+
+  <!-- Biology-with-Analogy Section -->
+  <section id="biology-with-analogy">
+    <h2>Biology-with-Analogy</h2>
+    <div class="posts-grid" id="biology-grid"></div>
+  </section>
+</div>
+</div>
   </main>
 
   <script>
@@ -874,7 +944,7 @@ newh1 {
 
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   const contentContainer = document.querySelector('.content-container');
 
   // Clear existing content
@@ -887,161 +957,65 @@ document.addEventListener('DOMContentLoaded', function() {
   mainHeading.style.marginBottom = "2rem"; // Add spacing below the main heading
   contentContainer.appendChild(mainHeading);
 
-  // Check if the user is on a mobile device
-  const isMobile = window.innerWidth < 768;
+  // Create a wrapper for the three columns
+  const columnsWrapper = document.createElement('div');
+  columnsWrapper.className = 'columns-wrapper';
+  columnsWrapper.style.display = 'flex'; // Use flexbox for row layout
+  columnsWrapper.style.gap = '1.5rem'; // Add spacing between columns
+  contentContainer.appendChild(columnsWrapper);
 
-  if (!isMobile) {
-    // For desktop, create a content wrapper for side-by-side sections
-    const contentWrapper = document.createElement('div');
-    contentWrapper.className = 'content-wrapper';
-
-    // Create How Close Are We section
-    const hcawSection = document.createElement('div');
-    hcawSection.className = 'content-section';
-
-    const hcawTitle = document.createElement('h2');
-    hcawTitle.textContent = "How Close Are We?";
-    hcawTitle.style.fontSize = "2rem"; // Adjust font size as needed
-    hcawSection.appendChild(hcawTitle);
-
-    const hcawGrid = document.createElement('div');
-    hcawGrid.className = 'posts-grid';
-    hcawSection.appendChild(hcawGrid);
-
-    // Populate How Close Are We posts
-    populateGrid(hcawGrid, postsData);
-
-    // Create 5-min Papers section
-    const papersSection = document.createElement('div');
-    papersSection.className = 'content-section';
-
-    const papersTitle = document.createElement('h2');
-    papersTitle.textContent = "5-min Papers";
-    papersTitle.style.fontSize = "2rem"; // Adjust font size as needed
-    papersSection.appendChild(papersTitle);
-
-    const papersGrid = document.createElement('div');
-    papersGrid.className = 'posts-grid';
-    papersSection.appendChild(papersGrid);
-
-    // Populate 5-min Papers posts
-    populateGrid(papersGrid, papersData);
-
-    // Add both sections to the wrapper
-    contentWrapper.appendChild(hcawSection);
-    contentWrapper.appendChild(papersSection);
-
-    // Add the wrapper to the container
-    contentContainer.appendChild(contentWrapper);
-  } else {
-    // For mobile, create a single-column layout
-    // Create How Close Are We section
-    const hcawSection = document.createElement('div');
-    hcawSection.className = 'content-section';
-
-    const hcawTitle = document.createElement('h2');
-    hcawTitle.textContent = "How Close Are We?";
-    hcawTitle.style.fontSize = "2rem"; // Adjust font size as needed
-    hcawSection.appendChild(hcawTitle);
-
-    const hcawGrid = document.createElement('div');
-    hcawGrid.className = 'posts-grid';
-    hcawSection.appendChild(hcawGrid);
-
-    // Populate How Close Are We posts
-    populateGrid(hcawGrid, postsData);
-
-    // Add the How Close Are We section to the container
-    contentContainer.appendChild(hcawSection);
-
-    // Create 5-min Papers section
-    const papersSection = document.createElement('div');
-    papersSection.className = 'content-section';
-
-    const papersTitle = document.createElement('h2');
-    papersTitle.textContent = "5-min Papers";
-    papersTitle.style.fontSize = "2rem"; // Adjust font size as needed
-    papersSection.appendChild(papersTitle);
-
-    const papersGrid = document.createElement('div');
-    papersGrid.className = 'posts-grid';
-    papersSection.appendChild(papersGrid);
-
-    // Populate 5-min Papers posts
-    populateGrid(papersGrid, papersData);
-
-    // Add the 5-min Papers section to the container
-    contentContainer.appendChild(papersSection);
+  // Function to get the latest "posted" item from a data array
+  function getLatestPostedItem(data) {
+    return data
+      .filter(item => item.status === "posted") // Filter only "posted" items
+      .sort((a, b) => new Date(b.date) - new Date(a.date))[0]; // Sort by date and get the latest
   }
 
-  // Adjust placard widths based on screen size
-  adjustPlacardWidths();
-});
+  // Get the latest "posted" items from each section
+  const latestPost = getLatestPostedItem(postsData);
+  const latestPaper = getLatestPostedItem(papersData);
+  const latestBiology = getLatestPostedItem(biologyData);
 
-// The populateGrid function remains the same as before
-function populateGrid(gridElement, dataArray) {
-  // Sort posts by status and date
-  dataArray.sort((a, b) => {
-    if (a.status === "posted" && b.status === "coming soon") return -1;
-    if (a.status === "coming soon" && b.status === "posted") return 1;
-    return new Date(b.date) - new Date(a.date);
-  });
+  // Function to create a column for a post
+  function createPostColumn(post, sectionTitle) {
+    const column = document.createElement('div');
+    column.className = 'post-column';
+    column.style.flex = '1'; // Each column takes equal space
+    column.style.minWidth = '0'; // Prevent overflow
 
-  // Get the most recent posted item
-  const recentPosted = dataArray.find(item => item.status === "posted");
-
-  if (recentPosted) {
-    // Add the recent posted item
-    const postElement = document.createElement('div');
-    postElement.className = 'post-placard';
-    postElement.innerHTML = `
-      <img src="${recentPosted.image}" alt="${recentPosted.title}" class="post-image">
-      <div class="post-date">${recentPosted.date}</div>
-      <h3>${recentPosted.title}</h3>
-      <p>${recentPosted.content}</p>
-      <a href="${recentPosted.link}" class="read-more-btn">Read More</a>
-    `;
-    gridElement.appendChild(postElement);
-
-    // Since we're only showing one post per section, we don't need empty spaces
-  } else {
-    const noPostsMessage = document.createElement('p');
-    noPostsMessage.textContent = "No posts available at the moment. Check back soon!";
-    noPostsMessage.style.textAlign = 'center';
-    noPostsMessage.style.color = 'var(--text-color)';
-    gridElement.appendChild(noPostsMessage);
-  }
-}
-
-// Adjust placard widths based on screen size
-function adjustPlacardWidths() {
-  const isMobile = window.innerWidth < 768; // Check if it's a mobile device
-  const placards = document.querySelectorAll('.post-placard');
-
-  placards.forEach(placard => {
-    if (isMobile) {
-      // For mobile, set width to 100% (1 post per row)
-      placard.style.width = '100%';
+    if (post) {
+      column.innerHTML = `
+        <h2>${sectionTitle}</h2>
+        <div class="post-placard">
+          <img src="${post.image}" alt="${post.title}" class="post-image">
+          <div class="post-date">${post.date}</div>
+          <h3>${post.title}</h3>
+          <p>${post.content}</p>
+          <div class="tag-list">
+            ${post.tags ? post.tags.map(tag => `<span class="tag">${tag}</span>`).join('') : ''}
+          </div>
+          <a href="${post.link}" class="read-more-btn">Read More</a>
+        </div>
+      `;
     } else {
-      // For desktop, set width to 1/3 of the container width (3 posts per row)
-      const contentContainer = document.querySelector('.content-container');
-      const containerWidth = contentContainer.clientWidth;
-      const placardWidth = (containerWidth / 3) - 16; // 16px for spacing
-      placard.style.width = placardWidth + 'px';
+      column.innerHTML = `
+        <h2>${sectionTitle}</h2>
+        <p>No posts available at the moment. Check back soon!</p>
+      `;
     }
-    placard.style.display = 'inline-block';
-    placard.style.margin = '0rem';
-  });
-}
 
-// Run on page load
-window.addEventListener('load', adjustPlacardWidths);
+    return column;
+  }
 
-// Also run when window is resized
-window.addEventListener('resize', adjustPlacardWidths);
+  // Add columns for each section
+  columnsWrapper.appendChild(createPostColumn(latestPost, "How Close Are We"));
+  columnsWrapper.appendChild(createPostColumn(latestPaper, "Research Reel"));
+  columnsWrapper.appendChild(createPostColumn(latestBiology, "Biology-with-Analogy"));
+});
 </script>
 <script src="posts.js"></script>
 <script src="papers.js"></script>
+<script src="biology.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   const sidebar = document.querySelector('.sidebar');
