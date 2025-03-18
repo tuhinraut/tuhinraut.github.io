@@ -557,15 +557,16 @@ font-size: 12px;
     filter: invert(1); /* Invert colors for dark mode */
   }
 
+  /* Add a grid layout for the posts */
   .posts-grid {
-    display: flex; /* Use Flexbox instead of Grid */
-    flex-wrap: wrap; /* Allow placards to wrap to the next row */
-    gap: 1.5rem; /* Spacing between placards */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
     margin-top: 2rem;
   }
 
+  /* Updated Placard Styling */
   .post-placard {
-    flex: 1 1 calc(33.333% - 1.5rem); /* Each placard takes equal space, accounting for the gap */
     background: linear-gradient(
       to bottom right,
       rgba(255, 255, 255, 0.1),
@@ -579,7 +580,7 @@ font-size: 12px;
     overflow: hidden;
     transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
     display: flex;
-    flex-direction: column; /* Stack content vertically */
+    flex-direction: column;
   }
 
   .post-placard:hover {
@@ -615,20 +616,11 @@ font-size: 12px;
   .post-placard p {
     font-size: 0.9rem;
     color: var(--text-color);
-    padding: 0 1rem 1rem;
-    flex-grow: 1; /* Allow the paragraph to grow and fill space */
-    overflow: hidden; /* Hide overflow */
-    text-overflow: ellipsis; /* Add ellipsis for overflow text */
-    display: -webkit-box;
-    -webkit-line-clamp: 6; /* Limit to 3 lines */
-    -webkit-box-orient: vertical;
-  }
-  .post-placard p {
-    font-size: 0.9rem;
-    color: var(--text-color);
-  padding: 1rem 1rem 1rem;
+    padding: 0.5rem 1rem 1rem;
     flex-grow: 1;
   }
+
+  /* Tag List Styling */
   .tag-list {
     display: flex;
     flex-wrap: wrap;
@@ -653,6 +645,7 @@ font-size: 12px;
     transform: scale(1.05);
   }
 
+  /* Read More Button Styling */
   .read-more-btn {
     display: inline-block;
     margin: 0.5rem;
