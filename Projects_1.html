@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Project Timeline</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        header {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-bottom: 3rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.8;
+        }
+
+        .timeline-container {
+            position: relative;
+            width: 80%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 0;
+        }
+
+        .timeline-line {
+            position: absolute;
+            width: 6px;
+            background-color: #2c3e50;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 3px;
+        }
+
+        .timeline-line::before {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #2c3e50;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .timeline-line::after {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #2c3e50;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 60px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-content {
+            position: relative;
+            width: 45%;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-left: auto;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-right: auto;
+        }
+
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            transform: rotate(45deg);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content::before {
+            left: -10px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::before {
+            right: -10px;
+        }
+
+        .timeline-date {
+            display: inline-block;
+            padding: 5px 15px;
+            background-color: #2c3e50;
+            color: white;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .timeline-title {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        .timeline-description {
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #3498db;
+            border-radius: 50%;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            border: 4px solid #2c3e50;
+        }
+
+        @media (max-width: 768px) {
+            .timeline-line {
+                left: 30px;
+            }
+
+            .timeline-content {
+                width: calc(100% - 60px);
+                margin-left: 60px !important;
+            }
+
+            .timeline-content::before {
+                left: -10px !important;
+                right: auto !important;
+            }
+
+            .timeline-dot {
+                left: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>My Project Timeline</h1>
+        <div class="subtitle">A journey through my work</div>
+    </header>
+
+    <div class="timeline-container">
+        <div class="timeline-line"></div>
+
+        <!-- Projects will be displayed in reverse chronological order (newest at top) -->
+
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+                <div class="timeline-date">Jan 2023 - Present</div>
+                <h2 class="timeline-title">Molecular Dynamics based analysis of Protein Sequencing through Nanopore</h2>
+                <p class="timeline-description">Studying the interactions of protein analyte passing through the CsgG nanopore, usually present in Oxford Nanopore Technology (ONT) devices. This research aims to enhance sequencing accuracy and efficiency by identifying residues of CsgG which could be altered.</p>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+                <div class="timeline-date">Oct 2022 - Dec 2022</div>
+                <h2 class="timeline-title">Variational Autoencoder for Protein Design</h2>
+                <p class="timeline-description">Developed a Variational Autoencoder model that created a 3D latent space for a protein family, then implemented a logistic regression classifier to distinguish different GO-annotated proteins within this family. Successfully generated novel protein sequences validated by embedding distances on a Poincare ball hyperboloid.</p>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+                <div class="timeline-date">Jul 2022 - Sep 2022</div>
+                <h2 class="timeline-title">Acetylcholine Unbinding Simulation</h2>
+                <p class="timeline-description">Simulated the unbinding process of Acetylcholine from the M2R-Go protein complex using specialized molecular dynamics techniques. Compared full structure behavior versus just the transmembrane region to understand G protein effects, revealing important residues, loop interactions, and binding pocket changes.</p>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+                <div class="timeline-date">Jan 2022 - Jun 2022</div>
+                <h2 class="timeline-title">Biosurfactant Production in E. coli</h2>
+                <p class="timeline-description">Engineered E. coli to produce Alasan and Rhamnolipid biosurfactants using a bi-directional promoter system. Performed MD simulations to analyze micelle formation by Rhamnolipid in the presence of copper ions and decane, providing insights into their molecular mechanisms.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Animation on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const timelineItems = document.querySelectorAll('.timeline-item');
+
+            function checkVisibility() {
+                timelineItems.forEach(item => {
+                    const rect = item.getBoundingClientRect();
+                    const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+
+                    if (rect.top <= windowHeight * 0.8) {
+                        item.classList.add('visible');
+                    }
+                });
+            }
+
+            // Initial check
+            checkVisibility();
+
+            // Check on scroll
+            window.addEventListener('scroll', checkVisibility);
+        });
+    </script>
+</body>
+</html>

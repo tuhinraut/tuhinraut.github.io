@@ -15,7 +15,7 @@ const papersData = [
     "image": "paper2.png",
     "content": "<i>A comprehensive genomic analysis using CRISPR technology reveals previously unknown therapeutic targets for aggressive carcinomas.</i>",
     "link": "#",
-    "status": "coming soon"
+    "status": "coming soon",
     "tags": ["technology", "organic computing", "biology"]
   },
   {
