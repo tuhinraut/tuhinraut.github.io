@@ -4,12 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Research Reels</title>
+  <link rel="icon" type="image/x-icon" href="./pictures/logo.png" sizes="32x32">
+
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
   <style>
   /* Chirpy theme-inspired styling */
   :root {
-    --body-bg: #1e1e1e;
-    --sidebar-bg: #252525;
+    --body-bg: #0B1215;
+    --sidebar-bg: #262B2F;
     --topbar-bg: #252525;
     --text-color: #c9d1d9;
     --heading-color: #ffffff;
@@ -24,10 +26,10 @@
   }
 
   .light-mode {
-    --body-bg: #f8f9fa;
-    --sidebar-bg: #f4f4f4;
+    --body-bg: #FBFAF5; /* Light theme remains unchanged */
+    --sidebar-bg: #d1e8e0;
     --topbar-bg: #ffffff;
-    --text-color: #333333;
+    --text-color: #003153;
     --heading-color: #212529;
     --link-color: #0064cf;
     --link-hover-color: #0056b3;
@@ -198,7 +200,7 @@
 
   .post-card-header {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start; /* Changed from space-between to flex-start */
     align-items: center;
     cursor: pointer;
     background-color: var(--body-bg);
@@ -211,11 +213,12 @@
     color: var(--text-color);
     cursor: pointer;
     display: flex;
-    align-items: center;
+    align-items: left;
+    margin-left: 20px; /* Add some margin to the left of the toggle button */
   }
 
   .dropdown-toggle .arrow {
-    font-size: 1.2rem;
+    font-size: 1.75rem;
     transition: transform 0.3s ease;
   }
 
@@ -309,7 +312,7 @@
 position: fixed;
 top: 20px;
 right: 20px;
-background: #1e1e1e; /* Default dark background */
+background: var(--body-bg); /* Default dark background */
 color: white;
 border: none;
 padding: 10px 12px;
@@ -320,7 +323,6 @@ z-index: 1000;
 
 /* Adjust button background for light theme */
 body.light-mode .theme-toggle {
-background: #f8f9fa; /* Change to your light theme background color */
 color: #333; /* Adjust text color if needed */
 }
 
@@ -844,7 +846,7 @@ font-size: 12px;
     <div class="pull-tab" id="pull-tab">
     </div>
     <div class="site-title">
-      <img src="profile-picture.jpeg" alt="Tuhin Kumar Raut" class="profile-img">
+      <img src="./pictures/profile-picture.jpeg" alt="Tuhin Kumar Raut" class="profile-img">
       <!-- Modal for profile picture -->
 <div id="profileModal" class="profile-modal">
   <div class="modal-content">
@@ -875,7 +877,7 @@ font-size: 12px;
     </div>
     <ul class="sidebar-menu">
       <li>
-        <a href="index.html">
+        <a href="home.html">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
           </svg>
@@ -908,7 +910,7 @@ font-size: 12px;
       </li>
       <li>
   <a href="Biology-with-Analogy.html" >
-    <img src="brain-icon.png" alt="Brain Icon" class="sidebar-icon">
+    <img src="./pictures/brain-icon.png" alt="Brain Icon" class="sidebar-icon">
     Biology-with-Analogy
   </a>
 </li>
@@ -926,7 +928,7 @@ font-size: 12px;
   <!-- Main content -->
 <main class="main-content">
   <button class="theme-toggle" id="theme-toggle">
-    <img id="theme-icon" src="moon.png" style="width: 20px; height: 20px;">
+    <img id="theme-icon" src="./pictures/moon.png" style="width: 20px; height: 20px;">
   </button>
 
   <div class="search-container">
@@ -946,15 +948,7 @@ font-size: 12px;
         </div>
         <div class="post-card-content">
           <p></p>
-          <p>Ever stared at a biology textbook diagram wondering why mitochondria look nothing like the <em>"powerhouse of the cell"</em> you imagined? Or tried to visualize how proteins fold while your mind ties itself in knots instead?</p>
-
-<p>Biology doesn't have to be a bewildering maze of Latin terms and microscopic mysteries! Here at Biology-with-Analogy, I <em>transform complex biological concepts into vivid, relatable comparisons</em> that actually make sense. Think of me as your translator between the language of science and everyday experience.</p>
-
-<p>When I explain how your immune system works like a sophisticated security system—complete with ID checks, alarm signals, and specialized response teams—suddenly those confusing cascades of molecules become <em>a story you can follow</em>. These aren't just simplifications; they're bridges to deeper understanding.</p>
-
-<p>I'll guide you through everything from <em>evolutionary arms races</em> (literally like predator-prey weapon development) to the surprisingly organized chaos of cellular traffic. And yes, I'll occasionally share my own analogy failures (turns out comparing meiosis to a dance competition creates more confusion than clarity!).</p>
-
-<p>Ready to see biology through fresh eyes? Let's make science stick through the power of analogy!</p>
+          <p>Research </p>
 
         </div>
       </div>
@@ -972,11 +966,11 @@ function applyTheme(theme, isUserAction = false) {
   if (theme === "dark") {
     document.body.classList.remove("light-mode");
     localStorage.setItem("theme", "dark");
-    document.getElementById("theme-icon").src = "sun.png";
+    document.getElementById("theme-icon").src = "./pictures/sun.png";
   } else {
     document.body.classList.add("light-mode");
     localStorage.setItem("theme", "light");
-    document.getElementById("theme-icon").src = "moon.png";
+    document.getElementById("theme-icon").src = "./pictures/moon.png";
   }
 
   // Only add transition class if it's a user-initiated action
@@ -1173,7 +1167,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 </script>
-<script src="papers.js"></script>
+<script src="./content/papers.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   const postsGrid = document.querySelector('.posts-grid');

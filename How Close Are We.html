@@ -4,12 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>How Close Are We?</title>
+  <link rel="icon" type="image/x-icon" href="./pictures/logo.png" sizes="32x32">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
   <style>
   /* Chirpy theme-inspired styling */
   :root {
-    --body-bg: #1e1e1e;
-    --sidebar-bg: #252525;
+    --body-bg: #0B1215;
+    --sidebar-bg: #262B2F;
     --topbar-bg: #252525;
     --text-color: #c9d1d9;
     --heading-color: #ffffff;
@@ -24,10 +25,10 @@
   }
 
   .light-mode {
-    --body-bg: #f8f9fa;
-    --sidebar-bg: #f4f4f4;
+    --body-bg: #FBFAF5; /* Light theme remains unchanged */
+    --sidebar-bg: #d1e8e0;
     --topbar-bg: #ffffff;
-    --text-color: #333333;
+    --text-color: #003153;
     --heading-color: #212529;
     --link-color: #0064cf;
     --link-hover-color: #0056b3;
@@ -198,7 +199,7 @@
 
   .post-card-header {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start; /* Changed from space-between to flex-start */
     align-items: center;
     cursor: pointer;
     background-color: var(--body-bg);
@@ -211,11 +212,12 @@
     color: var(--text-color);
     cursor: pointer;
     display: flex;
-    align-items: center;
+    align-items: left;
+    margin-left: 20px; /* Add some margin to the left of the toggle button */
   }
 
   .dropdown-toggle .arrow {
-    font-size: 1.2rem;
+    font-size: 1.75rem;
     transition: transform 0.3s ease;
   }
 
@@ -309,7 +311,7 @@
 position: fixed;
 top: 20px;
 right: 20px;
-background: #1e1e1e; /* Default dark background */
+background: var(--body-bg); /* Default dark background */
 color: white;
 border: none;
 padding: 10px 12px;
@@ -320,7 +322,6 @@ z-index: 1000;
 
 /* Adjust button background for light theme */
 body.light-mode .theme-toggle {
-background: #f8f9fa; /* Change to your light theme background color */
 color: #333; /* Adjust text color if needed */
 }
 
@@ -844,7 +845,7 @@ font-size: 12px;
     <div class="pull-tab" id="pull-tab">
     </div>
     <div class="site-title">
-      <img src="profile-picture.jpeg" alt="Tuhin Kumar Raut" class="profile-img">
+      <img src="./pictures/profile-picture.jpeg" alt="Tuhin Kumar Raut" class="profile-img">
       <!-- Modal for profile picture -->
 <div id="profileModal" class="profile-modal">
   <div class="modal-content">
@@ -875,7 +876,7 @@ font-size: 12px;
     </div>
     <ul class="sidebar-menu">
       <li>
-        <a href="index.html">
+        <a href="home.html">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
           </svg>
@@ -908,7 +909,7 @@ font-size: 12px;
       </li>
       <li>
   <a href="Biology-with-Analogy.html">
-    <img src="brain-icon.png" alt="Brain Icon" class="sidebar-icon">
+    <img src="./pictures/brain-icon.png" alt="Brain Icon" class="sidebar-icon">
     Biology-with-Analogy
   </a>
 </li>
@@ -926,7 +927,7 @@ font-size: 12px;
   <!-- Main content -->
 <main class="main-content">
   <button class="theme-toggle" id="theme-toggle">
-    <img id="theme-icon" src="moon.png" style="width: 20px; height: 20px;">
+    <img id="theme-icon" src="./pictures/moon.png" style="width: 20px; height: 20px;">
   </button>
 
   <div class="search-container">
@@ -941,7 +942,7 @@ font-size: 12px;
         <div class="post-card-header">
           <h2>How Close Are We?</h2>
           <button class="dropdown-toggle" aria-expanded="false">
-            <span class="arrow">&#9660;</span> <!-- Down arrow -->
+            <span class="arrow">&#9660;</span> <!-- Down arrow --><br>
           </button>
         </div>
         <div class="post-card-content">
@@ -966,11 +967,11 @@ function applyTheme(theme, isUserAction = false) {
   if (theme === "dark") {
     document.body.classList.remove("light-mode");
     localStorage.setItem("theme", "dark");
-    document.getElementById("theme-icon").src = "sun.png";
+    document.getElementById("theme-icon").src = "./pictures/sun.png";
   } else {
     document.body.classList.add("light-mode");
     localStorage.setItem("theme", "light");
-    document.getElementById("theme-icon").src = "moon.png";
+    document.getElementById("theme-icon").src = "./pictures/moon.png";
   }
 
   // Only add transition class if it's a user-initiated action
@@ -1153,7 +1154,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Keep the original toggle button functionality
   toggleButton.addEventListener('click', function(event) {
-    event.stopPropagation(); // Prevent triggering the postCard click handler
+    //event.stopPropagation(); // Prevent triggering the postCard click handler
     const isExpanded = toggleButton.getAttribute('aria-expanded') === 'true';
     toggleButton.setAttribute('aria-expanded', !isExpanded);
     postContent.classList.toggle('expanded', !isExpanded);
@@ -1161,13 +1162,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
   postContent.addEventListener('click', function(event) {
     // Only prevent propagation if the dropdown is already expanded
-    if (toggleButton.getAttribute('aria-expanded') === 'true') {
-      event.stopPropagation();
-    }
+    // if (toggleButton.getAttribute('aria-expanded') === 'true') {
+    //   event.stopPropagation();
+    // }
   });
 });
 </script>
-<script src="posts.js"></script>
+<script src="./content/posts.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   const postsGrid = document.querySelector('.posts-grid');
@@ -1193,7 +1194,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="tag-list">
         ${post.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
       </div>
-      ${post.status === "coming soon" ? '<div class="coming-soon">Coming Soon....</div>' : `<a href="${post.link}" class="read-more-btn">Read More</a>`}
+      ${post.status === "coming soon" ? '<div class="coming-soon">Coming Soon....</div>' : `<button class="read-more" data-post-id="0">Read More</button>`}
     `;
     postsGrid.appendChild(postElement);
   });
@@ -1306,6 +1307,34 @@ document.addEventListener('DOMContentLoaded', function () {
   // Initial setup
   filterPostsByTag(); // Show all posts initially
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Get all read more buttons
+    const readMoreButtons = document.querySelectorAll('.read-more');
+
+    // Get all coming soon buttons
+    const comingSoonButtons = document.querySelectorAll('.coming-soon');
+
+    // Add click event to read more buttons
+    readMoreButtons.forEach(button => {
+        const postId = button.getAttribute('data-post-id');
+        if (postId && postsData[postId]) {
+            button.addEventListener('click', function() {
+                window.location.href = postsData[postId].link;
+            });
+        }
+    });
+
+    // Add styling to coming soon buttons (optional)
+    comingSoonButtons.forEach(button => {
+        button.classList.add('disabled');
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('This post is coming soon! Check back later.');
+        });
+    });
+});
+
 </script>
 </body>
 </html>

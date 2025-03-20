@@ -4,37 +4,37 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tuhin Kumar Raut - {{PAGE_TITLE}}</title>
-  <link rel="icon" type="image/x-icon" href="./pictures/logo.png" sizes="32x32">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
   <style>
     /* Chirpy theme-inspired styling */
     :root {
-      --body-bg: #0B1215;
-      --sidebar-bg: #262B2F;
-      --topbar-bg: #252525;
+      --body-bg: #0a0a0a; /* Darker background for better contrast */
+      --sidebar-bg: #1a1a1a; /* Slightly lighter than body for contrast */
+      --topbar-bg: #1a1a1a;
       --text-color: #c9d1d9;
       --heading-color: #ffffff;
       --link-color: #58a6ff;
       --link-hover-color: #79c0ff;
       --sidebar-active-color: #ffffff;
       --border-color: #30363d;
-      --card-bg: #2d333b;
+      --card-bg: rgba(45, 53, 59, 0.5); /* Semi-transparent card background */
       --card-border-radius: 6px;
       --btn-border-color: #30363d;
       --btn-hover-bg: #30363d;
     }
 
     .light-mode {
-      --body-bg: #FBFAF5; /* Light theme remains unchanged */
-      --sidebar-bg: #d1e8e0;
+      --body-bg: #f8f9fa;
+      --sidebar-bg: #f4f4f4;
       --topbar-bg: #ffffff;
-      --text-color: #003153;
+      --text-color: #333333;
       --heading-color: #212529;
       --link-color: #0064cf;
       --link-hover-color: #0056b3;
       --sidebar-active-color: #212529;
       --border-color: #e5e5e5;
       --card-bg: #ffffff;
+      --card-border-radius: 6px;
       --btn-border-color: #e5e5e5;
       --btn-hover-bg: #e9ecef;
     }
@@ -252,7 +252,7 @@
   position: fixed;
   top: 20px;
   right: 20px;
-  background: var(--body-bg); /* Default dark background */
+  background: #1e1e1e; /* Default dark background */
   color: white;
   border: none;
   padding: 10px 12px;
@@ -263,6 +263,7 @@
 
 /* Adjust button background for light theme */
 body.light-mode .theme-toggle {
+background: #f8f9fa; /* Change to your light theme background color */
 color: #333; /* Adjust text color if needed */
 }
 
@@ -516,6 +517,10 @@ background: #ddd; /* Change to a suitable light hover background */
     margin-left: 40px;
   }
 }
+:root {
+  --body-bg: #1e1e1e;
+  --dot-color: rgba(255, 255, 255, 0.05);
+}
 
 .light-mode {
   --body-bg: #f8f9fa;
@@ -535,6 +540,53 @@ body:not(.light-mode) .sidebar-icon {
   filter: invert(1); /* Invert colors for dark mode */
 }
 
+body {
+            font-family: 'Source Sans Pro', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .post-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .post-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+        .post-meta {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+        .featured-image {
+            width: 100%;
+            max-height: 500px;
+            object-fit: cover;
+            margin-bottom: 40px;
+            background-color: #f5f5f5;
+        }
+        .post-content {
+            font-size: 18px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .post-content p:first-of-type::first-letter {
+            font-family: 'Playfair Display', serif;
+            font-size: 60px;
+            line-height: 60px;
+            float: left;
+            padding-right: 8px;
+            padding-top: 4px;
+        }
+        .post-content img {
+            max-width: 100%;
+            height: auto;
+            margin: 30px 0;
+        }
   </style>
 </head>
 <body>
@@ -544,7 +596,7 @@ body:not(.light-mode) .sidebar-icon {
     <div class="pull-tab" id="pull-tab">
     </div>
     <div class="site-title">
-      <img src="./pictures/profile-picture.jpeg" alt="Tuhin Kumar Raut" class="profile-img">
+      <img src="profile-picture.jpeg" alt="Tuhin Kumar Raut" class="profile-img">
       <!-- Modal for profile picture -->
 <div id="profileModal" class="profile-modal">
   <div class="modal-content">
@@ -608,12 +660,12 @@ body:not(.light-mode) .sidebar-icon {
       </li>
       <li>
   <a href="Biology-with-Analogy.html">
-    <img src="./pictures/brain-icon.png" alt="Brain Icon" class="sidebar-icon">
+    <img src="brain-icon.png" alt="Brain Icon" class="sidebar-icon">
     Biology-with-Analogy
   </a>
 </li>
       <li>
-        <a href="about_me.html">
+        <a href="#">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
@@ -627,11 +679,27 @@ body:not(.light-mode) .sidebar-icon {
   <!-- Main Content -->
   <main class="main-content" id="main-content">
       <button class="theme-toggle" id="theme-toggle">
-  <img id="theme-icon" src="./pictures/moon.png" style="width: 20px; height: 20px;">
+  <img id="theme-icon" src="moon.png" style="width: 20px; height: 20px;">
 </button>
     <div class="content-container">
-      <!-- Content will be inserted here -->
-      {{PAGE_CONTENT}}
+      <article class="post">
+        <div class="post-header">
+            <h1 id="post-title-header" class="post-title">This Is A Standard Format Post.</h1>
+            <div class="post-meta">
+                <span id="post-date">JUNE 15, 2018</span> BY <span id="post-author">JONATHAN DOE</span>
+            </div>
+        </div>
+
+        <img id="post-image" class="featured-image" src="" alt="Featured Image">
+
+        <div id="post-content" class="post-content">
+            <!-- Content will be loaded here -->
+        </div>
+    </article>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="posts.js"></script>
+    <script src="blog.js"></script>
     </div>
   </main>
 
@@ -640,11 +708,11 @@ function applyTheme(theme, isUserAction = false) {
   if (theme === "dark") {
     document.body.classList.remove("light-mode");
     localStorage.setItem("theme", "dark");
-    document.getElementById("theme-icon").src = "./pictures/sun.png";
+    document.getElementById("theme-icon").src = "sun.png";
   } else {
     document.body.classList.add("light-mode");
     localStorage.setItem("theme", "light");
-    document.getElementById("theme-icon").src = "./pictures/moon.png";
+    document.getElementById("theme-icon").src = "moon.png";
   }
 
   // Only add transition class if it's a user-initiated action

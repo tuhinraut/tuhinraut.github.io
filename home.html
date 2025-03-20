@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact</title>
+  <title>Tuhin's Webpage</title>
   <link rel="icon" type="image/x-icon" href="./pictures/logo.png" sizes="32x32">
 
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
@@ -387,79 +387,6 @@ body:not(.light-mode) .sidebar-icon {
   height: 20px;
 }
 
-/* Contact form styling */
-.contact-form {
-  max-width: 600px;
-  margin: 2rem 0;
-  padding: 1.5rem;
-  background-color: var(--card-bg);
-  border-radius: var(--card-border-radius);
-  border: 1px solid var(--border-color);
-}
-
-.form-group {
-  margin-bottom: 1.5rem;
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 500;
-}
-
-.form-group input,
-.form-group textarea {
-  width: 100%;
-  padding: 0.75rem;
-  background-color: var(--body-bg);
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
-  color: var(--text-color);
-  font-family: 'Poppins', sans-serif;
-  transition: border-color 0.2s;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-  outline: none;
-  border-color: var(--link-color);
-}
-
-.submit-btn {
-  background-color: var(--link-color);
-  color: white;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: background-color 0.2s;
-}
-
-.submit-btn:hover {
-  background-color: var(--link-hover-color);
-}
-
-.form-status {
-  margin-top: 1rem;
-  padding: 0.75rem;
-  border-radius: 4px;
-  display: none;
-}
-
-.form-status.success {
-  display: block;
-  background-color: rgba(40, 167, 69, 0.1);
-  color: #28a745;
-  border: 1px solid rgba(40, 167, 69, 0.2);
-}
-
-.form-status.error {
-  display: block;
-  background-color: rgba(220, 53, 69, 0.1);
-  color: #dc3545;
-  border: 1px solid rgba(220, 53, 69, 0.2);
-}
 .about-title {
   margin-bottom: 2rem; /* Increases space below the title */
 }
@@ -572,6 +499,198 @@ h2 {
             margin-left: 40px;
           }
         }
+
+        /* New CSS for horizontal project placards */
+    .project-placard {
+      display: flex;
+      align-items: center;
+      background-color: var(--card-bg);
+      border-radius: var(--card-border-radius);
+      margin-bottom: 1.5rem;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .project-placard:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .project-image {
+      width: 200px;
+      height: 150px;
+      object-fit: cover;
+      margin-right: 1.5rem;
+    }
+
+    .project-content {
+      flex: 1;
+      padding: 1.5rem;
+    }
+
+    .project-content h3 {
+      color: var(--heading-color);
+      margin-bottom: 0.75rem;
+      font-size: 1.5rem;
+    }
+
+    .project-content p {
+      font-size: 1rem;
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+
+    .project-content a {
+      color: var(--link-color);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .project-content a:hover {
+      color: var(--link-hover-color);
+      text-decoration: underline;
+    }
+
+
+    .columns-wrapper {
+      display: flex;
+      gap: 1.5rem;
+      align-items: stretch; /* Ensure all columns stretch to the same height */
+    }
+
+    .post-column {
+      flex: 1; /* Each column takes equal space */
+      display: flex; /* Make the column a flex container */
+      flex-direction: column; /* Stack content vertically */
+    }
+
+
+
+
+
+
+
+    .post-column:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Style for subheadings */
+    .post-column h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--heading-color);
+      background: linear-gradient(90deg, var(--link-color), #d35400);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: inline-block;
+    }
+
+    .post-placard {
+      flex: 1; /* Make the placard fill the available height */
+      display: flex;
+      flex-direction: column;
+      background: linear-gradient(
+        to bottom right,
+        rgba(255, 255, 255, 0.1),
+        rgba(255, 255, 255, 0.05)
+      );
+      border-radius: 16px;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+    }
+
+    .post-placard:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3), 0 3px 6px rgba(0, 0, 0, 0.2);
+      background: linear-gradient(
+        to bottom right,
+        rgba(255, 255, 255, 0.15),
+        rgba(255, 255, 255, 0.1)
+      );
+    }
+
+
+    .post-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .post-date {
+      font-size: 0.85rem;
+      color: var(--text-color);
+      opacity: 0.7;
+      padding: 1rem 1rem 0;
+    }
+
+    .post-placard h3 {
+      color: var(--heading-color);
+      margin: 0.5rem 1rem 0;
+      font-size: 1.25rem;
+    }
+
+    .post-placard p {
+      font-size: 0.9rem;
+      color: var(--text-color);
+      padding: 1rem 1rem 1rem;
+      flex-grow: 1
+    }
+
+    /* Updated Read More Button */
+    .read-more-btn {
+      display: inline-block;
+      margin: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: linear-gradient(
+        to bottom right,
+        rgba(88, 166, 255, 0.2),
+        rgba(88, 166, 255, 0.1)
+      );
+      border: 1px solid rgba(88, 166, 255, 0.3);
+      border-radius: 20px;
+      color: var(--link-color);
+      font-size: 0.8rem;
+      font-weight: 500;
+      text-transform: capitalize;
+      letter-spacing: 0.05rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      text-decoration: none;
+      text-align: center;
+    }
+
+    .read-more-btn:hover {
+      background: linear-gradient(
+        to bottom right,
+        rgba(88, 166, 255, 0.3),
+        rgba(88, 166, 255, 0.2)
+      );
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      transform: translateY(-2px);
+      color: var(--link-hover-color);
+    }
+
+
+    /* Responsive design for smaller screens */
+    @media (max-width: 768px) {
+      .columns-wrapper {
+        flex-direction: column; /* Stack columns vertically on small screens */
+      }
+
+      .post-column {
+        width: 100%; /* Full width for each column on small screens */
+      }
+    }
   </style>
 </head>
 <body>
@@ -610,7 +729,7 @@ h2 {
     </div>
     <ul class="sidebar-menu">
       <li>
-        <a href="home.html">
+        <a href="#" class="active">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
           </svg>
@@ -648,11 +767,11 @@ h2 {
   </a>
 </li>
       <li>
-        <a href="#" class="active">
+        <a href="about_me.html">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
-          Contact
+          About
         </a>
       </li>
     </ul>
@@ -665,34 +784,98 @@ h2 {
     <img id="theme-icon" src="./pictures/moon.png" style="width: 20px; height: 20px;">
     </button>
     <div class="content-container">
-
-      <h2 class="about-title" style="font-size: 3rem;">Contact</h2>
-
+      <h2 class="about-title" style="margin-bottom: 2rem;">About me</h2>
       <div class="about-section">
-<p>Here, feel free to share those seemingly wild biological ideas that you've tucked away as too outlandish. I'd love to explore them together! Whether it's speculative science or just chatting about life's journey, I'm always up for thoughtful conversations.</p><p> Also please do let me know your thoughts on the blog. Any critiques are welcome.</p>        <!-- Contact form would go here -->
-        <form id="contactForm" class="contact-form" action="https://formspree.io/f/xoveveeg" method="POST">
-          <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" required placeholder="John Doe">
+        <div class="about-item">
+          <div class="about-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
           </div>
-
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required placeholder="Fill this for post updates or if you want to get in touch.">
+          <div class="about-content">
+            <p>Interested in exploring the fields of <strong>Computational Biology</strong>, <strong>Molecular Dynamics</strong> and <strong>Protein Design</strong>.
           </div>
+        </div>
 
-          <div class="form-group">
-            <label for="message">Message</label>
-            <textarea id="message" name="message" rows="5" required placeholder="Use tags #postupdate and/or #getintouch.
-You can just provide a random email in this if you don't want to share personal details. That works too. Say yes to data privacy :)"></textarea>
+        <div class="about-item">
+          <div class="about-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path d="M12 14l9-5-9-5-9 5 9 5z" />
+              <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+            </svg>
           </div>
+          <div class="about-content">
+            <p>Pursuing my Bachelor's Degree from <strong>Indian Institute of Technology, Delhi</strong> from the Department of <strong>Biochemical Engineering and Biotechnology</strong>.
+          </div>
+        </div>
 
-          <button type="submit" class="submit-btn">Send Message</button>
+        <div class="about-item">
+  <div class="about-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+    </svg>
+  </div>
+  <div class="about-content">
+    <p>Received grants from <strong>Emergent Ventures</strong> and <strong>Impact Grants</strong> for my work in Nanopore Sequencing and Biosurfactants, respectively.
+  </div>
+</div>
 
-          <div id="formStatus" class="form-status"></div>
-        </form>
 
+        <div class="about-item">
+          <div class="about-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+            </svg>
+          </div>
+          <div class="about-content">
+            <p>I'm drawn to <strong>nature</strong>, enjoy keeping up with <strong>tech news</strong>, and find joy in <strong>good food</strong> :)</p>
+          </div>
+        </div>
 
+        <div class="about-item">
+          <div class="about-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+          </div>
+          <div class="about-content">
+            <p>The <a href="Projects.html">projects</a> page is a nice place to see some of my work, but you can also view my <a href="Tuhin_resume_website.pdf">resume</a>.</p>
+          </div>
+        </div>
+
+        <div class="about-item">
+          <div class="about-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <div class="about-content">
+            <p>Grew up in <em>Odisha, India</em> ; moved to <em>Delhi, India</em> for undergraduate studies.</p>
+          </div>
+        </div>
+
+        <!-- Projects Section -->
+     <section id="projects">
+       <h2>Ongoing Projects</h2>
+
+       <!-- Project Placard 1 -->
+       <div class="project-placard">
+         <img src="./pictures/project1.jpg" alt="Molecular Dynamics" class="project-image">
+         <div class="project-content">
+           <h3>Molecular Dynamics based analysis of Protein Sequencing through Nanopore</h3>
+           <p>We are studying the interactions of protein analyte passing through the CsgG nanopore, usually present in Oxford Nanopore Technology (ONT) devices. This would lend us insights into the residues of CsgG which could be altered. By doing so, we aim to enhance sequencing accuracy and efficiency, offering a promising alternative to traditional protein sequencing methods.</p>
+         </div>
+       </div>
+
+       <!-- Project Placard 3 -->
+       <div class="project-placard">
+         <img src="./pictures/project3.jpg" alt="Nicotine Addiction" class="project-image">
+         <div class="project-content">
+           <h3>Understanding Nicotine Addiction</h3>
+           <p>We simulated the unbinding process of Acetylcholine from the M2R-Go protein complex using specialized molecular dynamics techniques, comparing how the full structure behaves versus just the transmembrane region to understand G protein effects. The analysis revealed important residues, loop interactions, and binding pocket changes during the unbinding process, while energy calculations helped identify critical high-energy conformational changes.</p>
+         </div>
+       </div>
       </div>
     </div>
   </main>
@@ -777,30 +960,7 @@ You can just provide a random email in this if you don't want to share personal 
     }
   });
 
-  // Contact form handling
-document.addEventListener('DOMContentLoaded', function() {
-  const contactForm = document.getElementById('contactForm');
-  const formStatus = document.getElementById('formStatus');
 
-  if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
-      // Form will be handled by Formspree
-      // This code just adds visual feedback
-
-      const submitBtn = contactForm.querySelector('.submit-btn');
-      submitBtn.textContent = 'Sending...';
-      submitBtn.disabled = true;
-
-      // We'll let the form submit normally, but add this for UX
-      setTimeout(function() {
-        formStatus.textContent = "Thank you! Your message has been sent.";
-        formStatus.className = "form-status success";
-        submitBtn.textContent = 'Send Message';
-        submitBtn.disabled = false;
-      }, 2000);
-    });
-  }
-});
 
 document.addEventListener('DOMContentLoaded', function() {
   // Create the HTML structure for the nature nugget
@@ -987,5 +1147,80 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
   </script>
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const contentContainer = document.querySelector('.content-container');
+
+    // Create main heading "New Posts"
+    const mainHeading = document.createElement('h2');
+    mainHeading.textContent = "New Posts";
+    mainHeading.style.fontSize = "2.5rem"; // Adjust font size as needed
+    mainHeading.style.marginBottom = "4rem"; // Add spacing below the main heading
+
+    // Create a wrapper for the three columns
+    const columnsWrapper = document.createElement('div');
+    columnsWrapper.className = 'columns-wrapper';
+    columnsWrapper.style.display = 'flex'; // Use flexbox for row layout
+    columnsWrapper.style.gap = '1.5rem'; // Add spacing between columns
+
+    // Function to get the latest "posted" item from a data array
+    function getLatestPostedItem(data) {
+      return data
+        .filter(item => item.status === "posted") // Filter only "posted" items
+        .sort((a, b) => new Date(b.date) - new Date(a.date))[0]; // Sort by date and get the latest
+    }
+
+    // Get the latest "posted" items from each section
+    const latestPost = getLatestPostedItem(postsData);
+    const latestPaper = getLatestPostedItem(papersData);
+    const latestBiology = getLatestPostedItem(biologyData);
+
+    // Function to create a column for a post
+    function createPostColumn(post, sectionTitle) {
+      const column = document.createElement('div');
+      column.className = 'post-column';
+      column.style.flex = '1'; // Each column takes equal space
+      column.style.minWidth = '0'; // Prevent overflow
+
+      if (post) {
+        column.innerHTML = `
+          <h2>${sectionTitle}</h2>
+          <div class="post-placard">
+            <img src="${post.image}" alt="${post.title}" class="post-image">
+            <div class="post-date">${post.date}</div>
+            <h3>${post.title}</h3>
+            <p>${post.content}</p>
+            <div class="tag-list">
+              ${post.tags ? post.tags.map(tag => `<span class="tag">${tag}</span>`).join('') : ''}
+            </div>
+            <a href="${post.link}" class="read-more-btn">Read More</a>
+          </div>
+        `;
+      } else {
+        column.innerHTML = `
+          <h2>${sectionTitle}</h2>
+          <p>No posts available at the moment. Check back soon!</p>
+        `;
+      }
+
+      return column;
+    }
+
+    // Add columns for each section
+    columnsWrapper.appendChild(createPostColumn(latestPost, "How Close Are We"));
+    columnsWrapper.appendChild(createPostColumn(latestPaper, "Research Reel"));
+    columnsWrapper.appendChild(createPostColumn(latestBiology, "Biology-with-Analogy"));
+
+    // Append the "New Posts" section after the Projects section
+    const projectsSection = document.querySelector('#projects');
+    if (projectsSection) {
+      projectsSection.insertAdjacentElement('afterend', mainHeading);
+      mainHeading.insertAdjacentElement('afterend', columnsWrapper);
+    }
+  });
+  </script>
+  <script src="./content/posts.js"></script>
+<script src="./content/papers.js"></script>
+<script src="./content/biology.js"></script>
   </body>
   </html>

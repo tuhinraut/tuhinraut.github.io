@@ -4,12 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tuhin's Webpage</title>
+  <link rel="icon" type="image/x-icon" href="./pictures/logo.png" sizes="32x32">
+
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
   <style>
     /* Chirpy theme-inspired styling */
     :root {
-      --body-bg: #1e1e1e;
-      --sidebar-bg: #252525;
+      --body-bg: #0B1215;
+      --sidebar-bg: #262B2F;
       --topbar-bg: #252525;
       --text-color: #c9d1d9;
       --heading-color: #ffffff;
@@ -17,24 +19,23 @@
       --link-hover-color: #79c0ff;
       --sidebar-active-color: #ffffff;
       --border-color: #30363d;
-      --card-bg: #191919;
+      --card-bg: #2d333b;
       --card-border-radius: 6px;
       --btn-border-color: #30363d;
       --btn-hover-bg: #30363d;
     }
 
     .light-mode {
-      --body-bg: #f8f9fa;
-      --sidebar-bg: #f4f4f4;
+      --body-bg: #FBFAF5; /* Light theme remains unchanged */
+      --sidebar-bg: #d1e8e0;
       --topbar-bg: #ffffff;
-      --text-color: #333333;
+      --text-color: #003153;
       --heading-color: #212529;
       --link-color: #0064cf;
       --link-hover-color: #0056b3;
       --sidebar-active-color: #212529;
       --border-color: #e5e5e5;
       --card-bg: #ffffff;
-      --card-border-radius: 6px;
       --btn-border-color: #e5e5e5;
       --btn-hover-bg: #e9ecef;
     }
@@ -185,7 +186,7 @@
   position: fixed;
   top: 20px;
   right: 20px;
-  background: #1e1e1e; /* Default dark background */
+  background: var(--body-bg); /* Default dark background */
   color: white;
   border: none;
   padding: 10px 12px;
@@ -196,7 +197,6 @@
 
 /* Adjust button background for light theme */
 body.light-mode .theme-toggle {
-background: #f8f9fa; /* Change to your light theme background color */
 color: #333; /* Adjust text color if needed */
 }
 
@@ -605,15 +605,6 @@ body:not(.light-mode) .sidebar-icon {
     margin-left: 40px;
   }
 }
-:root {
-  --body-bg: #1e1e1e;
-  --dot-color: rgba(255, 255, 255, 0.05);
-}
-
-.light-mode {
-  --body-bg: #f8f9fa;
-  --dot-color: rgba(0, 0, 0, 0.05);
-}
   </style>
 </head>
 <body>
@@ -622,7 +613,7 @@ body:not(.light-mode) .sidebar-icon {
     <div class="pull-tab" id="pull-tab">
     </div>
     <div class="site-title">
-      <img src="profile-picture.jpeg" alt="Tuhin Kumar Raut" class="profile-img">
+      <img src="./pictures/profile-picture.jpeg" alt="Tuhin Kumar Raut" class="profile-img">
       <!-- Modal for profile picture -->
 <div id="profileModal" class="profile-modal">
   <div class="modal-content">
@@ -685,7 +676,7 @@ body:not(.light-mode) .sidebar-icon {
       </li>
       <li>
   <a href="Biology-with-Analogy.html">
-    <img src="brain-icon.png" alt="Brain Icon" class="sidebar-icon">
+    <img src="./pictures/brain-icon.png" alt="Brain Icon" class="sidebar-icon">
     Biology-with-Analogy
   </a>
 </li>
@@ -703,35 +694,11 @@ body:not(.light-mode) .sidebar-icon {
   <!-- Main Content -->
   <main class="main-content" id="main-content">
     <button class="theme-toggle" id="theme-toggle">
-      <img id="theme-icon" src="moon.png" style="width: 20px; height: 20px;">
+      <img id="theme-icon" src="./pictures/moon.png" style="width: 20px; height: 20px;">
     </button>
     <div class="content-container">
-  <!-- Main heading -->
-  <newh1>New Posts</newh1>
 
   <!-- How Close Are We Section -->
-  <div class="content-container">
-  <!-- Main heading -->
-  <newh1>New Posts</newh1>
-
-  <!-- How Close Are We Section -->
-  <section id="how-close-are-we">
-    <h2>How Close Are We</h2>
-    <div class="posts-grid" id="how-close-grid"></div>
-  </section>
-
-  <!-- Research Reel Section -->
-  <section id="Research Reel">
-    <h2>Research Reel</h2>
-    <div class="posts-grid" id="papers-grid"></div>
-  </section>
-
-  <!-- Biology-with-Analogy Section -->
-  <section id="biology-with-analogy">
-    <h2>Biology-with-Analogy</h2>
-    <div class="posts-grid" id="biology-grid"></div>
-  </section>
-</div>
 </div>
   </main>
 
@@ -740,11 +707,11 @@ body:not(.light-mode) .sidebar-icon {
     if (theme === "dark") {
       document.body.classList.remove("light-mode");
       localStorage.setItem("theme", "dark");
-      document.getElementById("theme-icon").src = "sun.png";
+      document.getElementById("theme-icon").src = "./pictures/sun.png";
     } else {
       document.body.classList.add("light-mode");
       localStorage.setItem("theme", "light");
-      document.getElementById("theme-icon").src = "moon.png";
+      document.getElementById("theme-icon").src = "./pictures/moon.png";
     }
 
     // Only add transition class if it's a user-initiated action
@@ -950,7 +917,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const mainHeading = document.createElement('newh1');
   mainHeading.textContent = "New Posts";
   mainHeading.style.fontSize = "2.5rem"; // Adjust font size as needed
-  mainHeading.style.marginBottom = "2rem"; // Add spacing below the main heading
+  mainHeading.style.marginBottom = "4rem"; // Add spacing below the main heading
   contentContainer.appendChild(mainHeading);
 
   // Create a wrapper for the three columns
