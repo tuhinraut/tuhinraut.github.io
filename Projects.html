@@ -606,6 +606,15 @@ h2 {
             margin-left: 0;
           }
         }
+        @media (max-width: 768px) {
+          .content-container {
+            padding: 0rem; /* Reduce padding for mobile */
+          }
+
+          .posts-grid {
+            grid-template-columns: 1fr; /* One post per row on mobile */
+          }
+        }
   </style>
 </head>
 <body>

@@ -816,7 +816,7 @@ font-size: 12px;
   /* Search Bar Styling */
 .search-container {
   position: relative;
-  right: -800px; /* Adjust to avoid overlapping with the theme toggle */
+  left: 20px; /* Adjust to avoid overlapping with the theme toggle */
   z-index: 1000;
 }
 
@@ -921,13 +921,8 @@ font-size: 12px;
 }
 @media (max-width: 768px) {
   .content-container {
-    padding: 1rem; /* Reduce padding for mobile */
+    padding: 0rem; /* Reduce padding for mobile */
   }
-
-  .search-container {
-    right: 0; /* Remove padding for mobile */
-  }
-
   .posts-grid {
     grid-template-columns: 1fr; /* One post per row on mobile */
   }
