@@ -920,6 +920,19 @@ font-size: 12px;
         rgba(255, 255, 255, 0)
     );
 }
+@media (max-width: 768px) {
+  .content-container {
+    padding: 1rem; /* Reduce padding for mobile */
+  }
+
+  .search-container {
+    padding: 0; /* Remove padding for mobile */
+  }
+
+  .posts-grid {
+    grid-template-columns: 1fr; /* One post per row on mobile */
+  }
+}
   </style>
 </head>
 <body>
