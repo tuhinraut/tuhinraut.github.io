@@ -120,7 +120,7 @@
     padding: 0.5rem 1.5rem;
     color: var(--text-color);
     text-decoration: none;
-    transition: background-color 0.2s, color 0.2s;
+    transition: background-color 0.3s, color 0.3s;
   }
 
   .sidebar-menu a:hover,
@@ -934,10 +934,6 @@ font-size: 12px;
     );
 }
 @media (max-width: 768px) {
-  .content-container {
-    padding: 0rem; /* Reduce padding for mobile */
-  }
-
   .posts-grid {
     grid-template-columns: 1fr; /* One post per row on mobile */
   }
@@ -1307,15 +1303,20 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('DOMContentLoaded', function() {
   const sidebar = document.querySelector('.sidebar');
   const pullTab = document.getElementById('pull-tab');
+    const mainContent = document.querySelector('.main-content');
   const isMobile = window.innerWidth < 768; // Check if it's a mobile device
 
-  // Set the default sidebar state based on screen size
+  // Set the default sidebar state based on screen size at the beginning
   if (isMobile) {
     // Collapse the sidebar by default on mobile
     sidebar.classList.add('collapsed');
+    mainContent.style.marginLeft = '40px'; // Leave space for the pull tab
+    mainContent.style.width = 'calc(100% - 40px)';
   } else {
     // Expand the sidebar by default on desktop
     sidebar.classList.remove('collapsed');
+    mainContent.style.marginLeft = '260px'; // Expand to full sidebar width
+    mainContent.style.width = 'calc(100% - 260px)';
   }
 
   // Replace the existing SVG with a thinner, smaller hamburger menu icon
@@ -1327,25 +1328,42 @@ document.addEventListener('DOMContentLoaded', function() {
     </svg>
   `;
 
-  // Function to toggle sidebar without changing icons
-  function toggleSidebar() {
-    sidebar.classList.toggle('collapsed');
-  }
+  // Function to toggle sidebar
+    function toggleSidebar() {
+      sidebar.classList.toggle('collapsed');
+      adjustMainContentMargin(); // Adjust the main content margin based on the sidebar state
+    }
 
-  // Add event listener to the pull tab
-  pullTab.addEventListener('click', toggleSidebar);
+    // Add event listener to the pull tab
+    pullTab.addEventListener('click', toggleSidebar);
 
-  // Adjust the main content margin based on sidebar state
-  function adjustMainContentMargin() {
-    const mainContent = document.querySelector('.main-content');
-    if (sidebar.classList.contains('collapsed')) {
-      mainContent.style.marginLeft = '40px'; // Leave space for the pull tab
+    // Adjust the main content margin based on sidebar state
+      function adjustMainContentMargin() {
+        if (sidebar.classList.contains('collapsed')) {
+          mainContent.style.marginLeft = '40px'; // Leave space for the pull tab
+          mainContent.style.width = 'calc(100% - 40px)';
+        } else {
+          mainContent.style.marginLeft = '260px'; // Expand to full sidebar width
+          mainContent.style.width = 'calc(100% - 260px)';
+        }
+      }
+
+      window.addEventListener('resize', function() {
+  const newIsMobile = window.innerWidth < 768;
+  if (newIsMobile !== isMobile) {
+    // Update the sidebar and main content dynamically
+    if (newIsMobile) {
+      sidebar.classList.add('collapsed');
+      mainContent.style.marginLeft = '40px';
       mainContent.style.width = 'calc(100% - 40px)';
     } else {
-      mainContent.style.marginLeft = '260px'; // Expand to full sidebar width
+      sidebar.classList.remove('collapsed');
+      mainContent.style.marginLeft = '260px';
       mainContent.style.width = 'calc(100% - 260px)';
     }
+    isMobile = newIsMobile; // Update the isMobile variable
   }
+});
 
   // Adjust the main content margin on page load
   adjustMainContentMargin();
@@ -1384,7 +1402,7 @@ document.addEventListener('DOMContentLoaded', function () {
         <img src="${post.image}" alt="${post.title}" class="post-image">
         <div class="post-date">${post.date}</div>
         <h3>${post.title}</h3>
-        <p>${post.content}</p>
+        <p><i>${post.content}</i></p>
         <div class="tag-list">${post.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}</div>
         ${post.status === "coming soon" ? '<div class="coming-soon">Coming Soon....</div>' : `<a href="${post.link}" class="read-more-btn">Read More</a>`}
       `;
