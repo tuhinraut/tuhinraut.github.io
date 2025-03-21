@@ -170,21 +170,21 @@
   border-radius: 5px;
   cursor: pointer;
   z-index: 1000;
-}
+  }
 
-/* Adjust button background for light theme */
-body.light-mode .theme-toggle {
-color: #333; /* Adjust text color if needed */
-}
+  /* Adjust button background for light theme */
+  body.light-mode .theme-toggle {
+  color: #333; /* Adjust text color if needed */
+  }
 
-.theme-toggle:hover {
-background: #555; /* Default dark hover background */
-}
+  .theme-toggle:hover {
+  background: #555; /* Default dark hover background */
+  }
 
-/* Adjust hover background for light theme */
-body.light-mode .theme-toggle:hover {
-background: #ddd; /* Change to a suitable light hover background */
-}
+  /* Adjust hover background for light theme */
+  body.light-mode .theme-toggle:hover {
+  background: #ddd; /* Change to a suitable light hover background */
+  }
 
 .sidebar-icon {
   width: 20px; /* Match the width of other icons */
@@ -348,29 +348,6 @@ body:not(.light-mode) .sidebar-icon {
 .main-content svg {
   width: 20px;
   height: 20px;
-}
-
-/* Fix for about section icons */
-.about-icon svg {
-  width: 24px;
-  height: 24px;
-  vertical-align: middle;
-}
-
-/* Ensure proper alignment of icon and text */
-.about-item {
-  display: flex;
-  align-items: flex-start;
-  margin-bottom: 1.5rem;
-}
-
-.about-icon {
-  margin-right: 1rem;
-  flex-shrink: 0;
-}
-
-.about-content {
-  flex: 1;
 }
 
 /* Fix for sidebar menu icons */
@@ -610,7 +587,7 @@ h2 {
     </div>
     <ul class="sidebar-menu">
       <li>
-        <a href="home.html">
+        <a href="index.html">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
           </svg>
@@ -647,14 +624,12 @@ h2 {
     Biology-with-Analogy
   </a>
 </li>
-      <li>
-        <a href="#" class="active">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-          </svg>
-          Contact
-        </a>
-      </li>
+<li>
+  <a href="#" class="active">
+    <img src="./pictures/form.svg" alt="Form Icon" class="sidebar-icon">
+    Contact
+  </a>
+</li>
     </ul>
   </aside>
 
@@ -662,7 +637,7 @@ h2 {
   <!-- Main content -->
   <main class="main-content">
     <button class="theme-toggle" id="theme-toggle">
-    <img id="theme-icon" src="./pictures/moon.png" style="width: 20px; height: 20px;">
+      <img id="theme-icon" src="./pictures/moon.png" style="width: 20px; height: 20px;">
     </button>
     <div class="content-container">
 
