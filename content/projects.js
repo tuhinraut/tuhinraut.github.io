@@ -7,7 +7,7 @@ const projects = [
     university: "DBEB, IIT Delhi",
     startDate: "2024-06-01",
     endDate: "Present",
-    status: "ongoing" // or "completed"
+    status: "ongoing"
   },
   {
     title: "Using AI to generate novel protein sequences",
@@ -27,8 +27,8 @@ const projects = [
     professor: "Prof. Tapan Kumar Nayak",
     university: "KSBS, IIT Delhi",
     startDate: "2023-01-15",
-    endDate: "Present",
-    status: "ongoing"
+    endDate: "2025-05-24",
+    status: "completed"
   },
   {
     title: "Tunable biosurfactant production using recombinant <i>E. coli</i>",
@@ -43,7 +43,7 @@ const projects = [
   {
     title: "Designing synthetic microbial community for ammelioration of biotic stress",
     description: "Investigated the biocontrol potential of soil-derived bacterial isolates against the fungus through solid and liquid culture experiments. Evaluated the Plant Growth Promoting (PGP) traits of promising bacterial candidates to identify effective biocontrol agents for sustainable agricultural practices.",
-    image: "./pictures/project4.jpg",
+    image: "./pictures/project5.png",
     professor: "Prof. Shilpi Sharma",
     university: "DBEB, IIT Delhi",
     startDate: "2022-12-06",
