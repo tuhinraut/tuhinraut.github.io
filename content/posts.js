@@ -21,7 +21,7 @@ const postsData = [
         "mdFile": "post2.md",
         "link": "blog.html?id=1",
         "status": "coming soon",
-        "tags": ["organic computers", ""]
+        "tags": ["organic computers"]
     },
     {
         "title": "... to solving global warming with biology?",

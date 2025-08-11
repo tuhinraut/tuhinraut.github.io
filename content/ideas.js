@@ -2,29 +2,29 @@ const ideasData = [
   {
     "title": "Bionic Arm",
     "date": "Aug 15, 2025",
-    "image": "./pictures/dogma-grandma.png",
-    "content": "<i>We all might be familar with the central dogma of life, but I just wanted to start with a very light topic and a very tasty one in that.</i>",
+    "image": "./pictures/bionic-arm.png",
+    "content": "<i>Seen the hand of Arnold in Terminator? Well, this is not it :(. But I just had a frugal idea about, whether it is possible to reconnect the motor functions of reattached limbs to the person's brain signals.</i>",
     "link": "#",
     "status": "posted",
-    "tags": ["biology", "analogy", "genetics"]
+    "tags": ["terminator"]
   },
   {
     "title": "Capsule for Cancer",
     "date": "TBD",
-    "image": "./pictures/cell-factory.png",
-    "content": "<i>Your cells house nature's ultimate manufacturing marvel. Microscopic assembly lines operate with perfect efficiency while self-replicating and repairing autonomously. This factory has been perfecting operations for billions of years before humans dreamed of assembly lines.</i>",
+    "image": "./pictures/capsule-cancer.png",
+    "content": "<i>This would actually be a bit detailed as we came up with this as a team. Our intentions were to make engineered gut bacteria to find, target and cure Colorectal Cancer. Sadly never got a chance to actually work on it.</i>",
     "link": "#",
     "status": "coming soon",
-    "tags": ["biology", "analogy", "cell biology"]
+    "tags": ["cancer"]
   },
 
   {
     "title": "The Second Brain",
     "date": "TBD",
-    "image": "./pictures/immune-military.png",
-    "content": "<i>Forget US Military—your body houses the most sophisticated military force in known existence. An intricate network of specialized cells patrols your bloodstream. This army wages constant warfare against enemies, distinguishes friend from foe, and adapts its weaponry in real-time.</i>",
+    "image": "./pictures/second-brain.png",
+    "content": "<i>Did you know your gut is also called your \"second brain\"? It is responsible for the production of most of the neurotransmitters for the brain and recent research believes we can diagnose or predict psychological disorders by analysis gut instead of the brain.</i>",
     "link": "#",
     "status": "coming soon",
-    "tags": ["biology", "analogy", "immunology"]
+    "tags": ["second brain"]
   }
 ];
