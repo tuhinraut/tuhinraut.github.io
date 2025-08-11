@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Biology-with-Analogy</title>
+  <title>Unexplored Ideas</title>
   <link rel="icon" type="image/x-icon" href="./pictures/logo_new.png" sizes="32x32">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
   <style>
@@ -987,15 +987,15 @@ font-size: 12px;
         </a>
       </li>
       <li>
-        <a href="Unexplored Ideas.html">
+        <a href="Unexplored Ideas.html" class="active">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z"/>
           </svg>
           Unexplored Ideas
         </a>
       </li>
       <li>
-  <a href="Biology-with-Analogy.html" class="active">
+  <a href="Biology-with-Analogy.html" >
     <img src="./pictures/brain-icon.png" alt="Brain Icon" class="sidebar-icon">
     Biology-with-Analogy
   </a>
@@ -1019,26 +1019,19 @@ font-size: 12px;
 
 
   <div class="content-container">
-    <!-- How Close Are We Section -->
-    <section id="biology-with-analogy">
+    <!-- Unexplored Ideas Section -->
+    <section id="unexplored-ideas">
       <div class="post-card">
         <div class="post-card-header">
-          <h2>Biology-with-Analogy</h2>
+          <h2>Unexplored Ideas</h2>
           <button class="dropdown-toggle" aria-expanded="false">
             <span class="arrow">&#9660;</span> <!-- Down arrow -->
           </button>
         </div>
         <div class="post-card-content">
           <p></p>
-          <p>Ever stared at a biology textbook diagram wondering why mitochondria look nothing like the <em>"powerhouse of the cell"</em> you imagined? Or tried to visualize how proteins fold while your mind ties itself in knots instead?</p>
-
-<p>Biology doesn't have to be a bewildering maze of Latin terms and microscopic mysteries! Here at Biology-with-Analogy, I <em>transform complex biological concepts into vivid, relatable comparisons</em> that actually make sense. Think of me as your translator between the language of science and everyday experience.</p>
-
-<p>When I explain how your immune system works like a sophisticated security system—complete with ID checks, alarm signals, and specialized response teams—suddenly those confusing cascades of molecules become <em>a story you can follow</em>. These aren't just simplifications; they're bridges to deeper understanding.</p>
-
-<p>I'll guide you through everything from <em>evolutionary arms races</em> (literally like predator-prey weapon development) to the surprisingly organized chaos of cellular traffic. And yes, I'll occasionally share my own analogy failures (turns out comparing meiosis to a dance competition creates more confusion than clarity!).</p>
-
-<p>Ready to see biology through fresh eyes? Let's make science stick through the power of analogy!</p>
+          <p>Every research enthusiast has, at some point, daydreamed about revolutionizing their field. Science isn’t just about breakthroughs—it’s also about failures that pave the way for success. Here <em>I’ll share some of my own "failed" ideas</em> to give you a peek into a tinkerer’s mind—how we hit roadblocks and push forward or fall flat on our faces.</p>
+          <p></p>
 
         </div>
       </div>
@@ -1260,7 +1253,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 </script>
-<script src="./content/biology.js"></script>
+<script src="./content/ideas.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   const postsGrid = document.querySelector('.posts-grid');
@@ -1275,7 +1268,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // Populate the posts grid
-  biologyData.forEach(post => {
+  ideasData.forEach(post => {
     const postElement = document.createElement('article');
     postElement.className = 'post-placard';
     postElement.innerHTML = `
@@ -1382,10 +1375,10 @@ document.addEventListener('DOMContentLoaded', function () {
   // Function to filter posts by tag (supports partial matching for multi-word tags)
   function filterPostsByTag(searchTerm) {
     const filteredPosts = searchTerm
-      ? biologyData.filter(post =>
+      ? ideasData.filter(post =>
           post.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()))
         )
-      : biologyData; // Show all posts if no search term is provided
+      : ideasData; // Show all posts if no search term is provided
 
     postsGrid.innerHTML = '';
     filteredPosts.forEach(post => {
