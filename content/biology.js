@@ -5,7 +5,7 @@ const biologyData = [
     "image": "./pictures/dogma-grandma.png",
     "content": "<i>We all might be familar with the central dogma of life, but I just wanted to start with a very light topic and a very tasty one in that.</i>",
     "link": "#",
-    "status": "posted",
+    "status": "coming soon",
     "tags": [ "genetics"]
   },
   {

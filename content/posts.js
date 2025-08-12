@@ -9,7 +9,7 @@ const postsData = [
         "content": "Imagine a world where we could custom-design organisms to our exact specifications. It seems like a fever dream, but the reality of how close we are might shock you.",
         "mdFile": "post1.md",
         "link": "blog.html?id=0",
-        "status": "posted",
+        "status": "coming soon",
         "tags": ["synthetic biology", "aliens"]
     },
     {

@@ -1,0 +1,1396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mind-Controlled Bionic Arms: The Promise and Pitfalls of Bacterial Neurotransmitter Production</title>
+  <link rel="icon" type="image/x-icon" href="./../pictures/logo_new.png" sizes="32x32">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* Chirpy theme-inspired styling */
+    :root {
+      --body-bg: #0B1215;
+      --sidebar-bg: #262B2F;
+      --topbar-bg: #252525;
+      --text-color: #c9d1d9;
+      --heading-color: #ffffff;
+      --link-color: #58a6ff;
+      --link-hover-color: #79c0ff;
+      --sidebar-active-color: #ffffff;
+      --border-color: #30363d;
+      --card-bg: #2d333b;
+      --card-border-radius: 6px;
+      --btn-border-color: #30363d;
+      --btn-hover-bg: #30363d;
+    }
+
+    .light-mode {
+      --body-bg: #FBFAF5;
+      --sidebar-bg: #d1e8e0;
+      --topbar-bg: #ffffff;
+      --text-color: #003153;
+      --heading-color: #212529;
+      --link-color: #0064cf;
+      --link-hover-color: #0056b3;
+      --sidebar-active-color: #212529;
+      --border-color: #e5e5e5;
+      --card-bg: #ffffff;
+      --btn-border-color: #e5e5e5;
+      --btn-hover-bg: #e9ecef;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--body-bg);
+      color: var(--text-color);
+      display: flex;
+      min-height: 100vh;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .site-title {
+      text-align: center;
+      padding: 1.5rem 1rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .site-title img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin-bottom: 0.75rem;
+    }
+
+    .site-title h1 {
+      font-size: 1.5rem;
+      margin: 0;
+      color: var(--heading-color);
+    }
+
+    .site-title p {
+      font-size: 0.9rem;
+      margin: 0.5rem 0 0;
+      color: var(--text-color);
+      opacity: 0.8;
+    }
+
+    .sidebar-menu {
+      list-style: none;
+      padding: 1.5rem 0;
+      flex-grow: 1;
+    }
+
+    .sidebar-menu li {
+      margin-bottom: 0.25rem;
+    }
+
+    .sidebar-menu a {
+      display: flex;
+      align-items: center;
+      padding: 0.5rem 1.5rem;
+      color: var(--text-color);
+      text-decoration: none;
+      transition: background-color 0.2s, color 0.2s;
+    }
+
+    .sidebar-menu a:hover, .sidebar-menu a.active {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: var(--sidebar-active-color);
+    }
+
+    .sidebar-menu a.active {
+      border-left: 3px solid var(--link-color);
+      padding-left: calc(1.5rem - 3px);
+    }
+
+    .sidebar-menu svg {
+      margin-right: 0.75rem;
+      width: 20px;
+      height: 20px;
+      opacity: 0.7;
+    }
+
+    .main-content {
+      margin-left: 260px;
+      width: calc(100% - 260px);
+      transition: all 0.3s ease;
+    }
+
+    .main-content.expanded {
+      margin-left: 0;
+      width: 100%;
+    }
+
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: var(--body-bg);
+      color: white;
+      border: none;
+      padding: 10px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      z-index: 1000;
+    }
+
+    body.light-mode .theme-toggle {
+      color: #333;
+    }
+
+    .theme-toggle:hover {
+      background: #555;
+    }
+
+    body.light-mode .theme-toggle:hover {
+      background: #ddd;
+    }
+
+    .profile-img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid var(--border-color);
+    }
+
+    .profile-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .profile-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.1);
+      color: var(--text-color);
+      transition: background-color 0.2s, transform 0.2s;
+    }
+
+    .profile-links a:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+      transform: scale(1.1);
+    }
+
+    .sidep {
+      font-size: 12px;
+    }
+
+    .profile-modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal-content {
+      position: relative;
+      margin: auto;
+      padding: 0;
+      width: 80%;
+      max-width: 700px;
+      top: 50%;
+      transform: translateY(-50%) scale(0.9);
+      transition: transform 0.3s ease;
+    }
+
+    .modal-content img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .close-button {
+      position: absolute;
+      top: -40px;
+      right: 0;
+      color: white;
+      font-size: 35px;
+      font-weight: bold;
+      cursor: pointer;
+      z-index: 2001;
+      transition: color 0.2s;
+    }
+
+    .close-button:hover {
+      color: var(--link-color);
+    }
+
+    .profile-modal.show {
+      display: block;
+      opacity: 1;
+    }
+
+    .profile-modal.show .modal-content {
+      transform: translateY(-50%) scale(1);
+    }
+
+    .profile-img {
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .profile-img:hover {
+      transform: scale(1.05);
+    }
+
+    .nature-nugget {
+      padding: 1rem 1.5rem;
+      border-top: 1px solid var(--border-color);
+      font-size: 0.9rem;
+    }
+
+    .nature-nugget h3 {
+      color: var(--link-color);
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+    }
+
+    .nugget-content {
+      margin-bottom: 0.5rem;
+      line-height: 1.4;
+      font-size: 0.75rem;
+    }
+
+    .sidebar-icon {
+      width: 20px;
+      height: 20px;
+      margin-right: 0.75rem;
+      opacity: 0.7;
+      filter: invert(0);
+      transition: filter 0.3s ease, opacity 0.3s ease;
+    }
+
+    body:not(.light-mode) .sidebar-icon {
+      filter: invert(1);
+    }
+
+    .sidebar {
+      position: fixed;
+      width: 260px;
+      height: 100vh;
+      background-color: var(--sidebar-bg);
+      border-right: 1px solid var(--border-color);
+      border-right-width: 0px;
+      border-top-right-radius: 0;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s ease;
+      z-index: 1000;
+    }
+
+    .sidebar::after {
+      content: "";
+      position: absolute;
+      top: 40px;
+      right: 0;
+      width: 1px;
+      height: calc(100% - 40px);
+      background-color: var(--border-color);
+    }
+
+    .pull-tab {
+      position: fixed;
+      top: 0;
+      left: 260px;
+      width: 40px;
+      height: 40px;
+      background-color: var(--sidebar-bg);
+      border: none;
+      border-right: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+      border-radius: 0 8px 8px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 1001;
+    }
+
+    .sidebar.collapsed {
+      transform: translateX(-260px);
+    }
+
+    .main-content {
+      margin-left: 260px;
+      width: calc(100% - 260px);
+      transition: margin-left 0.3s ease, width 0.3s ease;
+    }
+
+    .sidebar.collapsed ~ .main-content {
+      margin-left: 40px;
+      width: calc(100% - 40px);
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        transform: translateX(0);
+      }
+
+      .pull-tab {
+        left: 260px;
+      }
+
+      .sidebar.collapsed {
+        transform: translateX(-260px);
+      }
+
+      .main-content {
+        margin-left: 260px;
+      }
+
+      .sidebar.collapsed ~ .main-content {
+        margin-left: 40px;
+      }
+    }
+
+    /* Blog-specific styles */
+    .blog-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem;
+      line-height: 1.7;
+    }
+
+    .blog-header {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .blog-title {
+      font-size: 2.5rem;
+      color: var(--heading-color);
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .blog-subtitle {
+      font-size: 1.2rem;
+      color: var(--text-color);
+      opacity: 0.8;
+      margin-bottom: 1rem;
+    }
+
+    .blog-meta {
+      font-size: 0.9rem;
+      color: var(--text-color);
+      opacity: 0.6;
+    }
+
+    .blog-content {
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+
+    .blog-content h2 {
+      font-size: 1.8rem;
+      color: var(--heading-color);
+      margin: 2.5rem 0 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--link-color);
+    }
+
+    .blog-content h3 {
+      font-size: 1.4rem;
+      color: var(--heading-color);
+      margin: 2rem 0 1rem;
+    }
+
+    .blog-content p {
+      margin-bottom: 1.5rem;
+    }
+
+    .blog-content ul, .blog-content ol {
+      margin: 1.5rem 0;
+      padding-left: 2rem;
+    }
+
+    .blog-content li {
+      margin-bottom: 0.5rem;
+    }
+
+    .blog-content blockquote {
+      border-left: 4px solid var(--link-color);
+      padding-left: 1.5rem;
+      margin: 2rem 0;
+      font-style: italic;
+      background-color: rgba(88, 166, 255, 0.1);
+      padding: 1rem 1rem 1rem 1.5rem;
+      border-radius: 4px;
+    }
+
+    .highlight-box {
+      background: linear-gradient(135deg, rgba(88, 166, 255, 0.1), rgba(88, 166, 255, 0.05));
+      border-left: 4px solid var(--link-color);
+      padding: 1.5rem;
+      margin: 2rem 0;
+      border-radius: 8px;
+      backdrop-filter: blur(10px);
+    }
+
+    .highlight-box h4 {
+      color: var(--link-color);
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+
+    .problem-box {
+      background: linear-gradient(135deg, rgba(220, 53, 69, 0.1), rgba(220, 53, 69, 0.05));
+      border-left: 4px solid #dc3545;
+      padding: 1.5rem;
+      margin: 2rem 0;
+      border-radius: 8px;
+    }
+
+    .problem-box h4 {
+      color: #dc3545;
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+
+    .code-block {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      overflow-x: auto;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+    }
+
+    .component-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .component-card {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .component-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .component-card h4 {
+      color: var(--link-color);
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      color: var(--link-color);
+      text-decoration: none;
+      font-weight: 500;
+      margin-bottom: 2rem;
+      transition: color 0.2s;
+    }
+
+    .back-link:hover {
+      color: var(--link-hover-color);
+    }
+
+    .back-link svg {
+      margin-right: 0.5rem;
+      width: 16px;
+      height: 16px;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 2rem 0;
+    }
+
+    .tag {
+      background-color: rgba(88, 166, 255, 0.2);
+      color: var(--link-color);
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    .image-placeholder {
+      background: linear-gradient(135deg, var(--card-bg), rgba(88, 166, 255, 0.1));
+      border: 2px dashed var(--border-color);
+      border-radius: 12px;
+      padding: 3rem;
+      text-align: center;
+      margin: 2rem 0;
+      color: var(--text-color);
+      opacity: 0.7;
+    }
+    .blog-image {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.blog-img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.image-caption {
+  font-size: 0.9rem;
+  color: var(--text-color);
+  opacity: 0.8;
+  font-style: italic;
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+}
+
+/* Side-by-side image layout */
+.image-pair {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  align-items: flex-start;
+  margin-bottom: 0.5rem;
+}
+
+.image-container {
+  flex: 1;
+  max-width: 50%;
+  text-align: center;
+}
+
+.image-title {
+  color: var(--heading-color);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  margin-top: 0;
+}
+
+.image-wrapper {
+  position: relative;
+  height: 300px; /* Fixed height for both images */
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.paired-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Preserve original aspect ratio */
+  object-position: center;
+  background: var(--card-bg); /* Fallback background */
+}
+
+/* Create blur background effect for aspect ratio mismatch */
+.image-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: inherit;
+  background-size: cover;
+  background-position: center;
+  filter: blur(20px);
+  opacity: 0.3;
+  z-index: 1;
+}
+
+.paired-img {
+  position: relative;
+  z-index: 2;
+}
+
+/* Alternative: Use the actual image as blurred background */
+.image-wrapper {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.image-wrapper.natural-bg {
+  background-image: url('./../pictures/neuro_junction.png');
+}
+
+.image-wrapper.bacterial-bg {
+  background-image: url('./../pictures/bacterial_junction.png');
+}
+
+.image-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: inherit;
+  filter: blur(15px) brightness(0.4);
+  z-index: 1;
+}
+
+/* Responsive design for mobile */
+@media (max-width: 768px) {
+  .image-pair {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .image-container {
+    max-width: 100%;
+  }
+
+  .image-wrapper {
+    height: 250px; /* Slightly smaller on mobile */
+  }
+
+  .image-title {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+}
+
+/* Citation styles */
+.citation {
+  color: var(--link-color);
+  text-decoration: none;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.citation:hover {
+  color: var(--link-hover-color);
+  text-decoration: underline;
+}
+
+.citation::before {
+  content: '[';
+}
+
+.citation::after {
+  content: ']';
+}
+
+/* References section */
+.references-section {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 2px solid var(--border-color);
+}
+
+.references-section h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: var(--heading-color);
+}
+
+.reference-item {
+  margin-bottom: 1.5rem;
+  padding-left: 2rem;
+  text-indent: -2rem;
+  line-height: 1.6;
+}
+
+.reference-number {
+  font-weight: bold;
+  color: var(--link-color);
+  margin-right: 0.5rem;
+}
+
+.reference-authors {
+  font-weight: 500;
+}
+
+.reference-title {
+  font-style: italic;
+  margin: 0 0.25rem;
+}
+
+.reference-journal {
+  font-weight: 500;
+}
+
+.reference-doi {
+  color: var(--link-color);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.reference-doi:hover {
+  text-decoration: underline;
+}
+
+.future-approaches {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.approach-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+    border: 1px solid var(--border-color);
+    border-left: 4px solid var(--link-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    backdrop-filter: blur(10px);
+}
+
+.approach-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.approach-card h3 {
+    color: var(--link-color);
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.approach-card p {
+    color: var(--text-color);
+    line-height: 1.6;
+    margin: 0;
+    font-size: 1rem;
+}
+
+/* Future note with theme adaptation */
+.future-note {
+    border-radius: 6px;
+    padding: 15px;
+    margin: 25px 0;
+    font-style: italic;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+/* Light mode - yellow theme */
+.light-mode .future-note {
+    background: #fff3cd;
+    border: 1px solid #ffeaa7;
+    color: #856404;
+}
+
+/* Dark mode - blue/teal theme */
+body:not(.light-mode) .future-note {
+    background: linear-gradient(135deg, rgba(88, 166, 255, 0.15), rgba(88, 166, 255, 0.08));
+    border: 1px solid rgba(88, 166, 255, 0.3);
+    color: #79c0ff;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .future-approaches {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
+
+  </style>
+</head>
+<body>
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="pull-tab" id="pull-tab"></div>
+    <div class="site-title">
+      <img src="./../pictures/profile-picture.jpeg" alt="Tuhin Kumar Raut" class="profile-img">
+      <div id="profileModal" class="profile-modal">
+        <div class="modal-content">
+          <span class="close-button">&times;</span>
+          <img id="modalImage" src="" alt="Tuhin Kumar Raut">
+        </div>
+      </div>
+      <h1>Hi, I'm Tuhin</h1>
+      <sidep>Bio Buff | Nature Nerd | Gadget Geek</sidep>
+      <div class="profile-links">
+        <a href="mailto:tuhinraut@gmail.com" aria-label="Email">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="22" height="22">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+        </a>
+        <a href="https://www.linkedin.com/in/tuhin-kumar-raut-936018223/" target="_blank" aria-label="LinkedIn">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="20" height="20">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+        </a>
+        <a href="https://github.com/tuhinraut" target="_blank" aria-label="GitHub">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="20" height="20">
+            <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+    <ul class="sidebar-menu">
+      <li>
+        <a href="./../index.html">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+          </svg>
+          Home
+        </a>
+      </li>
+      <li>
+        <a href="./../Projects.html">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+          </svg>
+          Projects
+        </a>
+      </li>
+      <li>
+        <a href="./../How Close Are We.html">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+          </svg>
+          How Close Are We?
+        </a>
+      </li>
+      <li>
+        <a href="./../Unexplored Ideas.html" class="active">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" />
+          </svg>
+          Unexplored Ideas
+        </a>
+      </li>
+      <li>
+        <a href="./../Biology-with-Analogy.html">
+          <img src="./../pictures/brain-icon.png" alt="Brain Icon" class="sidebar-icon">
+          Biology-with-Analogy
+        </a>
+      </li>
+      <li>
+        <a href="./../contact.html">
+          <img src="./../pictures/form.svg" alt="Form Icon" class="sidebar-icon">
+          Contact
+        </a>
+      </li>
+    </ul>
+  </aside>
+
+  <!-- Main content -->
+  <main class="main-content">
+    <button class="theme-toggle" id="theme-toggle">
+      <img id="theme-icon" src="./../pictures/moon.png" style="width: 20px; height: 20px;">
+    </button>
+
+    <div class="blog-container">
+      <a href="./../Unexplored Ideas.html" class="back-link">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+        Back to Unexplored Ideas
+      </a>
+
+      <div class="blog-header">
+        <h1 class="blog-title">Mind-Controlled Bionic Arms: The Promise and Pitfalls of Bacterial Neurotransmitter Production</h1>
+        <p class="blog-subtitle">An ambitious approach to restoring muscular function using optogenetically engineered bacteria</p>
+        <div class="blog-meta">Published on August 12, 2025 • 10 min read</div>
+        <div class="tag-list">
+          <span class="tag">optogenetics</span>
+          <span class="tag">neuromuscular</span>
+          <span class="tag">terminator</span>
+        </div>
+      </div>
+
+      <div class="blog-content">
+        <p>You might not ever actually "think" about how you can move your limbs at will, but ask this to a paralysed patient, they know the pain of trying your level best but just not being able to move a limb. I tried to solve this problem through MacGyvering the muscles into receiving the signals bypassing the natural broken route of nervous systems. But did realise at the end of it that jerry rigging this isn't the way.</p>
+
+        <h2>The Problem: When Neural Highways Break Down</h2>
+
+        <p>Loss of motor function is devastatingly common, particularly among elderly patients and those undergoing limb reattachment surgeries. The underlying mechanism is often surprisingly straightforward: disrupted nerve impulse transmission due to death or severing of motor neurons. It's like having a perfectly functional car with severed brake lines—all the machinery works, but the communication system is broken.</p>
+
+        <div class="highlight-box">
+          <h4>Understanding Motor Neuron Damage</h4>
+          <p>When motor neurons are damaged, several cascading problems occur:</p>
+          <ul>
+            <li><strong>Disrupted nerve impulse transmission:</strong> The electrical signals from the brain can't reach muscle fibers</li>
+            <li><strong>Muscle fiber degeneration:</strong> Without consistent stimulation, muscles begin to atrophy</li>
+            <li><strong>Abnormal muscle activity:</strong> Involuntary contractions or spasms may occur</li>
+            <li><strong>Altered reflexes:</strong> Essential automatic muscle movements become impaired</li>
+          </ul>
+        </div>
+
+        <h2>Current Solutions: Expensive Band-Aids</h2>
+
+        <p>The gold standard for addressing this problem is Targeted Muscular Innervation (TMI)—a surgical procedure that reroutes severed nerves to new target muscles. Think of it as biological rewiring: surgeons identify healthy nerve endings from an amputated limb and surgically attach them to specific muscles in the residual limb.</p>
+
+        <p>The process involves three key stages:</p>
+        <ol>
+          <li><strong>Nerve Transfer:</strong> Healthy nerve endings are surgically attached to new target muscles</li>
+          <li><strong>Muscle Reinnervation:</strong> Over several months, nerves grow into target muscles, forming new neuromuscular junctions</li>
+          <li><strong>Prosthetic Control:</strong> Electrodes detect electrical signals from reinnervated muscles to control prosthetic limbs</li>
+        </ol>
+
+        <p>While TMI represents a remarkable advancement, it comes with significant limitations. The procedure costs between $32,000-36,000, the functional recovery is often limited, and failure rates are concerning. As one study noted, "Failed cases of TMR represent opportunities to learn about factors contributing to unfavorable outcomes" <a href="#ref-1" class="citation" data-ref="1">1</a>.</p>
+
+        <div class="blog-image">
+          <img src="./../pictures/TMI.png" alt="Targetted Muscular Innervation (TMI) Procedure" class="blog-img">
+          <p class="image-caption">Targetted Muscular Innervation (TMI) Procedure</p>
+        </div>
+
+        <h2>My Proposed Solution</h2>
+
+        <p>What if we could bypass damaged neurons entirely and create artificial neuromuscular junctions? My approach involved engineering bacteria to serve as living neurotransmitter production facilities, controlled by thought patterns translated into light signals.</p>
+
+        <div class="highlight-box">
+          <h4>The Core Concept</h4>
+          <p>Replace the need for neurons in motor function with encapsulated, optogenetically modified <em>Bacillus subtilis</em> bacteria that produce acetylcholine (the key neurotransmitter for muscle contraction) in response to light signals derived from EEG brain activity.</p>
+        </div>
+
+        <h3>The Four-Component System</h3>
+
+        <div class="component-grid">
+          <div class="component-card">
+            <h4>1. Microcapsule Delivery System</h4>
+            <p>Hydrogel-based porous capsules embedded with biocompatible microLEDs would house the engineered bacteria while allowing acetylcholine to diffuse out to nearby muscle tissue <a href="#ref-2" class="citation" data-ref="2">2</a>.</p>
+          </div>
+
+          <div class="component-card">
+            <h4>2. Optogenetic Acetylcholine Production</h4>
+            <p>Light-induced overexpression of acetylcholine biosynthesis genes in <em>B. subtilis</em>, since this bacterium naturally produces acetylcholine—we just needed to amplify production on demand <a href="#ref-4" class="citation" data-ref="4">4</a>.</p>
+          </div>
+
+          <div class="component-card">
+            <h4>3. HTI-Based Population Control</h4>
+            <p>Hemithioindigo-based molecular machines would serve as a light-activated kill switch, preventing bacterial overgrowth and providing precise population control <a href="#ref-5" class="citation" data-ref="5">5</a>.</p>
+          </div>
+
+          <div class="component-card">
+            <h4>4. EEG-to-Light Translation</h4>
+            <p>A central hub would interpret EEG signals indicating movement intention and translate them into specific light patterns delivered wirelessly to the microcapsules <a href="#ref-6" class="citation" data-ref="6">6</a>.</p>
+          </div>
+        </div>
+
+        <h3>How Natural Neuromuscular Junctions Work</h3>
+
+        <p>To understand why this approach seemed promising, let's examine how natural muscle contraction works:</p>
+
+        <ol>
+          <li>Brain sends electrical signal to motor neuron</li>
+          <li>Neuron fires, releasing acetylcholine at the neuromuscular junction</li>
+          <li>Acetylcholine binds to muscle receptors, opening sodium channels</li>
+          <li>Sodium influx depolarizes muscle, triggering calcium release</li>
+          <li>Calcium binds to proteins, allowing myosin heads to grip actin filaments</li>
+          <li>Myosin heads "row" on actin, shortening the muscle and causing contraction</li>
+          <li>Acetylcholinesterase breaks down acetylcholine, muscle relaxes</li>
+        </ol>
+
+        <p>My bacterial system would essentially replace steps 1-2, using engineered microorganisms instead of neurons to deliver acetylcholine precisely where needed.</p>
+
+        <div class="blog-image">
+          <div class="image-pair">
+            <div class="image-container">
+              <h5 class="image-title">Natural Junction</h5>
+              <div class="image-wrapper natural-bg">
+                <img src="./../pictures/neuro_junction.png" alt="Natural neuromuscular junction" class="blog-img paired-img">
+              </div>
+            </div>
+            <div class="image-container">
+              <h5 class="image-title">Bacterial Junction</h5>
+              <div class="image-wrapper bacterial-bg">
+                <img src="./../pictures/bacterial_junction.png" alt="Bacterial neuromuscular junction" class="blog-img paired-img">
+              </div>
+            </div>
+          </div>
+          <p class="image-caption">Natural vs. bacterial neuromuscular junction comparison</p>
+        </div>
+
+        <h2>The Scientific Foundation</h2>
+
+        <p>The project wasn't built on wishful thinking. Several key research findings supported the feasibility:</p>
+
+        <blockquote>
+          <p><strong>Bacterial Acetylcholine Production:</strong> Research by Kawashima et al. demonstrated that <em>B. subtilis</em> naturally produces acetylcholine, with detectable levels found across bacteria, archaea, and fungi. The study noted: "We found detectable levels of ACh to be ubiquitous in bacteria (e.g., <em>Bacillus subtilis</em>)" <a href="#ref-4" class="citation" data-ref="4">4</a>.</p>
+        </blockquote>
+
+        <blockquote>
+          <p><strong>Optogenetic Control:</strong> The Fussenegger group had already demonstrated mind-controlled transgene expression using EEG-Brain Computer Interface methodology, proving that thought patterns could be reliably translated into biological responses in engineered cells <a href="#ref-6" class="citation" data-ref="6">6</a>.</p>
+        </blockquote>
+
+        <blockquote>
+          <p><strong>MicroLED Technology:</strong> Research from Japan showed effective in vivo optogenetic stimulation using microLED neural probes, demonstrating the technical feasibility of precise light delivery to biological tissues <a href="#ref-2" class="citation" data-ref="2">2</a>.</p>
+        </blockquote>
+
+        <h2>Where Everything Fell Apart</h2>
+
+        <p>Despite the solid scientific foundation, several devastating problems emerged as I dug deeper into the implementation details:</p>
+
+        <div class="problem-box">
+          <h4>1. Dosage Control Nightmare</h4>
+          <p>Achieving precise acetylcholine concentrations proved nearly impossible. Unlike neurons that release neurotransmitters in discrete, controlled bursts, bacterial production would be continuous and difficult to titrate. Too little acetylcholine means no muscle response; too much could cause sustained, uncontrollable contractions or even toxic effects.</p>
+        </div>
+
+        <div class="problem-box">
+          <h4>2. Temporal Response Mismatch</h4>
+          <p>Natural neuromuscular transmission occurs in milliseconds. Even with optimal optogenetic systems, bacterial protein synthesis and acetylcholine production would take seconds to minutes—creating an unusable delay between thought and action.</p>
+        </div>
+
+        <div class="problem-box">
+          <h4>3. Immune System Reality Check</h4>
+          <p>Even encapsulated foreign bacteria would likely trigger immune responses, leading to inflammation, capsule rejection, or system failure. The long-term biocompatibility challenges were insurmountable.</p>
+        </div>
+
+        <div class="problem-box">
+          <h4>4. Evolutionary Pressure Catastrophe</h4>
+          <p>Despite HTI-based kill switches, bacteria under selective pressure would inevitably evolve resistance or unwanted mutations, potentially creating dangerous, uncontrollable organisms <a href="#ref-5" class="citation" data-ref="5">5</a>.</p>
+        </div>
+
+        <h2>Alternative Approaches</h2>
+
+        <p>Abandoning this project taught me valuable lessons about the importance of understanding fundamental biological constraints. An alterntive to this may be:</p>
+
+          <h4>Not using Bacteria at all</h4>
+          <ul>
+            <li>I realised later that Acetylcholine is actually not that expensive chemical and is quite stable at room temperature. We don't need bacteria to be making it fresh all the time.</li>
+            <li>So, instead of having Bacterial Microfactories, we could just have a reservoir of ACh on the skin and have various microchannels to the different Neuromuscular Junctions (NMJs).</li>
+            <li><i>But this fell apart when I realised that the locations NMJs aren't all well documented and surgically implanting so many of tiny fragile microchannels would again lead to similar issues as TMI.</i></li>
+
+          </ul>
+          <div class="blog-image">
+    <img src="./../pictures/ach_direct.png" alt="Direct delivery of ACh to the NMJs" class="blog-img" style="max-width: 50%; height: auto;">
+    <p class="image-caption">Direct delivery of ACh to the NMJs</p>
+  </div>
+
+        <h2>The Path Forward</h2>
+<p>While my bacterial neurotransmitter approach proved infeasible, recent breakthroughs in biological nerve regeneration offer genuine hope. Here are four of the most promising developments:</p>
+
+<div class="future-approaches">
+  <div class="approach-card">
+    <h3>Gene Therapy for Neural Regeneration</h3>
+    <p>Scientists at NeuroRestore developed a multipronged gene therapy that successfully restored walking ability in mice with complete spinal cord injuries by activating growth programs in specific neurons and administering guidance molecules to attract regenerating fibers to their natural targets<a href="#ref-7" class="citation" data-ref="7">7</a>.</p>
+  </div>
+
+  <div class="approach-card">
+    <h3>"Dancing Molecules" Injectable Therapy</h3>
+    <p>Northwestern University researchers created an injectable therapy using synthetic nanofibers and mobile molecules that reversed paralysis in mice within four weeks. The treatment promotes axon regeneration, reduces scar tissue, and completely biodegrades within 12 weeks<a href="#ref-8" class="citation" data-ref="8">8</a>.</p>
+  </div>
+
+  <div class="approach-card">
+    <h3>NG2 Glial Cell Reprogramming</h3>
+    <p>Indiana University researchers discovered that reprogramming NG2 glial cells in the spinal cord by elevating SOX2 transcription factor levels can convert supporting cells into new neurons, generating new neural circuits essential for behavioral recovery<a href="#ref-9" class="citation" data-ref="9">9</a>.</p>
+  </div>
+
+  <div class="approach-card">
+    <h3>Processed Nerve Allografts</h3>
+    <p>Clinical trials with processed nerve allografts show 73% of patients achieving meaningful motor recovery, providing biological scaffolds for nerve regeneration without requiring harvest from the patient's own body<a href="#ref-10" class="citation" data-ref="10">10</a>.</p>
+  </div>
+</div>
+
+<p class="future-note">Unlike my proposed bacterial approach, these methods work <strong>with</strong> the body's natural healing mechanisms rather than attempting to replace them entirely. They represent the kind of precision engineering that respects biological constraints while pushing the boundaries of what's possible.</p>
+        <div class="references-section">
+          <h2>References</h2>
+
+          <div class="reference-item" id="ref-1">
+            <span class="reference-number">1.</span>
+            <span class="reference-authors">Felder JM, Pripotnev S, Ducic I, Skladman R, Ha AY, Pet MA.</span>
+            <span class="reference-title">Failed Targeted Muscle Reinnervation: Findings at Revision Surgery and Concepts for Success.</span>
+            <span class="reference-journal">Plast Reconstr Surg Glob Open.</span>
+            2022 Apr 6;10(4):e4229.
+            <a href="https://doi.org/10.1097/GOX.0000000000004229" class="reference-doi" target="_blank">doi: 10.1097/GOX.0000000000004229</a>
+          </div>
+
+          <div class="reference-item" id="ref-2">
+            <span class="reference-number">2.</span>
+            <span class="reference-authors">Yasunaga H, Takeuchi H, Mizuguchi K, Nishikawa A, Loesing A, Ishikawa M, Kamiyoshihara C, Setogawa S, Ohkawa N, Sekiguchi H.</span>
+            <span class="reference-title">MicroLED neural probe for effective in vivo optogenetic stimulation.</span>
+            <span class="reference-journal">Opt Express.</span>
+            2022 Nov 21;30(24):40292-40305.
+            <a href="https://doi.org/10.1364/OE.470318" class="reference-doi" target="_blank">doi: 10.1364/OE.470318</a>
+          </div>
+
+          <div class="reference-item" id="ref-3">
+            <span class="reference-number">3.</span>
+            <span class="reference-authors">Chen Y, Xu J, Chen Y.</span>
+            <span class="reference-title">Regulation of Neurotransmitters by the Gut Microbiota and Effects on Cognition in Neurological Disorders.</span>
+            <span class="reference-journal">Nutrients.</span>
+            2021 Jun 19;13(6):2099.
+            <a href="https://doi.org/10.3390/nu13062099" class="reference-doi" target="_blank">doi: 10.3390/nu13062099</a>
+          </div>
+
+          <div class="reference-item" id="ref-4">
+            <span class="reference-number">4.</span>
+            <span class="reference-authors">Kawashima K, Misawa H, Moriwaki Y, Fujii YX, Fujii T, Horiuchi Y, Yamada T, Imanaka T, Kamekura M.</span>
+            <span class="reference-title">Ubiquitous expression of acetylcholine and its biological functions in life forms without nervous systems.</span>
+            <span class="reference-journal">Life Sciences.</span>
+            2007 Volume 80, Issues 24–25, Pages 2206-2209.
+            <a href="https://doi.org/10.1016/j.lfs.2007.01.059" class="reference-doi" target="_blank">doi: 10.1016/j.lfs.2007.01.059</a>
+          </div>
+
+          <div class="reference-item" id="ref-5">
+            <span class="reference-number">5.</span>
+            <span class="reference-authors">Santos AL, van Venrooy A, Reed AK, Wyderka A, García-López V, Alemany LB, Oliver A, Tegos GP, Tour JM.</span>
+            <span class="reference-title">Hemithioindigo-Based Visible Light-Activated Molecular Machines Kill Bacteria by Oxidative Damage.</span>
+            <span class="reference-journal">Advanced Science.</span>
+            2022 Aug 24:e2203242.
+            <a href="https://doi.org/10.1002/advs.202203242" class="reference-doi" target="_blank">doi: 10.1002/advs.202203242</a>
+          </div>
+
+          <div class="reference-item" id="ref-6">
+            <span class="reference-number">6.</span>
+            <span class="reference-authors">Folcher M, Oesterle S, Zwicky K, Thekkottil T, Heymoz J, Hohmann M, Christen M, Daoud El-Baba M, Buchmann P, Fussenegger M.</span>
+            <span class="reference-title">Mind-controlled transgene expression by a wireless-powered optogenetic designer cell implant.</span>
+            <span class="reference-journal">Nat Commun.</span>
+            2014 Nov 10;5:5392.
+            <a href="https://doi.org/10.1038/ncomms6392" class="reference-doi" target="_blank">doi: 10.1038/ncomms6392</a>
+          </div>
+        </div>
+
+        <div class="reference-item" id="ref-7">
+  <span class="reference-number">7.</span>
+  <span class="reference-authors">Kathe, C., Skinnider, M.A., Hutson, T.H. et al.</span>
+  <span class="reference-title">The neurons that restore walking after paralysis.</span>
+  <span class="reference-journal">Nature</span>
+  611, 540–547 (2022).
+  <a href="https://doi.org/10.1038/s41586-022-05385-7" class="reference-doi" target="_blank">doi: 10.1038/s41586-022-05385-7</a>
+</div>
+
+<div class="reference-item" id="ref-8">
+  <span class="reference-number">8.</span>
+  <span class="reference-authors">Álvarez, Z., Kolberg-Edelbrock, A.N., Sasselli, I.R. et al.</span>
+  <span class="reference-title">Bioactive scaffolds with enhanced supramolecular motion promote recovery from spinal cord injury</span>
+  <span class="reference-journal">Science</span>
+  2021 Nov 12;374(6569):848-856.
+  <a href="https://doi.org/10.1126/science.abh3602" class="reference-doi" target="_blank">doi: 10.1126/science.abh3602</a>
+</div>
+
+<div class="reference-item" id="ref-9">
+  <span class="reference-number">9.</span>
+  <span class="reference-authors">Tai W, Wu W, Wang LL, Ni H, Chen C, Yang J, Zang T, Zou Y, Xu XM, Zhang CL.</span>
+  <span class="reference-title">In vivo reprogramming of NG2 glia enables adult neurogenesis and functional recovery following spinal cord injury.</span>
+  <span class="reference-journal">Cell Stem Cell.</span>
+  2021 May 6;28(5):923-937.e4.
+  <a href="https://doi.org/10.1016/j.stem.2021.02.009" class="reference-doi" target="_blank">doi: 10.1016/j.stem.2021.02.009</a>
+</div>
+
+<div class="reference-item" id="ref-10">
+  <span class="reference-number">10.</span>
+  <span class="reference-authors">Means Jr KR, Rinker BD, Higgins JP, Payne Jr SH, Merrell GA, Wilgis EFS.</span>
+  <span class="reference-title">A Multicenter, Prospective, Randomized, Pilot Study of Outcomes for Digital Nerve Repair in the Hand Using Hollow Conduit Compared With Processed Allograft Nerve.</span>
+  <span class="reference-journal">Hand (N Y).</span>
+  2016 Jun;11(2):144-51.
+  <a href="https://doi.org/10.1177/1558944715627233" class="reference-doi" target="_blank">doi: 10.1177/1558944715627233</a>
+</div>
+        <hr style="margin: 3rem 0; border: none; border-top: 1px solid var(--border-color);">
+
+        <p style="font-size: 0.9rem; color: var(--text-color); opacity: 0.7; text-align: center; margin-top: 2rem;"><strong>Image Attribution:</strong> The images used in this blog post have been sourced from various places including the internet, AI-generated content, and some of my own creation. I'm not particularly skilled at creating technical illustrations, so I've relied on publicly available resources and AI tools to help visualize the concepts discussed. If you are the creator of any image used here and would like proper attribution or removal, please <a href="./../contact.html">contact me</a>.</p>
+      </div>
+  </main>
+
+  <script>
+    function applyTheme(theme, isUserAction = false) {
+      if (theme === "dark") {
+        document.body.classList.remove("light-mode");
+        localStorage.setItem("theme", "dark");
+        document.getElementById("theme-icon").src = "./../pictures/sun.png";
+      } else {
+        document.body.classList.add("light-mode");
+        localStorage.setItem("theme", "light");
+        document.getElementById("theme-icon").src = "./../pictures/moon.png";
+      }
+
+      if (isUserAction) {
+        document.body.classList.add("theme-transition");
+      }
+    }
+
+    const savedTheme = localStorage.getItem("theme") || "dark";
+    const themeToggle = document.getElementById("theme-toggle");
+
+    applyTheme(savedTheme);
+
+    setTimeout(() => {
+      document.body.classList.add("theme-transition");
+    }, 100);
+
+    themeToggle.addEventListener("click", () => {
+      const currentTheme = document.body.classList.contains("light-mode") ? "dark" : "light";
+      applyTheme(currentTheme, true);
+    });
+
+    // Profile picture modal functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const profileImg = document.querySelector('.profile-img');
+      const modal = document.getElementById('profileModal');
+      const modalImg = document.getElementById('modalImage');
+      const closeButton = document.querySelector('.close-button');
+
+      profileImg.addEventListener('click', function() {
+        modalImg.src = this.src;
+        modal.style.display = 'block';
+        setTimeout(() => {
+          modal.classList.add('show');
+        }, 10);
+        document.body.style.overflow = 'hidden';
+      });
+
+      closeButton.addEventListener('click', function() {
+        closeModal();
+      });
+
+      modal.addEventListener('click', function(event) {
+        if (event.target === modal) {
+          closeModal();
+        }
+      });
+
+      document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape' && modal.classList.contains('show')) {
+          closeModal();
+        }
+      });
+
+      function closeModal() {
+        modal.classList.remove('show');
+        setTimeout(() => {
+          modal.style.display = 'none';
+          document.body.style.overflow = '';
+        }, 300);
+      }
+    });
+
+    // Nature nugget functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const nuggetHTML = `
+        <div class="nature-nugget">
+          <h3>Nature Nugget</h3>
+          <div class="nugget-content">
+            <i><p id="daily-trivia"></p></i>
+          </div>
+        </div>
+      `;
+
+      const sidebar = document.querySelector('.sidebar');
+      if (sidebar) {
+        const nuggetContainer = document.createElement('div');
+        nuggetContainer.innerHTML = nuggetHTML;
+        sidebar.appendChild(nuggetContainer);
+
+        const triviaItems = [
+          "Trees communicate with each other through an underground network of fungi called the \"Wood Wide Web,\" sharing nutrients and warning about threats.",
+          "The Turritopsis dohrnii jellyfish is biologically immortal, able to revert to its juvenile form after reaching maturity.",
+          "Octopuses have three hearts - two pump blood to the gills while the third pumps it to the rest of the body.",
+          "Hummingbirds have heart rates that can reach 1,200 beats per minute during flight.",
+          "The largest living organism is a single fungus in Oregon's Malheur National Forest, covering about 2,400 acres.",
+          "Some fungi can create their own wind to help spread their spores.",
+          "Dolphins sleep by shutting down only half their brain at a time, allowing them to remain alert.",
+          "Spider silk is five times stronger than steel of the same diameter."
+        ];
+
+        function displayRandomTrivia() {
+          const randomIndex = Math.floor(Math.random() * triviaItems.length);
+          const triviaElement = document.getElementById('daily-trivia');
+          if (triviaElement) {
+            triviaElement.textContent = triviaItems[randomIndex];
+          }
+        }
+
+        displayRandomTrivia();
+      }
+    });
+
+    // Sidebar functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const sidebar = document.querySelector('.sidebar');
+      const pullTab = document.getElementById('pull-tab');
+      const mainContent = document.querySelector('.main-content');
+      const isMobile = window.innerWidth < 768;
+
+      if (isMobile) {
+        sidebar.classList.add('collapsed');
+        mainContent.style.marginLeft = '40px';
+        mainContent.style.width = 'calc(100% - 40px)';
+      } else {
+        sidebar.classList.remove('collapsed');
+        mainContent.style.marginLeft = '260px';
+        mainContent.style.width = 'calc(100% - 260px)';
+      }
+
+      pullTab.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      `;
+
+      function toggleSidebar() {
+        sidebar.classList.toggle('collapsed');
+        adjustMainContentMargin();
+      }
+
+      pullTab.addEventListener('click', toggleSidebar);
+
+      function adjustMainContentMargin() {
+        if (sidebar.classList.contains('collapsed')) {
+          mainContent.style.marginLeft = '40px';
+          mainContent.style.width = 'calc(100% - 40px)';
+        } else {
+          mainContent.style.marginLeft = '260px';
+          mainContent.style.width = 'calc(100% - 260px)';
+        }
+      }
+    });
+  </script>
+  <script>
+  // Citation functionality
+document.addEventListener('DOMContentLoaded', function() {
+  // Smooth scroll to references when citation is clicked
+  const citations = document.querySelectorAll('.citation');
+  citations.forEach(citation => {
+    citation.addEventListener('click', function(e) {
+      e.preventDefault();
+      const refNumber = this.getAttribute('data-ref');
+      const targetRef = document.getElementById(`ref-${refNumber}`);
+      if (targetRef) {
+        targetRef.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center'
+        });
+        // Highlight the reference briefly
+        targetRef.style.backgroundColor = 'rgba(88, 166, 255, 0.2)';
+        setTimeout(() => {
+          targetRef.style.backgroundColor = 'transparent';
+        }, 2000);
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>

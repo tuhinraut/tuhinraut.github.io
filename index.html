@@ -325,6 +325,18 @@ body:not(.light-mode) .sidebar-icon {
   transform: scale(1.05);
 }
 
+/* Make post thumbnail images clickable on mobile only */
+@media (max-width: 768px) {
+  .post-image {
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+
+  .post-image:hover {
+    transform: scale(1.02);
+  }
+}
+
 /* Nature Nugget styling for sidebar */
 .nature-nugget {
   padding: 1rem 1.5rem;
@@ -1090,6 +1102,44 @@ h2 {
         document.body.style.overflow = ''; // Restore scrolling
       }, 300); // Match transition duration
     }
+
+    // Add click functionality to post images (mobile only)
+    function addPostImageClickHandlers() {
+      // Only enable on mobile devices (screen width <= 768px)
+      if (window.innerWidth <= 768) {
+        const postImages = document.querySelectorAll('.post-image');
+        postImages.forEach(img => {
+          img.addEventListener('click', function() {
+            modalImg.src = this.src;
+            modal.style.display = 'block';
+            setTimeout(() => {
+              modal.classList.add('show');
+            }, 10);
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+          });
+        });
+      }
+    }
+
+    // Call the function initially and after content loads
+    addPostImageClickHandlers();
+    
+    // Re-add handlers when new content is dynamically loaded
+    const observer = new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutation) {
+        if (mutation.type === 'childList') {
+          addPostImageClickHandlers();
+        }
+      });
+    });
+    
+    const contentContainer = document.querySelector('.content-container');
+    if (contentContainer) {
+      observer.observe(contentContainer, { childList: true, subtree: true });
+    }
+
+    // Re-evaluate on window resize
+    window.addEventListener('resize', addPostImageClickHandlers);
   });
 
 
