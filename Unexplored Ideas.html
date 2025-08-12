@@ -471,7 +471,7 @@ font-size: 12px;
     transform: scale(1.05);
   }
 
-  /* Make post thumbnail images clickable on mobile only */
+  /* Make post images clickable on mobile only */
   @media (max-width: 768px) {
     .post-image {
       cursor: pointer;
@@ -936,6 +936,72 @@ font-size: 12px;
     grid-template-columns: 1fr; /* One post per row on mobile */
   }
 }
+/* Image modal styles */
+.image-modal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.image-modal .modal-content {
+  position: relative;
+  margin: auto;
+  padding: 0;
+  width: 80%;
+  max-width: 700px;
+  top: 50%;
+  transform: translateY(-50%) scale(0.9);
+  transition: transform 0.3s ease;
+}
+
+.image-modal .modal-content img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.image-modal .close-button {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  color: white;
+  font-size: 35px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 2001;
+  transition: color 0.2s;
+}
+
+.image-modal .close-button:hover {
+  color: var(--link-color);
+}
+
+.image-modal.show {
+  display: block;
+  opacity: 1;
+}
+
+.image-modal.show .modal-content {
+  transform: translateY(-50%) scale(1);
+}
+
+/* Make post images clickable */
+.post-image {
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.post-image:hover {
+  transform: scale(1.02);
+}
   </style>
 </head>
 <body>
@@ -1054,13 +1120,20 @@ font-size: 12px;
        <div class="posts-grid" id="posts-grid">
          <!-- Posts will be dynamically inserted here by JavaScript -->
        </div>
-
+       <!-- Image Modal -->
+<div id="imageModal" class="image-modal">
+  <div class="modal-content">
+    <span class="close-button">&times;</span>
+    <img id="modalImage" src="" alt="">
+  </div>
+</div>
      </section>
      <hr style="margin: 3rem 0; border: none; border-top: 1px solid var(--border-color);">
 
      <p><em>Have you encountered similar ambitious failures in your research? Or do you see flaws in my analysis that I missed? I'd love to hear your thoughts. <a href="./../contact.html">Get in touch</a> and let me know. The beauty of science is that our understanding evolves through dialogue, debate, and the occasional magnificent failure.</em></p>
 
   </div>
+
 </main>
 
 
@@ -1468,6 +1541,108 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Initial setup
   filterPostsByTag(); // Show all posts initially
+});
+</script>
+<script>
+// Image modal functionality for post thumbnails (mobile only)
+document.addEventListener('DOMContentLoaded', function() {
+  const modal = document.getElementById('imageModal');
+  const modalImg = document.getElementById('modalImage');
+  const closeButton = document.querySelector('.image-modal .close-button');
+
+  // Function to open modal
+  function openModal(imgSrc, imgAlt) {
+    modalImg.src = imgSrc;
+    modalImg.alt = imgAlt;
+    modal.style.display = 'block';
+    setTimeout(() => {
+      modal.classList.add('show');
+    }, 10);
+    document.body.style.overflow = 'hidden';
+  }
+
+  // Function to close modal
+  function closeModal() {
+    modal.classList.remove('show');
+    setTimeout(() => {
+      modal.style.display = 'none';
+      document.body.style.overflow = '';
+    }, 300);
+  }
+
+  // Add click handlers to post images (mobile only)
+  function addImageClickHandlers() {
+    // Only enable on mobile devices (screen width <= 768px)
+    if (window.innerWidth <= 768) {
+      const postImages = document.querySelectorAll('.post-image');
+      postImages.forEach(img => {
+        img.addEventListener('click', function(e) {
+          e.stopPropagation(); // Prevent triggering parent click events
+          openModal(this.src, this.alt);
+        });
+      });
+    }
+  }
+
+  // Remove click handlers when not on mobile
+  function removeImageClickHandlers() {
+    const postImages = document.querySelectorAll('.post-image');
+    postImages.forEach(img => {
+      // Clone and replace to remove all event listeners
+      const newImg = img.cloneNode(true);
+      img.parentNode.replaceChild(newImg, img);
+    });
+  }
+
+  // Close modal when close button is clicked
+  closeButton.addEventListener('click', closeModal);
+
+  // Close modal when clicking outside the image
+  modal.addEventListener('click', function(event) {
+    if (event.target === modal) {
+      closeModal();
+    }
+  });
+
+  // Close modal with Escape key
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape' && modal.classList.contains('show')) {
+      closeModal();
+    }
+  });
+
+  // Handle window resize
+  window.addEventListener('resize', function() {
+    if (window.innerWidth <= 768) {
+      addImageClickHandlers();
+    } else {
+      removeImageClickHandlers();
+      // Close modal if it's open and we're switching to desktop
+      if (modal.classList.contains('show')) {
+        closeModal();
+      }
+    }
+  });
+
+  // Initial setup
+  addImageClickHandlers();
+
+  // Re-add handlers when new content is dynamically loaded (mobile only)
+  const observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+        if (window.innerWidth <= 768) {
+          addImageClickHandlers();
+        }
+      }
+    });
+  });
+
+  // Observe changes to the posts grid
+  const postsGrid = document.querySelector('.posts-grid');
+  if (postsGrid) {
+    observer.observe(postsGrid, { childList: true, subtree: true });
+  }
 });
 </script>
 </body>
