@@ -7,7 +7,8 @@ const projects = [
     university: "DBEB, IIT Delhi",
     startDate: "2024-06-01",
     endDate: "Present",
-    status: "ongoing"
+    status: "ongoing",
+    papers: []
   },
   {
     title: "Using AI to generate novel protein sequences",
@@ -17,7 +18,8 @@ const projects = [
     university: "ICMS, Temple University",
     startDate: "2024-05-15",
     endDate: "2024-07-31",
-    status: "completed"
+    status: "completed",
+    papers: []
   },
 
   {
@@ -28,7 +30,8 @@ const projects = [
     university: "KSBS, IIT Delhi",
     startDate: "2023-01-15",
     endDate: "2025-05-24",
-    status: "completed"
+    status: "completed",
+    papers: []
   },
   {
     title: "Tunable biosurfactant production using recombinant <i>E. coli</i>",
@@ -38,7 +41,17 @@ const projects = [
     university: "DBEB, IIT Delhi",
     startDate: "2023-06-01",
     endDate: "2023-10-15",
-    status: "completed"
+    status: "completed",
+    papers: [
+      {
+        title: "Recent advancements in the application of biosurfactants for the treatment of textile waste and industrial effluents",
+        authors: "Raut, T. K., Dhanoa, P., Jayakumar, A., Srivastava, P., Sundar, D.",
+        journal: "Biosurfactants for a Sustainable Textiles Industry, Royal Society of Chemistry",
+        status: "under review",
+        type: "chapter",
+        link: "#"
+      }
+    ]
   },
   {
     title: "Designing synthetic microbial community for ammelioration of biotic stress",
@@ -48,7 +61,17 @@ const projects = [
     university: "DBEB, IIT Delhi",
     startDate: "2022-12-06",
     endDate: "2023-04-03",
-    status: "completed"
+    status: "completed",
+    papers: [
+      {
+        title: "A novel functional screening based method for generation of synthetic microbial community: Case study with control of Fusarium wilt in pigeonpea",
+        authors: "Tyagi, R., Srivastava, S., Raut, T. K., Kartha, S., Sharma, S.",
+        journal: "Plant Biology",
+        status: "accepted",
+        type: "article",
+        link: "#"
+      }
+    ]
   },
 ];
 
@@ -58,6 +81,52 @@ function formatDate(dateString) {
   const month = date.toLocaleString("default", { month: "short" });
   const year = date.getFullYear();
   return `${month} ${year}`;
+}
+
+// Function to create papers HTML
+function createPapersHTML(papers) {
+  if (!papers || papers.length === 0) {
+    return "";
+  }
+
+  const papersHTML = papers.map(paper => {
+    const statusClass = paper.status === "published" ? "paper-published" : 
+                       paper.status === "under review" ? "paper-under-review" : "paper-accepted";
+    
+    const typeClass = paper.type === "article" ? "paper-type-article" : 
+                     paper.type === "chapter" ? "paper-type-chapter" : "paper-type-review";
+    
+    const paperTitle = paper.link && paper.link !== "#" ? 
+      `<a href="${paper.link}" target="_blank" class="paper-link">${paper.title}</a>` : 
+      paper.title;
+
+    // Highlight Raut, T. K. in authors list
+    const highlightedAuthors = paper.authors ? 
+      paper.authors.replace(/Raut,\s*T\.\s*K\./g, '<span class="highlighted-author">Raut, T. K.</span>') : '';
+
+    return `
+      <div class="paper-item">
+        <div class="paper-title">${paperTitle}</div>
+        ${paper.authors ? `<div class="paper-authors">${highlightedAuthors}</div>` : ''}
+        <div class="paper-details">
+          <span class="paper-journal"><em>${paper.journal}</em></span>
+          <div class="paper-badges">
+            <span class="paper-type ${typeClass}">${paper.type}</span>
+            <span class="paper-status ${statusClass}">${paper.status}</span>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join("");
+
+  return `
+    <div class="papers-section">
+      <h4 class="papers-title">Publications:</h4>
+      <div class="papers-list">
+        ${papersHTML}
+      </div>
+    </div>
+  `;
 }
 
 // Function to create project placard HTML
@@ -72,11 +141,14 @@ function createProjectPlacard(project) {
   // Italicize professor and university
   const professorUniversity = `<em>${project.professor} (${project.university})</em>`;
 
+  // Create papers HTML
+  const papersHTML = createPapersHTML(project.papers);
+
   placard.innerHTML = `
-    <img src="${project.image}" alt="${project.title}" class="project-image">
     <div class="project-content">
       <h3>${project.title}</h3>
       <p>${project.description}</p>
+      ${papersHTML}
       <div class="project-details">
         <div class="info">${professorUniversity}</div>
         <div class="date"><em>${startDate} - ${endDate}</em></div>
