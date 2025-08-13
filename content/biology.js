@@ -6,7 +6,7 @@ const biologyData = [
     "content": "<i>We all might be familar with the central dogma of life, but I just wanted to start with a very light topic and a very tasty one in that.</i>",
     "link": "./Biology-with-Analogy/dogma-as-grandma.html",
     "status": "posted",
-    "tags": [ "genetics"]
+    "tags": [ "central dogma", "grandma", "cooking"]
   },
   {
     "title": "The Cell as a Factory",
