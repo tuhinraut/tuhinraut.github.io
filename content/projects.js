@@ -1,7 +1,7 @@
 const projects = [
   {
     title: "Molecular Dynamics based analysis of protein sequencing through Nanopore",
-    description: "We are studying the interations of protein analyte passing through the CsgG nanopore, usually present in Oxford Nanopore Technology (ONT) devices. This would lend us insights into the residues of CsgG which could be altered. By doing so, we aim to enhance sequencing accuracy and efficiency, offering a promising alternative to traditional protein sequencing methods.",
+    description: "We are studying the interations of protein analyte passing through the CsgG nanopore, usually present in Oxford Nanopore Technology (ONT) devices. We aim to enhance sequencing accuracy and efficiency, offering a promising alternative to traditional protein sequencing methods.",
     image: "./pictures/project1.jpg",
     professor: "Prof. Ishaan Gupta",
     university: "DBEB, IIT Delhi",

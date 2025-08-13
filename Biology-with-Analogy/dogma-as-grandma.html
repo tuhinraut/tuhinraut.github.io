@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dogma as Grandma - Biology with Analogy</title>
+  <link rel="icon" type="image/x-icon" href="./../pictures/logo_new.png" sizes="32x32">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* Chirpy theme-inspired styling */
+    :root {
+      --body-bg: #0B1215;
+      --sidebar-bg: #262B2F;
+      --topbar-bg: #252525;
+      --text-color: #c9d1d9;
+      --heading-color: #ffffff;
+      --link-color: #58a6ff;
+      --link-hover-color: #79c0ff;
+      --sidebar-active-color: #ffffff;
+      --border-color: #30363d;
+      --card-bg: #2d333b;
+      --card-border-radius: 6px;
+      --btn-border-color: #30363d;
+      --btn-hover-bg: #30363d;
+    }
+
+    .light-mode {
+      --body-bg: #FBFAF5;
+      --sidebar-bg: #d1e8e0;
+      --topbar-bg: #ffffff;
+      --text-color: #003153;
+      --heading-color: #212529;
+      --link-color: #0064cf;
+      --link-hover-color: #0056b3;
+      --sidebar-active-color: #212529;
+      --border-color: #e5e5e5;
+      --card-bg: #ffffff;
+      --btn-border-color: #e5e5e5;
+      --btn-hover-bg: #e9ecef;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--body-bg);
+      color: var(--text-color);
+      display: flex;
+      min-height: 100vh;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .site-title {
+      text-align: center;
+      padding: 1.5rem 1rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .site-title img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin-bottom: 0.75rem;
+    }
+
+    .site-title h1 {
+      font-size: 1.5rem;
+      margin: 0;
+      color: var(--heading-color);
+    }
+
+    .site-title p {
+      font-size: 0.9rem;
+      margin: 0.5rem 0 0;
+      color: var(--text-color);
+      opacity: 0.8;
+    }
+
+    .sidebar-menu {
+      list-style: none;
+      padding: 1.5rem 0;
+      flex-grow: 1;
+    }
+
+    .sidebar-menu li {
+      margin-bottom: 0.25rem;
+    }
+
+    .sidebar-menu a {
+      display: flex;
+      align-items: center;
+      padding: 0.5rem 1.5rem;
+      color: var(--text-color);
+      text-decoration: none;
+      transition: background-color 0.2s, color 0.2s;
+    }
+
+    .sidebar-menu a:hover, .sidebar-menu a.active {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: var(--sidebar-active-color);
+    }
+
+    .sidebar-menu a.active {
+      border-left: 3px solid var(--link-color);
+      padding-left: calc(1.5rem - 3px);
+    }
+
+    .sidebar-menu svg {
+      margin-right: 0.75rem;
+      width: 20px;
+      height: 20px;
+      opacity: 0.7;
+    }
+
+    .main-content {
+      margin-left: 260px;
+      width: calc(100% - 260px);
+      transition: all 0.3s ease;
+    }
+
+    .main-content.expanded {
+      margin-left: 0;
+      width: 100%;
+    }
+
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: var(--body-bg);
+      color: white;
+      border: none;
+      padding: 10px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      z-index: 1000;
+    }
+
+    body.light-mode .theme-toggle {
+      color: #333;
+    }
+
+    .theme-toggle:hover {
+      background: #555;
+    }
+
+    body.light-mode .theme-toggle:hover {
+      background: #ddd;
+    }
+
+    /* Profile section */
+    .profile-section {
+      padding: 2rem 0;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .profile-img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid var(--border-color);
+    }
+
+    .profile-title {
+      margin: 1rem 0 0.5rem;
+      font-size: 2rem;
+      color: var(--heading-color);
+    }
+
+    .profile-tagline {
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      opacity: 0.9;
+    }
+
+    .profile-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .profile-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.1);
+      color: var(--text-color);
+      transition: background-color 0.2s, transform 0.2s;
+    }
+
+    .profile-links a:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+      transform: scale(1.1);
+    }
+
+    .sidep {
+      font-size: 12px;
+    }
+
+    sidep {
+  font-size: 12px;
+}
+/* Profile picture modal */
+.profile-modal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.modal-content {
+  position: relative;
+  margin: auto;
+  padding: 0;
+  width: 80%;
+  max-width: 700px;
+  top: 50%;
+  transform: translateY(-50%) scale(0.9);
+  transition: transform 0.3s ease;
+}
+
+.modal-content img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+    .close-button {
+      position: absolute;
+      top: -40px;
+      right: 0;
+      color: white;
+      font-size: 35px;
+      font-weight: bold;
+      cursor: pointer;
+      z-index: 2001;
+      transition: color 0.2s;
+    }
+
+    .close-button:hover {
+      color: var(--link-color);
+    }
+
+    .profile-modal.show {
+      display: block;
+      opacity: 1;
+    }
+
+    .profile-modal.show .modal-content {
+      transform: translateY(-50%) scale(1);
+    }
+
+    .nature-nugget {
+      padding: 1rem 1.5rem;
+      border-top: 1px solid var(--border-color);
+      font-size: 0.9rem;
+    }
+
+    .nature-nugget h3 {
+      color: var(--link-color);
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+    }
+
+    .nugget-content {
+      margin-bottom: 0.5rem;
+      line-height: 1.4;
+      font-size: 0.75rem;
+    }
+
+    .sidebar-icon {
+      width: 20px;
+      height: 20px;
+      margin-right: 0.75rem;
+      opacity: 0.7;
+      filter: invert(0);
+      transition: filter 0.3s ease, opacity 0.3s ease;
+    }
+
+    body:not(.light-mode) .sidebar-icon {
+      filter: invert(1);
+    }
+
+    .sidebar {
+      position: fixed;
+      width: 260px;
+      height: 100vh;
+      background-color: var(--sidebar-bg);
+      border-right: 1px solid var(--border-color);
+      border-right-width: 0px;
+      border-top-right-radius: 0;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s ease;
+      z-index: 1000;
+    }
+
+    .sidebar::after {
+      content: "";
+      position: absolute;
+      top: 40px;
+      right: 0;
+      width: 1px;
+      height: calc(100% - 40px);
+      background-color: var(--border-color);
+    }
+
+    .pull-tab {
+      position: fixed;
+      top: 0;
+      left: 260px;
+      width: 40px;
+      height: 40px;
+      background-color: var(--sidebar-bg);
+      border: none;
+      border-right: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+      border-radius: 0 8px 8px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 1001;
+    }
+
+    .sidebar.collapsed {
+      transform: translateX(-260px);
+    }
+
+    .main-content {
+      margin-left: 260px;
+      width: calc(100% - 260px);
+      transition: margin-left 0.3s ease, width 0.3s ease;
+    }
+
+    .sidebar.collapsed ~ .main-content {
+      margin-left: 40px;
+      width: calc(100% - 40px);
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        transform: translateX(0);
+      }
+
+      .pull-tab {
+        left: 260px;
+      }
+
+      .sidebar.collapsed {
+        transform: translateX(-260px);
+      }
+
+      .main-content {
+        margin-left: 260px;
+      }
+
+      .sidebar.collapsed ~ .main-content {
+        margin-left: 40px;
+      }
+    }
+
+    /* Blog-specific styles */
+    .blog-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem;
+      line-height: 1.7;
+    }
+
+    .blog-header {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .blog-title {
+      font-size: 2.5rem;
+      color: var(--heading-color);
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .blog-subtitle {
+      font-size: 1.2rem;
+      color: var(--text-color);
+      opacity: 0.8;
+      margin-bottom: 1rem;
+      font-style: italic;
+    }
+
+    .blog-meta {
+      font-size: 0.9rem;
+      color: var(--text-color);
+      opacity: 0.6;
+    }
+
+    .blog-content {
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+
+    .blog-content h2 {
+      font-size: 1.8rem;
+      color: var(--heading-color);
+      margin: 2.5rem 0 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--link-color);
+    }
+
+    .blog-content h3 {
+      font-size: 1.4rem;
+      color: var(--heading-color);
+      margin: 2rem 0 1rem;
+    }
+
+    .blog-content p {
+      margin-bottom: 1.5rem;
+    }
+
+    .blog-content ul, .blog-content ol {
+      margin: 1.5rem 0;
+      padding-left: 2rem;
+    }
+
+    .blog-content li {
+      margin-bottom: 0.5rem;
+    }
+
+    .blog-content blockquote {
+      border-left: 4px solid var(--link-color);
+      padding-left: 1.5rem;
+      margin: 2rem 0;
+      font-style: italic;
+      background-color: rgba(88, 166, 255, 0.1);
+      padding: 1rem 1rem 1rem 1.5rem;
+      border-radius: 4px;
+    }
+
+    /* Analogy sections */
+    .analogy {
+      margin: 1.5rem 0;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .analogy-header {
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      color: var(--link-color);
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      margin-bottom: 0.5rem;
+      text-decoration: none;
+    }
+
+    .analogy-header:hover {
+      opacity: 0.8;
+    }
+
+    .analogy-title {
+      margin: 0;
+      line-height: 1;
+    }
+
+    .analogy-toggle {
+      font-size: 0.8rem;
+      transition: transform 0.3s ease;
+      user-select: none;
+      opacity: 0.8;
+      vertical-align: baseline;
+      line-height: 1;
+      margin-top: 3px;
+      text-decoration: none;
+    }
+
+    .analogy.expanded .analogy-toggle {
+      transform: rotate(180deg);
+    }
+
+    .analogy.expanded .analogy-header {
+      opacity: 0.8;
+    }
+
+    .analogy-content {
+      padding: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.3s ease, margin 0.3s ease, border 0.3s ease;
+      background: linear-gradient(135deg, rgba(88, 166, 255, 0.05), rgba(88, 166, 255, 0.02));
+      border: none;
+      border-radius: 8px;
+      margin-top: 0;
+    }
+
+    .analogy.expanded .analogy-content {
+      max-height: 1000px;
+      padding: 1.5rem;
+      margin-top: 0.5rem;
+      border: 1px solid rgba(88, 166, 255, 0.15);
+    }
+
+    .analogy h4 {
+      color: var(--link-color);
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .analogy::before {
+      display: none;
+    }
+
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      color: var(--link-color);
+      text-decoration: none;
+      font-weight: 500;
+      margin-bottom: 2rem;
+      transition: color 0.2s;
+    }
+
+    .back-link:hover {
+      color: var(--link-hover-color);
+    }
+
+    .back-link svg {
+      margin-right: 0.5rem;
+      width: 16px;
+      height: 16px;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 2rem 0;
+    }
+
+    .tag {
+      background-color: rgba(88, 166, 255, 0.2);
+      color: var(--link-color);
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    /* Note styling */
+    .note {
+      background: rgba(255, 193, 7, 0.1);
+      border: 1px solid rgba(255, 193, 7, 0.3);
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin: 2rem 0;
+      font-style: italic;
+    }
+
+    .note strong {
+      color: #ffc107;
+    }
+
+    /* Links */
+    .blog-content a {
+      color: var(--link-color);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .blog-content a:hover {
+      color: var(--link-hover-color);
+      text-decoration: underline;
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .blog-container {
+        padding: 1rem;
+      }
+
+      .blog-title {
+        font-size: 2rem;
+      }
+
+      .blog-content h2 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="pull-tab" id="pull-tab"></div>
+    <div class="site-title">
+      <img src="./../pictures/profile-picture.jpeg" alt="Tuhin Kumar Raut" class="profile-img">
+      <div id="profileModal" class="profile-modal">
+        <div class="modal-content">
+          <span class="close-button">&times;</span>
+          <img id="modalImage" src="" alt="Tuhin Kumar Raut">
+        </div>
+      </div>
+      <h1>Hi, I'm Tuhin</h1>
+      <sidep>Bio Buff | Nature Nerd | Gadget Geek</sidep>
+      <div class="profile-links">
+        <a href="mailto:tuhinraut@gmail.com" aria-label="Email">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="22" height="22">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+        </a>
+        <a href="https://www.linkedin.com/in/tuhin-kumar-raut-936018223/" target="_blank" aria-label="LinkedIn">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="20" height="20">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+        </a>
+        <a href="https://github.com/tuhinraut" target="_blank" aria-label="GitHub">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="20" height="20">
+            <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+    <ul class="sidebar-menu">
+      <li>
+        <a href="./../index.html">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+          </svg>
+          Home
+        </a>
+      </li>
+      <li>
+        <a href="./../Projects.html">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+          </svg>
+          Projects
+        </a>
+      </li>
+      <li>
+        <a href="./../How Close Are We.html">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+          </svg>
+          How Close Are We?
+        </a>
+      </li>
+      <li>
+        <a href="./../Unexplored Ideas.html">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" />
+          </svg>
+          Unexplored Ideas
+        </a>
+      </li>
+      <li>
+        <a href="./../Biology-with-Analogy.html" class="active">
+          <img src="./../pictures/brain-icon.png" alt="Brain Icon" class="sidebar-icon">
+          Biology-with-Analogy
+        </a>
+      </li>
+      <li>
+        <a href="./../contact.html">
+          <img src="./../pictures/form.svg" alt="Form Icon" class="sidebar-icon">
+          Contact
+        </a>
+      </li>
+    </ul>
+  </aside>
+
+  <!-- Main content -->
+  <main class="main-content">
+    <button class="theme-toggle" id="theme-toggle">
+      <img id="theme-icon" src="./../pictures/moon.png" style="width: 20px; height: 20px;">
+    </button>
+
+    <div class="blog-container">
+      <a href="./../Biology-with-Analogy.html" class="back-link">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+        Back to Biology-with-Analogy
+      </a>
+
+      <div class="blog-header">
+        <h1 class="blog-title">Dogma as Grandma</h1>
+        <p class="blog-subtitle">In this blog, we will draw analogies between our grandma's secret recipes and the process of protein synthesis and cell's functioning through the central dogma of molecular biology, i.e. DNA --> RNA --> Protein. We will also explore topics far beyond just the simple central dogma and explore analogies between the genome, plasmids, protein folding machineries and many other concepts. But had to keep the title "Dogma as Grandma" because how could I not.... .</p>
+        <div class="blog-meta">Published on August 13, 2025 • 25 min read</div>
+        <div class="tag-list">
+          <span class="tag">central dogma</span>
+          <span class="tag">grandma</span>
+          <span class="tag">cooking analogies</span>
+        </div>
+      </div>
+
+      <div class="note">
+        <strong>Note:</strong> Anywhere in this story you feel like asking "How did the cell think of this?" or "Is the cell a sentient being by itself?", the answer to them all is <strong>EVOLUTION!!!</strong>
+      </div>
+
+
+      <div class="blog-content">
+
+
+
+        <h2>🍳 Grandma's Cookbook (DNA)</h2>
+        <p>
+          You know that feeling when you smell your grandma's cooking from three blocks away and suddenly you're 8 years old again, practically floating toward the kitchen like a cartoon character? Let's say you have such a super grandma (which you do, ik) and she makes the world's best food. Like the stuff even Gordon Ramsay would lick the plate off of. When once you pleaded with her to reveal her secrets, she pulls out her years old cookbook binder that had been passed down to her. The recipes have the instructions regarding what all ingredients are required, how to mix those and prepare the dish. Your eyes light up on seeing the holy grail and you reach out to grab the book and go to town with it, but as it is the only copy of the recipes she has, she slaps your hand lightly and says you can't have it, yet. She knows you too well and how careless you can be :'(.
+        </p>
+
+
+        <div class="analogy">
+          <div class="analogy-header">
+            <h3 class="analogy-title">🧬 Biological Connection</h3>
+            <span class="analogy-toggle">▼</span>
+          </div>
+          <div class="analogy-content">
+            <h4>The Kitchen Connection:</h4>
+            <p>DNA is the master cookbook that contains all recipes needed to build and maintain life, but it's too precious to be directly used for cooking.</p>
+
+            <h4>Story Elements → Biology Mapping:</h4>
+            <ul>
+              <li><strong>Grandma's precious cookbook</strong> represents <strong>the genome</strong> - the complete set of genetic instructions passed down through generations</li>
+              <li><strong>Individual recipes</strong> represent <strong>genes</strong> - specific instructions for making particular proteins</li>
+              <li><strong>Recipe ingredients</strong> represent <strong>nucleotide bases</strong> - Adenine, Thymine, Guanine, and Cytosine (ATGC), the ABCs of DNA</li>
+              <li><strong>Protective behavior</strong> represents <strong>DNA's nuclear protection</strong> - safely stored in the cell nucleus, never directly exposed</li>
+            </ul>
+
+            <p><strong>Key Process:</strong> Just as grandma won't let you take her original cookbook to the kitchen, DNA never leaves the nucleus. Instead, the cell makes temporary copies (mRNA) of specific recipes (genes) when proteins need to be made, ensuring the master instructions stay protected.</p>
+
+            <p><strong>Fun Fact:</strong> A single human cell's DNA contains about 3 billion base pairs of information - that's equivalent to storing about 750 MB of data, roughly the same as a CD-ROM (for all you millennials out there) full of recipes!</p>
+          </div>
+        </div>
+
+        <h2>📝 Her Conditions and Your Masterplan (mRNA)</h2>
+        <p>
+          But being the kind soul she is, she can't see you be sad. So, she allows you to jot it down on another piece of paper. But before you run off to the kitchen to make <em>[insert: your favourite dish]</em> (Mine is Biryani btw :), she stops you. As it's a secret family recipe, she says you have to shred the paper within 3 hours (please let me take some artistic liberties, otherwise this won't work `(・_・;)`). Being the good grand-son/grand-daughter you are, you oblige.
+        </p>
+        <p>
+          So, you use your big beautiful brain and come up with an idea. After inquiring if she would allow you to copy the recipe as many times as you want (to which she smilingly says, yes!), you get down scribbling. And being the GenZ kid, you use acronyms instead of full words, which can't be understood by anyone else except the GenZs. You give yourself a pat on the back and get to work noting down the first part of making the biryani, "Marinating the Meat".
+        </p>
+
+
+        <div class="analogy">
+          <div class="analogy-header">
+            <h3 class="analogy-title">🧬 Biological Connection</h3>
+            <span class="analogy-toggle">▼</span>
+          </div>
+          <div class="analogy-content">
+            <h4>The Kitchen Connection:</h4>
+            <p>mRNA is like temporary recipe copies with built-in expiration dates and special encoding for security and cellular control.</p>
+
+            <h4>Story Elements → Biology Mapping:</h4>
+            <ul>
+              <li><strong>Jotting down on paper</strong> represents <strong>transcription</strong> - encrypt DNA into mRNA</li>
+              <li><strong>3-hour shredding deadline</strong> represents <strong>mRNA degradation</strong> - temporary nature for gene regulation</li>
+              <li><strong>GenZ acronyms</strong> represents <strong>genetic code changes</strong> - DNA's T (thymine) becomes RNA's U (uracil)</li>
+            </ul>
+
+            <p><strong>Key Process:</strong> RNA polymerase enzymes copy specific gene sections into mRNA molecules that are designed to self-destruct after a short time. This is balanced by the presence of a poly-A tail, to delay the destruction of main content of mRNA. This temporary nature allows cells to quickly ramp up or shut down protein production based on changing needs.</p>
+
+            <p><strong>Fun Fact:</strong> Some mRNA molecules last only 2 minutes, while others can survive for days - it depends on how tightly the cell needs to control that particular protein's production!</p>
+          </div>
+        </div>
+
+        <h2>👨‍🍳 Let Him COOK! (Protein Synthesis)</h2>
+        <p>
+          Now you run off to your local shop and hand the shopkeeper over the list of ingredients (Thankfully he understood your slangs). Going down the list, he gives you all of the ingredients. You pay him and dash back home to marinate the chicken you just bought (you are under a time limit, remember!). You follow the recipe to a T, and add all the ingredients one after another according to script. Then you cover it with a loin cloth and stow it away for later use. But you realise one thing, that 3 hours is long enough to not rush it for most of the recipes. And also there are many repeating elements in recipes, so you can get it done at a time in bulk and store it for future use.
+        </p>
+        <p>
+          But not all parts are as easy as marinating the chicken though. Some require specific instruments and conditions to work. You can't make Biryani in the oven (<a href="https://foodiesterminal.com/2018/06/how-to-make-chicken-dum-biriyani-in-oven/" target="_blank">Seems we humans are great at defying odds</a>, but anyways my point stands). It requires you to use a sealed pot on a stove-top.
+        </p>
+        <p>
+          You toil through all of the steps and by night, you have prepared your "Ultra Pro Max Chicken Biryani" to completion and the family celebrates the coming of the new MasterChef in the house!!! While, grandma sitting in the corner raises a glass to you.
+        </p>
+
+
+        <div class="analogy">
+          <div class="analogy-header">
+            <h3 class="analogy-title">🧬 Biological Connection</h3>
+            <span class="analogy-toggle">▼</span>
+          </div>
+          <div class="analogy-content">
+            <h4>The Kitchen Connection:</h4>
+            <p>Ribosomes are molecular chefs that read mRNA recipes and assemble amino acid ingredients into functional proteins.</p>
+
+            <h4>Story Elements → Biology Mapping:</h4>
+            <ul>
+              <li><strong>Shopkeeper understanding your slangs</strong> represents <strong>ribosomes</strong> - the protein-making machinery that reads mRNA</li>
+              <li><strong>Getting ingredients from the list</strong> represents <strong>translation</strong> - converting mRNA code into amino acid sequence</li>
+              <li><strong>Specific cooking equipment needed</strong> represents <strong>chaperone proteins</strong> - helpers for proper protein folding</li>
+              <li><strong>Repeating elements</strong> represent <strong>subunits of proteins</strong> - proteins generally are made up of multi subunits</li>
+            </ul>
+
+            <p><strong>Key Process:</strong> Ribosomes slide along mRNA like reading a list, grabbing the correct amino acids (delivered by tRNA molecules) and linking them together. For complex proteins, chaperone proteins provide the right environment for proper 3D folding. Complex proteins are made of multiple subunits, mostly repeating ones.</p>
+
+            <p><strong>Fun Fact:</strong> A single ribosome can make a protein in about 1 minute, and cells can have millions of ribosomes working simultaneously!</p>
+          </div>
+        </div>
+
+        <h2>😅 Oopsies! (Errors)</h2>
+        <p>
+          Now that you are a "decorated chef", you decide to take up a more complex task- Making ice-cream. For this you decided to do it properly though. Being flush with cash (I hope you are), you go out and buy a freaking "Ice-Cream Maker". But being lost in salivary imaginations, you forget to add sugar to the recipe copy and eventually you miss adding it in while making the ice-cream as well. When you sit back and turn on your favourite show to watch (<a href="https://www.youtube.com/@GarbageTime420" target="_blank">Garbage Time</a> all the way!!), you are disgusted by the bitterness of the "Coffee Ice-Cream" that you have made and your day is ruined.
+        </p>
+        <p>
+          But it is not always you that is at fault. After being bittered by the ice-cream, you are now careful while noting down the recipes. But on your birthday, when you were making the "Grandma's Special Chocolate Cake", the shopkeeper gave you baking powder instead of baking soda. You being the naive "MasterChef", thought that both of them must be the same and added it anyways. Disaster strikes! The cake has turned bitter and flat and no amount of chocolate in the icing can save it. (Can you guess, what tasting food I like the least?). The guests are arriving in 30 minutes. Your ego is in shambles. Time for the walk of shame to the nearest bakery :'(
+        </p>
+
+
+        <div class="analogy">
+          <div class="analogy-header">
+            <h3 class="analogy-title">🧬 Biological Connection</h3>
+            <span class="analogy-toggle">▼</span>
+          </div>
+          <div class="analogy-content">
+            <h4>The Kitchen Connection:</h4>
+            <p>Just like cooking mistakes, genetic errors can occur during DNA copying, transcription, or translation. These are just 2 examples, there are many others as well.</p>
+
+            <h4>Story Elements → Biology Mapping:</h4>
+            <ul>
+              <li><strong>Forgetting sugar in recipe copy</strong> represents <strong>transcription errors</strong> - mistakes when copying DNA to mRNA</li>
+              <li><strong>Shopkeeper's baking powder mix-up</strong> represents <strong>translation errors</strong> - incorrect amino acids during protein synthesis</li>
+            </ul>
+
+            <p><strong>Key Process:</strong> Cells have multiple proofreading mechanisms, like DNA polymerase checking its work during replication, but errors still slip through at rates of about 1 in 10 billion base pairs. Most errors are harmless, but some can have catastrophic consequences.</p>
+
+            <p><strong>Fun Fact:</strong> Your cells make about 3 trillion DNA copying errors every day, but sophisticated repair systems catch and fix 99.9% of them!</p>
+          </div>
+        </div>
+
+        <h2>🏆 Entering MasterChef (Plasmids and Horizontal Gene Transfer)</h2>
+        <p>
+          After the passing of your grandma, it was you with whom she entrusted her cookbook with and you promise her to continue the legacy. Now that you have established yourself as a great cook, your family secretly fills your application to enter MasterChef. Under pressure of proving that you are not just some amateur "home cook", but a "Masterchef", you go in search of exploring other cuisines because in a contest you can't just be making one cuisine recipes. You have to be fluent in cuisines from around the world.
+        </p>
+        <p>
+          So, you befriend Giovanni, who is from Italy, another culinary rich country. He also had a similar origin story as you. He has also inherited a cookbook from his Nonna, and would love to share parts of it with you.
+        </p>
+        <p>
+          So, you hatch out a plan to have him scan the copy of the book and send it over to you and also send some over to him of your grandma's secret recipe. So, now you have a copy of some of the recipes of Giovanni's Nonna's original cookbook (Yipee!!). But still, you weren't able to win the whole thing, but, hey, its the effort that counts, remember that.
+        </p>
+
+
+        <div class="analogy">
+          <div class="analogy-header">
+            <h3 class="analogy-title">🧬 Biological Connection</h3>
+            <span class="analogy-toggle">▼</span>
+          </div>
+          <div class="analogy-content">
+            <h4>The Kitchen Connection:</h4>
+            <p>Bacteria can share genetic recipes directly with each other, like chefs trading secret techniques, allowing rapid spread of new capabilities.</p>
+
+            <h4>Story Elements → Biology Mapping:</h4>
+            <ul>
+              <li><strong>Trading cookbook sections with Giovanni</strong> represents <strong>horizontal gene transfer</strong> - direct sharing of genetic material</li>
+              <li><strong>Scanning and sending recipes</strong> represents <strong>plasmid transfer</strong> - small DNA circles that move between bacteria</li>
+              <li><strong>Learning cuisines for MasterChef</strong> represents <strong>acquiring new metabolic abilities</strong> - bacteria gaining antibiotic resistance or new functions</li>
+            </ul>
+
+            <p><strong>Key Process:</strong> Unlike vertical inheritance (parent to offspring), bacteria can directly transfer plasmids containing useful genes to neighbouring bacteria through conjugation, transformation, or transduction, spreading beneficial traits rapidly through populations. This is not the case with higher complexity organisms though (just imagine if you could take or give a trait to someone!!)</p>
+
+            <p><strong>Fun Fact:</strong> This is how antibiotic resistance spreads so quickly - bacteria literally share resistance recipes with each other!</p>
+          </div>
+        </div>
+
+        <h2>🧪 You become a Gastronomist (Genetic Engineering)</h2>
+        <p>
+          After the show aired, you became sort of a celebrity in your hometown. Everyone knew you and adored you (at least you hoped so...). The effort and research you put in to preparing for the contest didn't go in vain though. You have now accumulated a vast amount of knowledge tinkering with the recipe, tweaking the ingredients and trying to improve the flavour of the food. This has helped you make the recipes passed down from your grandma even better. You found new combos which were just Mmm-hmm, mmm-hmm (<a href="https://www.youtube.com/watch?v=ucTNOJyuav4" target="_blank">Pickle Pie, sounds horrifying, surprisingly not so</a>). But in the process of making stuff better, you did encounter various combos that DID NOT go so well together (Peanut butter sandwich with cheese on top (╯°□°）╯).
+        </p>
+
+
+        <div class="analogy">
+          <div class="analogy-header">
+            <h3 class="analogy-title">🧬 Biological Connection</h3>
+            <span class="analogy-toggle">▼</span>
+          </div>
+          <div class="analogy-content">
+            <h4>The Kitchen Connection:</h4>
+            <p>Scientists can now deliberately modify genetic recipes to create improved organisms, just like a chef perfecting traditional recipes with modern techniques.</p>
+
+            <h4>Story Elements → Biology Mapping:</h4>
+            <ul>
+              <li><strong>Tweaking ingredients and improving flavors</strong> represents <strong>directed mutagenesis</strong> - making specific genetic changes</li>
+              <li><strong>Pickle Pie</strong> represents <strong>successful genetic modifications</strong> - unexpected combinations that work beautifully</li>
+              <li><strong>Peanut butter cheese</strong> represents <strong>failed experiments</strong> - genetic modifications that don't work</li>
+            </ul>
+
+            <p><strong>Key Process:</strong> Modern tools like CRISPR allow scientists to make precise cuts in DNA and insert new genetic sequences, creating organisms with enhanced or novel capabilities like bacteria that produce insulin or crops resistant to disease.</p>
+
+            <p><strong>Fun Fact:</strong> We can now edit genes with the precision of a word processor - cutting, copying, pasting, and replacing specific DNA sequences!</p>
+          </div>
+        </div>
+
+        <h2>🕵️‍♂️ A Thieve arrives (Reverse Transcriptase)</h2>
+        <p>
+          Not resting on your culinary laurels, you continued experimenting with Grandma's recipes. Her sacred "cookbook" – pages slotting neatly into plastic sleeves, held together with metal rings. Easy to organise… and easy to tamper with.
+        </p>
+        <p>
+          For days, someone out there had been watching you.<br>
+          From across the street.<br>
+          From the shadows near your kitchen window.<br>
+          They noted your habits – when you cooked, how the binder looked and when you left the cookbook unguarded.
+        </p>
+        <p>
+          Then one evening, it happened.<br>
+          You had just finished writing out a fresh recipe copy for your "Ultra Pro Max Chicken Biryani" and left it beside the binder as you dashed out to grab some missing spices.
+        </p>
+        <p>
+          The stalker seized the moment. Silently slipping inside, they snapped a perfect photo of the intact recipe copy – every acronym, every quirky shorthand, all perfectly captured. But they didn't leave just yet. The binder, resting quietly on the counter, was too inviting.
+        </p>
+        <p>
+          In one smooth move, they unclipped the rings and slid in a few of their own pages – handwritten in a style eerily close to Grandma's. The tea stains, the faded ink, even the little flour smudges – all replicated perfectly. Then they closed it, leaving the binder looking completely untouched.
+        </p>
+        <p>
+          From that day forward, when you cooked from what you thought was Grandma's flawless legacy, you were also following instructions the thief had planted. And somewhere far away, they smiled cunningly, knowing their recipes were now woven into your kitchen forever.
+        </p>
+
+
+        <div class="analogy">
+          <div class="analogy-header">
+            <h3 class="analogy-title">🧬 Biological Connection</h3>
+            <span class="analogy-toggle">▼</span>
+          </div>
+          <div class="analogy-content">
+            <h4>The Kitchen Connection:</h4>
+            <p>Some viruses can reverse the normal genetic flow by converting their RNA back into DNA and inserting it permanently into the host's genetic cookbook.</p>
+
+            <h4>Story Elements → Biology Mapping:</h4>
+            <ul>
+              <li><strong>Photographing your recipe copy</strong> represents <strong>reverse transcription</strong> - RNA viruses making DNA copies of themselves</li>
+              <li><strong>Inserting fake pages into the binder</strong> represents <strong>viral integration</strong> - viral DNA becoming part of host genome</li>
+              <li><strong>Perfect style mimicry</strong> represents <strong>retroviral adaptation</strong> - viruses that perfectly mimic host genetic elements</li>
+              <li><strong>Permanent contamination</strong> represents <strong>provirus formation</strong> - viral DNA that becomes permanent part of host genetics</li>
+              <li><strong>Stalker behavior</strong> represents <strong>viral persistence</strong> - how retroviruses establish long-term infections</li>
+            </ul>
+
+            <p><strong>Key Process:</strong> Retroviruses like HIV carry reverse transcriptase enzyme that converts viral RNA into DNA, which then integrates into the host cell's chromosome. This allows the virus to hijack the cell's protein-making machinery permanently.</p>
+
+            <p><strong>Fun Fact:</strong> About 8% of the human genome consists of ancient retroviral DNA that integrated into our ancestors' cells millions of years ago!</p>
+          </div>
+        </div>
+
+        <hr style="margin: 3rem 0; border: none; border-top: 1px solid var(--border-color);">
+
+        <div style="margin: 2rem 0; padding: 1rem 0; text-align: center;">
+          <p style="font-size: 0.9rem; color: var(--text-color); opacity: 0.7; margin-bottom: 1rem; font-style: italic;">
+            Thank you for following through this tumultuous yet delicious culinary journey through the different aspects of central dogma of life. I may have dragged the story a bit too long sometimes just cuz I am mostly a novice to all this. Learning along the way.
+          </p>
+          <p style="font-size: 0.9rem; color: var(--text-color); opacity: 0.7; margin-bottom: 1rem; font-style: italic;">
+            💡 Next time you're cooking, think about which cellular process you're mimicking. Are you transcribing (copying a recipe), translating (following instructions), or maybe dealing with some mutation errors (accidentally adding salt instead of sugar)? <a href="../contact.html" style="color: var(--link-color);">Tag me</a> with your cooking-biology connections!
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    function applyTheme(theme, isUserAction = false) {
+      if (theme === "dark") {
+        document.body.classList.remove("light-mode");
+        localStorage.setItem("theme", "dark");
+        document.getElementById("theme-icon").src = "./../pictures/sun.png";
+      } else {
+        document.body.classList.add("light-mode");
+        localStorage.setItem("theme", "light");
+        document.getElementById("theme-icon").src = "./../pictures/moon.png";
+      }
+
+      if (isUserAction) {
+        document.body.classList.add("theme-transition");
+      }
+    }
+
+    const savedTheme = localStorage.getItem("theme") || "dark";
+    const themeToggle = document.getElementById("theme-toggle");
+
+    applyTheme(savedTheme);
+
+    setTimeout(() => {
+      document.body.classList.add("theme-transition");
+    }, 100);
+
+    themeToggle.addEventListener("click", () => {
+      const currentTheme = document.body.classList.contains("light-mode") ? "dark" : "light";
+      applyTheme(currentTheme, true);
+    });
+
+    // Profile picture modal functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const profileImg = document.querySelector('.profile-img');
+      const modal = document.getElementById('profileModal');
+      const modalImg = document.getElementById('modalImage');
+      const closeButton = document.querySelector('.close-button');
+
+      profileImg.addEventListener('click', function() {
+        modalImg.src = this.src;
+        modal.style.display = 'block';
+        setTimeout(() => {
+          modal.classList.add('show');
+        }, 10);
+        document.body.style.overflow = 'hidden';
+      });
+
+      closeButton.addEventListener('click', function() {
+        closeModal();
+      });
+
+      modal.addEventListener('click', function(event) {
+        if (event.target === modal) {
+          closeModal();
+        }
+      });
+
+      document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape' && modal.classList.contains('show')) {
+          closeModal();
+        }
+      });
+
+      function closeModal() {
+        modal.classList.remove('show');
+        setTimeout(() => {
+          modal.style.display = 'none';
+          document.body.style.overflow = '';
+        }, 300);
+      }
+    });
+
+    // Nature nugget functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const nuggetHTML = `
+        <div class="nature-nugget">
+          <h3>Nature Nugget</h3>
+          <div class="nugget-content">
+            <i><p id="daily-trivia"></p></i>
+          </div>
+        </div>
+      `;
+
+      const sidebar = document.querySelector('.sidebar');
+      if (sidebar) {
+        const nuggetContainer = document.createElement('div');
+        nuggetContainer.innerHTML = nuggetHTML;
+        sidebar.appendChild(nuggetContainer);
+
+        const triviaItems = [
+          "Trees communicate with each other through an underground network of fungi called the \"Wood Wide Web,\" sharing nutrients and warning about threats.",
+          "The Turritopsis dohrnii jellyfish is biologically immortal, able to revert to its juvenile form after reaching maturity.",
+          "Octopuses have three hearts - two pump blood to the gills while the third pumps it to the rest of the body.",
+          "Hummingbirds have heart rates that can reach 1,200 beats per minute during flight.",
+          "The largest living organism is a single fungus in Oregon's Malheur National Forest, covering about 2,400 acres.",
+          "Some fungi can create their own wind to help spread their spores.",
+          "Dolphins sleep by shutting down only half their brain at a time, allowing them to remain alert.",
+          "Spider silk is five times stronger than steel of the same diameter."
+        ];
+
+        function displayRandomTrivia() {
+          const randomIndex = Math.floor(Math.random() * triviaItems.length);
+          const triviaElement = document.getElementById('daily-trivia');
+          if (triviaElement) {
+            triviaElement.textContent = triviaItems[randomIndex];
+          }
+        }
+
+        displayRandomTrivia();
+      }
+    });
+
+    // Analogy toggle functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const analogies = document.querySelectorAll('.analogy');
+
+      analogies.forEach(analogy => {
+        const header = analogy.querySelector('.analogy-header');
+        if (header) {
+          header.addEventListener('click', function() {
+            analogy.classList.toggle('expanded');
+          });
+        }
+      });
+    });
+
+    // Sidebar functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const sidebar = document.querySelector('.sidebar');
+      const pullTab = document.getElementById('pull-tab');
+      const mainContent = document.querySelector('.main-content');
+      const isMobile = window.innerWidth < 768;
+
+      if (isMobile) {
+        sidebar.classList.add('collapsed');
+        mainContent.style.marginLeft = '40px';
+        mainContent.style.width = 'calc(100% - 40px)';
+      } else {
+        sidebar.classList.remove('collapsed');
+        mainContent.style.marginLeft = '260px';
+        mainContent.style.width = 'calc(100% - 260px)';
+      }
+
+      pullTab.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      `;
+
+      function toggleSidebar() {
+        sidebar.classList.toggle('collapsed');
+        adjustMainContentMargin();
+      }
+
+      pullTab.addEventListener('click', toggleSidebar);
+
+      function adjustMainContentMargin() {
+        if (sidebar.classList.contains('collapsed')) {
+          mainContent.style.marginLeft = '40px';
+          mainContent.style.width = 'calc(100% - 40px)';
+        } else {
+          mainContent.style.marginLeft = '260px';
+          mainContent.style.width = 'calc(100% - 260px)';
+        }
+      }
+    });
+  </script>
+</body>
+</html>
