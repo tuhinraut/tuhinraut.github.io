@@ -44,7 +44,7 @@ const projects = [
     status: "completed",
     papers: [
       {
-        title: "Recent advancements in the application of biosurfactants for the treatment of textile waste and industrial effluents",
+        title: "Recent advancements in the application of biosurfactants for the treatment of textile waste and industrial effluents (2025)",
         authors: "Raut, T. K., Dhanoa, P., Jayakumar, A., Srivastava, P., Sundar, D.",
         journal: "Biosurfactants for a Sustainable Textiles Industry, Royal Society of Chemistry",
         status: "under review",
@@ -64,7 +64,7 @@ const projects = [
     status: "completed",
     papers: [
       {
-        title: "A novel functional screening based method for generation of synthetic microbial community: Case study with control of Fusarium wilt in pigeonpea",
+        title: "A novel functional screening based method for generation of synthetic microbial community: Case study with control of Fusarium wilt in pigeonpea (2025)",
         authors: "Tyagi, R., Srivastava, S., Raut, T. K., Kartha, S., Sharma, S.",
         journal: "Plant Biology",
         status: "accepted",
@@ -90,18 +90,18 @@ function createPapersHTML(papers) {
   }
 
   const papersHTML = papers.map(paper => {
-    const statusClass = paper.status === "published" ? "paper-published" : 
+    const statusClass = paper.status === "published" ? "paper-published" :
                        paper.status === "under review" ? "paper-under-review" : "paper-accepted";
-    
-    const typeClass = paper.type === "article" ? "paper-type-article" : 
+
+    const typeClass = paper.type === "article" ? "paper-type-article" :
                      paper.type === "chapter" ? "paper-type-chapter" : "paper-type-review";
-    
-    const paperTitle = paper.link && paper.link !== "#" ? 
-      `<a href="${paper.link}" target="_blank" class="paper-link">${paper.title}</a>` : 
+
+    const paperTitle = paper.link && paper.link !== "#" ?
+      `<a href="${paper.link}" target="_blank" class="paper-link">${paper.title}</a>` :
       paper.title;
 
     // Highlight Raut, T. K. in authors list
-    const highlightedAuthors = paper.authors ? 
+    const highlightedAuthors = paper.authors ?
       paper.authors.replace(/Raut,\s*T\.\s*K\./g, '<span class="highlighted-author">Raut, T. K.</span>') : '';
 
     return `

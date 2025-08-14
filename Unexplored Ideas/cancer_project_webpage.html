@@ -1,0 +1,1770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Probiotic E. coli Nissle 1917: A Novel Approach to Cancer Gene Therapy</title>
+  <link rel="icon" type="image/x-icon" href="./../pictures/logo_new.png" sizes="32x32">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* Chirpy theme-inspired styling */
+    :root {
+      --body-bg: #0B1215;
+      --sidebar-bg: #262B2F;
+      --topbar-bg: #252525;
+      --text-color: #c9d1d9;
+      --heading-color: #ffffff;
+      --link-color: #58a6ff;
+      --link-hover-color: #79c0ff;
+      --sidebar-active-color: #ffffff;
+      --border-color: #30363d;
+      --card-bg: #2d333b;
+      --card-border-radius: 6px;
+      --btn-border-color: #30363d;
+      --btn-hover-bg: #30363d;
+    }
+
+    .light-mode {
+      --body-bg: #FBFAF5;
+      --sidebar-bg: #d1e8e0;
+      --topbar-bg: #ffffff;
+      --text-color: #003153;
+      --heading-color: #212529;
+      --link-color: #0064cf;
+      --link-hover-color: #0056b3;
+      --sidebar-active-color: #212529;
+      --border-color: #e5e5e5;
+      --card-bg: #ffffff;
+      --btn-border-color: #e5e5e5;
+      --btn-hover-bg: #e9ecef;
+      --accent-color: #0891b2;
+      --accent-bg: rgba(8, 145, 178, 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--body-bg);
+      color: var(--text-color);
+      display: flex;
+      min-height: 100vh;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .sidebar {
+      position: fixed;
+      width: 260px;
+      height: 100vh;
+      background-color: var(--sidebar-bg);
+      border-right: 1px solid var(--border-color);
+      border-right-width: 0px;
+      border-top-right-radius: 0;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s ease;
+      z-index: 1000;
+    }
+
+    .sidebar::after {
+      content: "";
+      position: absolute;
+      top: 40px;
+      right: 0;
+      width: 1px;
+      height: calc(100% - 40px);
+      background-color: var(--border-color);
+    }
+
+    .pull-tab {
+      position: fixed;
+      top: 0;
+      left: 260px;
+      width: 40px;
+      height: 40px;
+      background-color: var(--sidebar-bg);
+      border: none;
+      border-right: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+      border-radius: 0 8px 8px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 1001;
+    }
+
+    .sidebar.collapsed {
+      transform: translateX(-260px);
+    }
+
+    .sidebar.collapsed ~ .main-content {
+      margin-left: 40px;
+      width: calc(100% - 40px);
+    }
+
+    .site-title {
+      text-align: center;
+      padding: 1.5rem 1rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .site-title img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin-bottom: 0.75rem;
+    }
+
+    .profile-img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid var(--border-color);
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .profile-img:hover {
+      transform: scale(1.05);
+    }
+
+    .profile-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .profile-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.1);
+      color: var(--text-color);
+      transition: background-color 0.2s, transform 0.2s;
+    }
+
+    .profile-links a:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+      transform: scale(1.1);
+    }
+
+    .profile-modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal-content {
+      position: relative;
+      margin: auto;
+      padding: 0;
+      width: 80%;
+      max-width: 700px;
+      top: 50%;
+      transform: translateY(-50%) scale(0.9);
+      transition: transform 0.3s ease;
+    }
+
+    .modal-content img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .close-button {
+      position: absolute;
+      top: -40px;
+      right: 0;
+      color: white;
+      font-size: 35px;
+      font-weight: bold;
+      cursor: pointer;
+      z-index: 2001;
+      transition: color 0.2s;
+    }
+
+    .close-button:hover {
+      color: var(--link-color);
+    }
+
+    .profile-modal.show {
+      display: block;
+      opacity: 1;
+    }
+
+    .profile-modal.show .modal-content {
+      transform: translateY(-50%) scale(1);
+    }
+
+    .nature-nugget {
+      padding: 1rem 1.5rem;
+      border-top: 1px solid var(--border-color);
+      font-size: 0.9rem;
+    }
+
+    .nature-nugget h3 {
+      color: var(--link-color);
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+    }
+
+    .nugget-content {
+      margin-bottom: 0.5rem;
+      line-height: 1.4;
+      font-size: 0.75rem;
+    }
+
+    .sidebar-icon {
+      width: 20px;
+      height: 20px;
+      margin-right: 0.75rem;
+      opacity: 0.7;
+      filter: invert(0);
+      transition: filter 0.3s ease, opacity 0.3s ease;
+    }
+
+    body:not(.light-mode) .sidebar-icon {
+      filter: invert(1);
+    }
+
+    .site-title h1 {
+      font-size: 1.5rem;
+      margin: 0;
+      color: var(--heading-color);
+    }
+
+    .site-title p {
+      font-size: 0.9rem;
+      margin: 0.5rem 0 0;
+      color: var(--text-color);
+      opacity: 0.8;
+    }
+
+    .sidebar-menu {
+      list-style: none;
+      padding: 1.5rem 0;
+      flex-grow: 1;
+    }
+
+    .sidebar-menu li {
+      margin-bottom: 0.25rem;
+    }
+
+    .sidebar-menu a {
+      display: flex;
+      align-items: center;
+      padding: 0.5rem 1.5rem;
+      color: var(--text-color);
+      text-decoration: none;
+      transition: background-color 0.2s, color 0.2s;
+    }
+
+    .sidebar-menu a:hover, .sidebar-menu a.active {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: var(--sidebar-active-color);
+    }
+
+    .sidebar-menu a.active {
+      border-left: 3px solid var(--link-color);
+      padding-left: calc(1.5rem - 3px);
+    }
+
+    .sidebar-menu svg {
+      margin-right: 0.75rem;
+      width: 20px;
+      height: 20px;
+      opacity: 0.7;
+    }
+
+    .main-content {
+      margin-left: 260px;
+      width: calc(100% - 260px);
+      transition: all 0.3s ease;
+    }
+
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: var(--body-bg);
+      color: white;
+      border: none;
+      padding: 10px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      z-index: 1000;
+    }
+
+    body.light-mode .theme-toggle {
+      color: #333;
+    }
+
+    .theme-toggle:hover {
+      background: #555;
+    }
+
+    body.light-mode .theme-toggle:hover {
+      background: #ddd;
+    }
+
+    /* Blog-specific styles */
+    .blog-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem;
+      line-height: 1.7;
+    }
+
+    .blog-header {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .blog-title {
+      font-size: 2.5rem;
+      color: var(--heading-color);
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .blog-subtitle {
+      font-size: 1.2rem;
+      color: var(--text-color);
+      opacity: 0.8;
+      margin-bottom: 1rem;
+    }
+
+    .blog-meta {
+      font-size: 0.9rem;
+      color: var(--text-color);
+      opacity: 0.6;
+    }
+
+    .blog-content {
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+
+    .blog-content h2 {
+      font-size: 1.8rem;
+      color: var(--heading-color);
+      margin: 2.5rem 0 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--link-color);
+    }
+
+    .blog-content h3 {
+      font-size: 1.4rem;
+      color: var(--heading-color);
+      margin: 2rem 0 1rem;
+    }
+
+    .blog-content p {
+      margin-bottom: 1.5rem;
+    }
+
+    .blog-content ul, .blog-content ol {
+      margin: 1.5rem 0;
+      padding-left: 2rem;
+    }
+
+    .blog-content li {
+      margin-bottom: 0.5rem;
+    }
+
+    .blog-content blockquote {
+      border-left: 4px solid var(--link-color);
+      padding-left: 1.5rem;
+      margin: 2rem 0;
+      font-style: italic;
+      background-color: rgba(88, 166, 255, 0.1);
+      padding: 1rem 1rem 1rem 1.5rem;
+      border-radius: 4px;
+    }
+
+    .highlight-box {
+      background: linear-gradient(135deg, rgba(88, 166, 255, 0.1), rgba(88, 166, 255, 0.05));
+      border-left: 4px solid var(--link-color);
+      padding: 1.5rem;
+      margin: 2rem 0;
+      border-radius: 8px;
+      backdrop-filter: blur(10px);
+    }
+
+    .highlight-box h4 {
+      color: var(--link-color);
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+
+    .problem-box {
+      background: linear-gradient(135deg, rgba(220, 53, 69, 0.1), rgba(220, 53, 69, 0.05));
+      border-left: 4px solid #dc3545;
+      padding: 1.5rem;
+      margin: 2rem 0;
+      border-radius: 8px;
+    }
+
+    .problem-box h4 {
+      color: #dc3545;
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+
+    .component-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .component-card {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .component-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .component-card h4 {
+      color: var(--link-color);
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+
+    .challenge-card {
+      background: linear-gradient(135deg, rgba(220, 53, 69, 0.1), rgba(220, 53, 69, 0.05));
+      border: 1px solid #dc3545;
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .challenge-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(220, 53, 69, 0.15);
+    }
+
+    .challenge-card h4 {
+      color: #dc3545;
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+
+    .image-placeholder {
+      background: linear-gradient(135deg, var(--card-bg), rgba(88, 166, 255, 0.1));
+      border: 2px dashed var(--border-color);
+      border-radius: 12px;
+      padding: 3rem;
+      text-align: center;
+      margin: 2rem 0;
+      color: var(--text-color);
+      opacity: 0.7;
+    }
+
+    .blog-image {
+      text-align: center;
+      margin: 2rem 0;
+    }
+
+    .blog-img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .image-caption {
+      font-size: 0.9rem;
+      color: var(--text-color);
+      opacity: 0.8;
+      font-style: italic;
+      margin-top: 0.5rem;
+      margin-bottom: 0;
+    }
+
+    /* Citation styles */
+    .citation {
+      color: var(--link-color);
+      text-decoration: none;
+      font-weight: 500;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .citation:hover {
+      color: var(--link-hover-color);
+      text-decoration: underline;
+    }
+
+    .citation::before {
+      content: '[';
+    }
+
+    .citation::after {
+      content: ']';
+    }
+
+    /* References section */
+    .references-section {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 2px solid var(--border-color);
+    }
+
+    .references-section h2 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: var(--heading-color);
+    }
+
+    .reference-item {
+      margin-bottom: 1.5rem;
+      padding-left: 2rem;
+      text-indent: -2rem;
+      line-height: 1.6;
+    }
+
+    .reference-number {
+      font-weight: bold;
+      color: var(--link-color);
+      margin-right: 0.5rem;
+    }
+
+    .reference-authors {
+      font-weight: 500;
+    }
+
+    .reference-title {
+      font-style: italic;
+      margin: 0 0.25rem;
+    }
+
+    .reference-journal {
+      font-weight: 500;
+    }
+
+    .reference-doi {
+      color: var(--link-color);
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .reference-doi:hover {
+      text-decoration: underline;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      color: var(--link-color);
+      text-decoration: none;
+      font-weight: 500;
+      margin-bottom: 2rem;
+      transition: color 0.2s;
+    }
+
+    .back-link:hover {
+      color: var(--link-hover-color);
+    }
+
+    .back-link svg {
+      margin-right: 0.5rem;
+      width: 16px;
+      height: 16px;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 2rem 0;
+    }
+
+    .tag {
+      background-color: rgba(88, 166, 255, 0.2);
+      color: var(--link-color);
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    /* Future approaches grid */
+    .future-approaches {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .approach-card {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+      border: 1px solid var(--border-color);
+      border-left: 4px solid var(--link-color);
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+      backdrop-filter: blur(10px);
+    }
+
+    .approach-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .approach-card h3 {
+      color: var(--link-color);
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    .approach-card p {
+      color: var(--text-color);
+      line-height: 1.6;
+      margin: 0;
+      font-size: 1rem;
+    }
+
+    /* Technical Data Table Styles */
+    .data-table-container {
+      margin: 2.5rem 0;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      padding: 2rem;
+      border: 1px solid var(--border-color);
+      backdrop-filter: blur(10px);
+      overflow-x: auto;
+    }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0;
+      font-size: 0.95rem;
+    }
+
+    .data-table th,
+    .data-table td {
+      padding: 12px 15px;
+      text-align: left;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .data-table th {
+      background: linear-gradient(135deg, var(--link-color), rgba(88, 166, 255, 0.8));
+      color: white;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-size: 0.85rem;
+    }
+
+    .data-table tr:hover {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .data-table td.number {
+      text-align: center;
+      font-family: 'Courier New', monospace;
+      font-weight: 500;
+    }
+
+    .data-table td.p-value {
+      text-align: center;
+      font-family: 'Courier New', monospace;
+      color: #ffc107;
+      font-weight: 600;
+    }
+
+    body.light-mode .data-table td.p-value {
+      color: var(--accent-color);
+    }
+
+    .data-table .highlighted-row {
+      background: rgba(220, 53, 69, 0.1);
+    }
+
+    /* Technical Specs Box */
+    .tech-specs {
+      background: linear-gradient(135deg, rgba(255, 193, 7, 0.15), rgba(255, 193, 7, 0.05));
+      border: 2px solid #ffc107;
+      border-radius: 12px;
+      padding: 2rem;
+      margin: 2.5rem 0;
+      backdrop-filter: blur(10px);
+    }
+
+    body.light-mode .tech-specs {
+      background: var(--accent-bg);
+      border-color: var(--accent-color);
+    }
+
+    .tech-specs h4 {
+      color: #ffc107;
+      margin-bottom: 1.5rem;
+      font-size: 1.3rem;
+      text-align: center;
+    }
+
+    body.light-mode .tech-specs h4 {
+      color: var(--accent-color);
+    }
+
+    .spec-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid rgba(255, 193, 7, 0.2);
+    }
+
+    body.light-mode .spec-item {
+      border-bottom-color: rgba(8, 145, 178, 0.3);
+    }
+
+    .spec-item:last-child {
+      border-bottom: none;
+    }
+
+    .spec-label {
+      font-weight: 600;
+      color: var(--heading-color);
+    }
+
+    .spec-value {
+      font-family: 'Courier New', monospace;
+      color: #ffc107;
+      font-weight: 500;
+    }
+
+    body.light-mode .spec-value {
+      color: var(--accent-color);
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        transform: translateX(-260px);
+      }
+
+      .main-content {
+        margin-left: 0;
+        width: 100%;
+      }
+
+      .future-approaches {
+        grid-template-columns: 1fr;
+      }
+
+      .blog-title {
+        font-size: 2rem;
+      }
+
+      .blog-container {
+        padding: 1rem;
+      }
+
+      .data-table-container {
+        padding: 1rem;
+      }
+
+      .data-table {
+        font-size: 0.85rem;
+      }
+
+      .data-table th,
+      .data-table td {
+        padding: 8px 10px;
+      }
+
+      .tech-specs {
+        padding: 1.5rem;
+      }
+
+      .spec-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+      }
+    }
+
+    .crc-stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.crc-stats-box {
+  background: linear-gradient(135deg, rgba(220, 53, 69, 0.1), rgba(220, 53, 69, 0.05));
+  border-left: 4px solid #dc3545;
+  padding: 1.5rem;
+  border-radius: 8px;
+  backdrop-filter: blur(10px);
+  text-align: center;
+}
+
+.crc-stats-box h4 {
+  color: var(--heading-color);
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.stat-highlight {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #dc3545;
+  line-height: 1;
+  margin: 0.5rem 0 1rem 0;
+  text-shadow: 0 2px 4px rgba(220, 53, 69, 0.3);
+}
+
+.stat-number {
+  font-weight: bold;
+  color: #dc3545;
+  font-size: 1.1rem;
+}
+
+.crc-stats-box p {
+  color: var(--text-color);
+  font-size: 0.95rem;
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* Responsive design for mobile */
+@media (max-width: 768px) {
+  .crc-stats-row {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .stat-highlight {
+    font-size: 2.5rem;
+  }
+}
+  </style>
+</head>
+<body class="theme-transition">
+  <aside class="sidebar">
+    <div class="pull-tab" id="pull-tab"></div>
+    <div class="site-title">
+      <img src="./../pictures/profile-picture.jpeg" alt="Tuhin Kumar Raut" class="profile-img">
+      <div id="profileModal" class="profile-modal">
+        <div class="modal-content">
+          <span class="close-button">&times;</span>
+          <img id="modalImage" src="" alt="Tuhin Kumar Raut">
+        </div>
+      </div>
+      <h1>Hi, I'm Tuhin</h1>
+      <p>Bio Buff | Nature Nerd | Gadget Geek</p>
+      <div class="profile-links">
+        <a href="mailto:tuhinraut@gmail.com" aria-label="Email">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="22" height="22">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+        </a>
+        <a href="https://www.linkedin.com/in/tuhin-kumar-raut-936018223/" target="_blank" aria-label="LinkedIn">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="20" height="20">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+        </a>
+        <a href="https://github.com/tuhinraut" target="_blank" aria-label="GitHub">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="20" height="20">
+            <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+    <ul class="sidebar-menu">
+      <li>
+        <a href="./../index.html">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+          </svg>
+          Home
+        </a>
+      </li>
+      <li>
+        <a href="./../Projects.html">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+          </svg>
+          Projects
+        </a>
+      </li>
+      <li>
+        <a href="./../How Close Are We.html">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+          </svg>
+          How Close Are We?
+        </a>
+      </li>
+      <li>
+        <a href="./../Unexplored Ideas.html" class="active">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z"/>
+          </svg>
+          Unexplored Ideas
+        </a>
+      </li>
+      <li>
+        <a href="./../Biology-with-Analogy.html">
+          <img src="./../pictures/brain-icon.png" alt="Brain Icon" class="sidebar-icon" style="width: 20px; height: 20px; margin-right: 0.75rem; opacity: 0.7;">
+          Biology-with-Analogy
+        </a>
+      </li>
+      <li>
+        <a href="./../contact.html">
+          <img src="./../pictures/form.svg" alt="Form Icon" class="sidebar-icon">
+          Contact
+        </a>
+      </li>
+    </ul>
+  </aside>
+
+  <main class="main-content">
+    <button class="theme-toggle" id="theme-toggle">
+      <img id="theme-icon" src="./../pictures/sun.png" style="width: 20px; height: 20px;">
+    </button>
+
+    <div class="blog-container">
+      <a href="./../Unexplored Ideas.html" class="back-link">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+        Back to Unexplored Ideas
+      </a>
+
+      <header class="blog-header">
+        <h1 class="blog-title">Probiotic E. coli Nissle 1917 as Producer and Carrier of miRNA Therapy to Colorectal Cancer Cells</h1>
+        <p class="blog-subtitle">A Novel Gene Therapy Approach for Colorectal Cancer Treatment</p>
+        <div class="project-attribution" style="text-align: center; margin: 1rem 0; font-size: 0.85rem; color: var(--text-color); opacity: 0.7; font-style: italic;">
+          <p style="margin: 0;">This project idea was developed with valuable contributions and insights from <strong>Amogh Varshney</strong> and <strong>Prathamdeep Dhanoa</strong>.</p>
+        </div>
+        <div class="blog-meta">
+          Published on August 14, 2025 • 20 min read
+        </div>
+        <div class="tag-list">
+          <span class="tag">gene therapy</span>
+          <span class="tag">cancer</span>
+          <span class="tag">probiotics</span>
+        </div>
+      </header>
+
+      <div class="blog-content">
+        <p>I am sure you would have first hand experience of some family member being diagnosed with the dreaded disease, Cancer. Watching them struggle through the different therapies and medicines the doctor administered to fight off our own rogue cells must have been heart breaking. But, there are some alternate therapies emerging every single day to combat this, of which the most promising one to date is "Gene Therapy". </p>
+        <p>The following is our attempt as a team to create a "simple" capsule that could fight off this devil incarnate. We had tried our level best to come up with a fool proof solution, but is it ever possible to achieve this in the biological world?</p>
+
+        <h2>Why Focus on Colorectal Cancer?</h2>
+
+<p>Colorectal cancer represents one of the most pressing global health challenges, demanding innovative therapeutic approaches that can address both the scale of the problem and the limitations of current treatments. Our strategic focus on CRC for this probiotic-based gene therapy project was driven by compelling epidemiological data and significant unmet clinical needs.</p>
+
+<div class="crc-stats-row">
+  <div class="crc-stats-box">
+    <div class="stat-highlight">#3</div>
+    <p>most common cancer worldwide with <span class="stat-number">1.9M</span> new cases and <span class="stat-number">935K</span> deaths annually. <a href="#ref1" class="citation">1</a></p>
+  </div>
+
+  <div class="crc-stats-box">
+    <div class="stat-highlight">+128%</div>
+    <p>increase in men, <span class="stat-number">+125%</span> increase in women by 2030 according to ICMR. <a href="#ref2" class="citation">2</a></p>
+  </div>
+
+  <div class="crc-stats-box">
+    <div class="stat-highlight">57%</div>
+    <p>of cases diagnosed at advanced stages in India, leading to poorer outcomes. <a href="#ref3" class="citation">3</a></p>
+  </div>
+</div>
+
+        <h2>The Problem: Limitations of Current Cancer Therapies</h2>
+
+        <div class="problem-box">
+          <h4>Current Cancer Treatment Challenges</h4>
+          <p>Existing therapies for colorectal cancer (CRC) including surgery, chemotherapy, radiation therapy, targeted therapy, and immunotherapy face significant limitations. <a href="#ref4" class="citation">4</a> These treatments often result in severe side effects, limited specificity, high costs, and variable patient responses, highlighting the urgent need for more targeted and personalized therapeutic approaches.</p>
+        </div>
+        <p>Gene therapy emerged as a promising solution by addressing these limitations and offering targeted treatment strategies that could revolutionize cancer care. <a href="#ref5" class="citation">5</a> By manipulating genetic material at the cellular level, gene therapy provided the potential for more precise, personalized treatments with reduced collateral damage to healthy tissues. But, it is not perfect either. Existing therapies require repeated doses and not a one-time solution. They require continuous monitoring and calculated future dosage schedules .
+</p>
+
+        <h2>Our Solution: Engineered Probiotic Delivery System</h2>
+        <div class="blog-image">
+          <img src="../pictures/cancer_project.png" alt="Cancer Project Overview" class="blog-img">
+          <p class="image-caption">Figure 1: Project Overview</p>
+        </div>
+        <p>We aim to solve the problem via continuous highly targeted and optimised delivery of gene therapy products to tumor cells of the gut via probiotic bacteria (which is introduced just once ). This can be achieved via in-vivo production of therapeutics (with enhanced bio-availability) by the probiotic bacteria .
+</p>
+        <div class="highlight-box">
+          <h4>Why E. coli Nissle 1917 as our chassis?</h4>
+          <p>E. coli Nissle 1917 (EcN) represented an ideal chassis for this therapeutic approach. As a probiotic bacteria already part of the gut microbiome, EcN was classified as GRAS (Generally Regarded As Safe) by regulatory agencies. <a href="#ref6" class="citation">6</a> This existing safety profile provided a significant advantage for clinical translation compared to other bacterial delivery systems.</p>
+        </div>
+
+
+
+        <h3>Outer Membrane Vesicles (OMVs) as Delivery Vehicles</h3>
+
+        <p>Our approach leveraged Outer Membrane Vesicles (OMVs), nanoscale (0.1-0.2 micron) proteo-liposomes naturally released from Gram-negative bacteria. <a href="#ref7" class="citation">7</a> These vesicles could be engineered to display specific targeting antibodies—in our case, nanobodies—making them highly effective for targeted drug delivery applications.</p>
+
+        <div class="component-grid">
+          <div class="component-card">
+            <h4>OMV Engineering</h4>
+            <p>OMVs were designed to be modified to carry therapeutic miRNA cargo while maintaining their natural ability to traverse biological barriers and target specific cell types through surface-displayed nanobodies.</p>
+          </div>
+          <div class="component-card">
+            <h4>Safety Profile</h4>
+            <p>The use of probiotic bacteria as the production host ensures biocompatibility and reduces the risk of adverse immune reactions compared to synthetic delivery systems.</p>
+          </div>
+        </div>
+
+        <div class="blog-image">
+          <img src="../pictures/OMV.png" alt="Outer Membrane Vesicles Structure" class="blog-img">
+          <p class="image-caption">Figure 3: OMV Structure</p>
+        </div>
+
+        <h2>miRNA Therapy for Colorectal Cancer</h2>
+
+        <p>Our therapeutic strategy focused on delivering miR-145, a tumor suppressor miRNA that was significantly downregulated in colorectal cancer cells. <a href="#ref8" class="citation">8</a> The miR-145 gene spanned approximately 1.8 kB and required additional regulatory sequences for optimal expression and targeting.</p>
+
+        <div class="highlight-box">
+          <h4>miR-145 Targeting Strategy</h4>
+          <p>miR-145 functioned as a critical tumor suppressor by regulating multiple oncogenic pathways in colorectal cancer. <a href="#ref9" class="citation">9</a> Its restoration through our proposed probiotic delivery system could potentially have reversed malignant phenotypes and sensitized cancer cells to other therapeutic interventions.</p>
+        </div>
+
+        <div class="data-table-container">
+          <h4 style="text-align: center; margin-bottom: 1.5rem; color: var(--heading-color);">
+            Expression of microRNAs in Colorectal Tumors (n=63) vs Adenomas (n=65)
+          </h4>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>microRNA</th>
+                <th>Colorectal Cancer</th>
+                <th>Colorectal Adenoma</th>
+                <th>P-value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>miR-143↓</strong></td>
+                <td class="number">45/63 (71.4%)</td>
+                <td class="number">43/65 (66.2%)</td>
+                <td class="p-value">0.5198</td>
+              </tr>
+              <tr class="highlighted-row">
+                <td><strong>miR-145↓</strong></td>
+                <td class="number">49/63 (77.8%)</td>
+                <td class="number">45/65 (69.2%)</td>
+                <td class="p-value">0.2737</td>
+              </tr>
+              <tr>
+                <td><strong>miR-7↑</strong></td>
+                <td class="number">46/63 (73.0%)</td>
+                <td class="number">19/65 (29.2%)</td>
+                <td class="p-value">&lt;0.0001</td>
+              </tr>
+              <tr>
+                <td><strong>miR-21↑</strong></td>
+                <td class="number">20/63 (31.7%)</td>
+                <td class="number">33/65 (50.8%)</td>
+                <td class="p-value">0.0289</td>
+              </tr>
+              <tr>
+                <td><strong>miR-34a↓</strong></td>
+                <td class="number">41/63 (65.0%)</td>
+                <td class="number">21/65 (32.3%)</td>
+                <td class="p-value">0.0002</td>
+              </tr>
+              <tr>
+                <td><strong>miR-143↓ + miR-145↓</strong></td>
+                <td class="number">45/63 (71.4%)</td>
+                <td class="number">42/65 (64.6%)</td>
+                <td class="p-value">0.4089</td>
+              </tr>
+            </tbody>
+          </table>
+          <p style="font-size: 0.9rem; opacity: 0.8; margin-top: 1rem;">
+            <em>Note: miR-145 shows 77.8% downregulation in colorectal cancer, making it an ideal therapeutic target. <a href="#ref9" class="citation">9</a></em>
+          </p>
+        </div>
+
+        <h3>How We Package miR-145 for Delivery through OMV</h3>
+
+        <p>Getting the therapeutic miRNA from inside the bacteria to the target cancer cells requires a sophisticated packaging and transport system. We need to ensure the miRNA reaches its destination, Outer Membrane Region, intact and functional.</p>
+
+        <div class="component-grid">
+          <div class="component-card">
+            <h4>RNA Capture System</h4>
+            <p>Once miR-145 is produced inside our engineered bacteria, we need to "grab" it specifically. We use special proteins called <strong>PPR proteins</strong> (think of them as highly selective molecular tweezers) that are programmed to recognize and bind only to miR-145 <a href="#ref10" class="citation">10</a>. These proteins act like a custom lock that only fits the miR-145 key, ensuring we capture the right RNA molecule among thousands of others in the cell.</p>
+          </div>
+          <div class="component-card">
+            <h4>Cellular Delivery System</h4>
+            <p>After capturing miR-145, we need to move it to the right location for packaging into OMVs. We attach a <strong>molecular address tag</strong> (called PelB signal peptide) that tells the bacterial cell machinery "deliver this package to the outer membrane area" <a href="#ref11" class="citation">11</a>. This is like putting a ZIP code on a package - the cell's transport system recognizes this tag and automatically shuttles our miRNA-protein complex to where the OMVs are formed.</p>
+          </div>
+        </div>
+
+        <div class="tech-specs">
+          <h4>Technical Specifications for miR-145 Processing</h4>
+          <div class="spec-item">
+            <span class="spec-label">PPR Subunit Length:</span>
+            <span class="spec-value">35 residues per subunit</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">PelB Signal Sequence:</span>
+            <span class="spec-value">22 residues (MKYLLPTAAAGLLLLAAQPAMA)</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">miR-145 Recognition Sequence:</span>
+            <span class="spec-value">6-8 nucleotides for specific binding</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">Transport Mechanism:</span>
+            <span class="spec-value">Sec translocon-mediated periplasmic translocation</span>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 2rem; margin: 2rem 0; justify-content: center; align-items: flex-end;">
+          <div class="blog-image" style="flex: 1; text-align: center;">
+            <img src="../pictures/miR.png" alt="miRNA Therapeutic Mechanism" class="blog-img">
+            <p class="image-caption">Figure 4: miRNA Mechanism</p>
+          </div>
+          <div class="blog-image" style="flex: 1; text-align: center;">
+            <img src="../pictures/PPR_PelB.png" alt="PPR-PelB Packaging System" class="blog-img">
+            <p class="image-caption">Figure 5: PPR-PelB System</p>
+          </div>
+        </div>
+
+        <div class="blog-image">
+          <img src="../pictures/PelB_functioning.png" alt="PelB Signal Peptide Function" class="blog-img" style="width: 50%; height: auto;">
+          <p class="image-caption">Figure 6: PelB Signal Peptide Functioning Mechanism</p>
+        </div>
+        <h3>Surface Nanobody Display for Targeting</h3>
+
+        <p>To enhance the specificity of our OMV-based therapy, we planned to incorporate surface-displayed nanobodies targeting EGFR (Epidermal Growth Factor Receptor), which was overexpressed in many colorectal cancer cells. <a href="#ref12" class="citation">12</a> VEGFR1-targeting nanobodies had demonstrated high binding affinity and therapeutic efficacy in preclinical studies.</p>
+
+        <div class="blog-image">
+          <img src="../pictures/egfr_nanobody.png" alt="EGFR Nanobody Targeting" class="blog-img" style="width: 20%; height: auto;">
+          <p class="image-caption">Figure 7: Nanobody Targeting</p>
+        </div>
+
+        <h2>Gene Regulation and Control Systems</h2>
+
+        <h3>Cre-Lox Recombinase System</h3>
+
+        <p>Our design incorporated sophisticated genetic control mechanisms using the Cre-Lox recombinase system for temporal regulation of miRNA production. <a href="#ref13" class="citation">13</a> This system would have enabled precise control over therapeutic gene expression, allowing for both initiation and termination of treatment as needed.</p>
+
+        <div class="component-grid">
+          <div class="component-card">
+            <h4>Initiation Control</h4>
+            <p>Bile-responsive promoters would activate Cre recombinase upon bacterial colonization of the gut, removing stop sequences and initiating miRNA production in a location-specific manner.</p>
+          </div>
+          <div class="component-card">
+            <h4>Termination Control</h4>
+            <p>Tetracycline-inducible systems would allow for irreversible shutdown of miRNA production, providing a safety mechanism to terminate therapy when cancer was eliminated.</p>
+          </div>
+        </div>
+
+        <div class="blog-image">
+          <img src="../pictures/cre_lox.png" alt="Cre-Lox Regulation Circuit" class="blog-img">
+          <p class="image-caption">Figure 8: Cre-Lox Circuit</p>
+        </div>
+
+        <h3>Chassis Development and Safety</h3>
+
+<p>Our approach required systematic modification of the E. coli Nissle chassis to optimize OMV production while maintaining safety. The engineering strategy involved two critical steps: first, CRISPR-Cas9-mediated removal of native plasmids (pMUT1 and pMUT2), followed by introduction of our engineered cryptic plasmids containing therapeutic components, and finally knockout of tolA gene to enhance OMV release. <a href="#ref14" class="citation">14</a></p>
+
+  <h4>Native Plasmid Curing Strategy</h4>
+  <p>E. coli Nissle naturally harbors pMUT1 and pMUT2 cryptic plasmids constitutively. Before proceeding with therapeutic modifications, we needed to cure EcN of these native plasmids to introduce our own modified versions containing therapeutic elements. The CRISPR-Cas9 based curing process utilized two specialized plasmids: pFREE <a href="#ref15" class="citation">15</a> and pCryptDel4.8 <a href="#ref16" class="citation">16</a>, enabling precise removal of native genetic elements.</p>
+
+  <h4>Plasmids to be Cloned</h4>
+<div class="component-grid">
+  <div class="component-card">
+    <h4>Modified pMUT2 Engineering </h4>
+    <p>The engineered pMUT2 plasmid (pMUT2-pTcpP-mCherry used as base) <a href="#ref17" class="citation">17</a> incorporated regulatory control systems:</p>
+    <ul>
+      <li><strong>Cre and Flp Proteins</strong></li>
+      <li><strong>lox-frt-miRNA System</strong></li>
+    </ul>
+  </div>
+
+  <div class="component-card">
+    <h4>Modified pMUT1 Engineering</h4>
+    <p>Our engineered version of pMUT1 (pM1s3AsG used as base)<a href="#ref18" class="citation">18</a>, was designed to carry two critical therapeutic components:</p>
+    <ul>
+      <li><strong>Recombinant PPR-PelB Complex</strong></li>
+      <li><strong>Surface Nanobodies</strong></li>
+    </ul>
+  </div>
+</div>
+
+<div class="highlight-box">
+  <h4>Cryptic Plasmid Advantages</h4>
+  <p>Our choice of cryptic plasmids as the engineering foundation provided several key advantages for therapeutic applications:</p>
+  <ul>
+    <li><strong>Antibiotic-Resistance-Free:</strong> Eliminates selection pressure reducing regulatory concerns</li>
+    <li><strong>Probiotic Compatible:</strong> Maintains the beneficial properties of E. coli Nissle</li>
+    <li><strong>Stable Maintenance:</strong> Retained for up to 90 generations without external pressure, ensuring therapeutic consistency <a href="#ref19" class="citation">19</a></li>
+  </ul>
+</div>
+
+        <h2>Delivery Mechanism and Clinical Application</h2>
+
+        <p>The delivery of engineered probiotics to patients could have been achieved through established encapsulation technologies that protect bacteria during transit through the acidic stomach environment. <a href="#ref20" class="citation">20</a> Various capsule-based delivery systems had been specifically validated for E. coli Nissle 1917, providing a clear pathway for clinical implementation.</p>
+
+        <div class="blog-image">
+          <img src="../pictures/capsule_cancer.png" alt="Clinical Delivery System" class="blog-img">
+          <p class="image-caption">Figure 9: Clinical Delivery</p>
+        </div>
+
+
+
+        <h2>Technical Challenges and Future Directions</h2>
+
+          <p>While our engineered probiotic delivery system represents a promising therapeutic approach, several significant technical and biological challenges must be addressed before clinical implementation. These challenges span from fundamental molecular mechanisms to complex ecological interactions within the human gut microbiome.</p>
+
+        <div class="component-grid">
+          <div class="challenge-card">
+            <h4>1. Microbiome Dysbiosis</h4>
+            <p>Introducing engineered ECN could disrupt the established gut microbiome equilibrium, triggering unpredictable cascading effects. Changes in metabolite production, microbial cross-feeding networks, and potential pathogenic niches remain major concerns with unknown long-term consequences.</p>
+          </div>
+
+          <div class="challenge-card">
+            <h4>2. Off-Target miRNA Effects*</h4>
+            <p>Therapeutic miRNAs may be uptaken by healthy intestinal epithelial cells and GALT immune cells due to OMV uptake promiscuity. This could cause growth arrest, apoptosis, or disrupted gene expression in normal tissues, particularly problematic given high intestinal turnover rates.</p>
+          </div>
+
+          <div class="challenge-card">
+            <h4>3. RNA Packaging Efficiency</h4>
+            <p>The efficiency of miRNA packaging into OMVs and transport to the outer membrane remains unpredictable. Limited understanding of bacterial RNA sorting mechanisms makes optimization difficult, potentially requiring higher bacterial loads that exacerbate safety concerns.</p>
+          </div>
+
+          <div class="challenge-card">
+            <h4>4. Immunogenicity Risks</h4>
+            <p>Despite ECN's safety profile, engineered OMVs and recombinant proteins may trigger immune responses. The gut immune system could recognize modified components as foreign, leading to clearance, inflammation, or neutralizing antibodies that compromise efficacy.</p>
+          </div>
+
+        </div>
+
+        <p style="font-size: 0.9rem; color: var(--text-color); opacity: 0.8; margin-top: 1.5rem; font-style: italic;"><strong>*</strong> The off-target miRNA effects could potentially be mitigated through quorum sensing mechanisms that control miRNA production based on bacterial population density. However, implementing such a system would introduce additional complexity to the project, requiring precise threshold controls, managing signal degradation in harsh intestinal conditions, avoiding interference from endogenous bacterial systems, and maintaining genetic circuit stability over time.</p>
+
+        <h2>The Path Forward</h2>
+
+        <p>While our probiotic E. coli miRNA delivery approach faced significant challenges, recent breakthroughs in miRNA replacement therapy for colorectal cancer have validated our core concept and demonstrated the therapeutic potential of increasing miR-145 content in cancer cells.</p>
+
+        <div class="future-approaches">
+          <div class="approach-card">
+            <h3>Direct miR-145 Replacement Therapy Success</h3>
+            <p>Preclinical studies have demonstrated that PEI-mediated miR-145 replacement therapy achieved more than 10-fold increases in intracellular miR-145 levels in colon carcinoma cells, resulting in over 60% reduction in cell proliferation <a href="#ref21" class="citation">21</a>. In vivo studies showed that miR-145 administration decreased cancer stem cell markers by 45% and increased differentiation markers by over 4000%, validating our therapeutic target <a href="#ref22" class="citation">22</a>.</p>
+          </div>
+
+          <div class="approach-card">
+            <h3>Advanced Delivery System Evolution</h3>
+            <p>While early miRNA replacement trials like MRX34 faced challenges, newer TargomiR technologies using bacterially-derived minicells with targeting antibodies have shown encouraging clinical results <a href="#ref23" class="citation">23</a>. These targeted delivery vehicles could be integrated with our probiotic approach to achieve precise tumor cell targeting while avoiding systemic toxicity.</p>
+          </div>
+        </div>
+
+        <h2>The Story's End</h2>
+
+        <p>We had notebooks filled with calculations, plasmid designs sketched on whiteboards, and dreams of engineering bacteria to fight cancer. The idea felt within reach—take a harmless probiotic, teach it to make medicine, and let it work its magic right where tumors grow. Sure, the technical challenges were huge, but that's what made it exciting. We were ready to dive into months of lab work, cloning genes, testing systems, and slowly building this microscopic pharmacy. Sometimes the best projects are the ones that never leave the drawing board, not because they weren't good enough, but because life had other plans.</p>
+
+        <div class="blog-image">
+          <img src="../pictures/flood.png" alt="IIT Delhi Flood" class="blog-img" style="width: 50%; height: auto;">
+          <p class="image-caption">June 28th, 2024 at IIT Delhi</p>
+        </div>
+
+        <p style="text-align: center; margin: 1.5rem 0;">
+          <a href="https://www.bspiitd.com/post/5-hours-of-rain-or-was-it-6-op-ed" target="_blank" style="color: var(--link-color); text-decoration: none; font-weight: 500;">5 hours of rain, or was it 6? (Op-Ed)</a>
+        </p>
+
+        <!-- References Section -->
+        <div class="references-section">
+          <h2>References</h2>
+          <div class="reference-item" id="ref1">
+            <span class="reference-number">[1]</span>
+            <span class="reference-authors">Sung, H., et al.</span>
+            <span class="reference-title">"Global Cancer Statistics 2020: GLOBOCAN Estimates of Incidence and Mortality Worldwide for 36 Cancers in 185 Countries."</span>
+            <span class="reference-journal">CA: A Cancer Journal for Clinicians</span>
+            (2021): 71(3), 209-249.
+            <a href="https://acsjournals.onlinelibrary.wiley.com/doi/10.3322/caac.21660" class="reference-doi" target="_blank">doi: 10.3322/caac.21660</a>
+          </div>
+
+          <div class="reference-item" id="ref2">
+            <span class="reference-number">[2]</span>
+            <span class="reference-authors">Mathur, P., et al.</span>
+            <span class="reference-title">"Cancer incidence estimates for 2022 & projection for 2025: Result from National Cancer Registry Programme, India."</span>
+            <span class="reference-journal">Indian Journal of Medical Research</span>
+            (2022): 156(4&5), 598-607.
+            <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10231735/" class="reference-doi" target="_blank">PMC: PMC10231735</a>
+          </div>
+
+          <div class="reference-item" id="ref3">
+            <span class="reference-number">[3]</span>
+            <span class="reference-authors">Sinha, S., et al.</span>
+            <span class="reference-title">"Epidemiology of colorectal cancer: A review with special emphasis on India."</span>
+            <span class="reference-journal">International Journal of Medicine and Public Health</span>
+            (2024): 14(2), 45-52.
+            <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11953156/" class="reference-doi" target="_blank">PMC: PMC11953156</a>
+          </div>
+
+          <div class="reference-item" id="ref4">
+            <span class="reference-number">[4]</span>
+            <span class="reference-authors">Guan, Y., et al.</span>
+            <span class="reference-title">"The role of the gut microbiome in colorectal cancer development and therapy response."</span>
+            <span class="reference-journal">Frontiers in Microbiology</span>
+            (2020): 432.
+            <a href="https://www.frontiersin.org/journals/microbiology/articles/10.3389/fmicb.2020.00432/full" class="reference-doi" target="_blank">doi: 10.3389/fmicb.2020.00432</a>
+          </div>
+
+          <div class="reference-item" id="ref5">
+            <span class="reference-number">[5]</span>
+            <span class="reference-authors">Zhang, H., et al.</span>
+            <span class="reference-title">"Engineered probiotics for cancer immunotherapy."</span>
+            <span class="reference-journal">Nature Reviews Cancer</span>
+            (2021): 21, 365-378.
+            <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8401140/" class="reference-doi" target="_blank">PMC: PMC8401140</a>
+          </div>
+
+          <div class="reference-item" id="ref6">
+            <span class="reference-number">[6]</span>
+            <span class="reference-authors">Schultz, M., et al.</span>
+            <span class="reference-title">"Clinical characterization of the probiotic Escherichia coli strain Nissle 1917."</span>
+            <span class="reference-journal">ACS Synthetic Biology</span>
+            (2020): 9, 2875-2889.
+            <a href="https://pubs.acs.org/doi/10.1021/acssynbio.0c00466" class="reference-doi" target="_blank">doi: 10.1021/acssynbio.0c00466</a>
+          </div>
+
+          <div class="reference-item" id="ref7">
+            <span class="reference-number">[7]</span>
+            <span class="reference-authors">Kim, J.H., et al.</span>
+            <span class="reference-title">"Bacterial outer membrane vesicles in cancer therapy."</span>
+            <span class="reference-journal">Nature Communications</span>
+            (2021): 12, 1345.
+            <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7915952/" class="reference-doi" target="_blank">PMC: PMC7915952</a>
+          </div>
+
+          <div class="reference-item" id="ref8">
+            <span class="reference-number">[8]</span>
+            <span class="reference-authors">Chen, L., et al.</span>
+            <span class="reference-title">"MicroRNA-145 regulation in colorectal cancer progression."</span>
+            <span class="reference-journal">Cells</span>
+            (2022): 11, 3529.
+            <a href="https://www.mdpi.com/2073-4409/11/22/3529" class="reference-doi" target="_blank">doi: 10.3390/cells11223529</a>
+          </div>
+
+          <div class="reference-item" id="ref9">
+            <span class="reference-number">[9]</span>
+            <span class="reference-authors">Wang, R., et al.</span>
+            <span class="reference-title">"The tumor suppressor miR-145 in cancer therapy and diagnosis."</span>
+            <span class="reference-journal">Journal of Cellular and Molecular Medicine</span>
+            (2013): 17, 446-454.
+            <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3646739/" class="reference-doi" target="_blank">PMC: PMC3646739</a>
+          </div>
+
+          <div class="reference-item" id="ref10">
+            <span class="reference-number">[10]</span>
+            <span class="reference-authors">Kijanka, M., et al.</span>
+            <span class="reference-title">"Nanobody-based cancer therapy of solid tumors."</span>
+            <span class="reference-journal">mAbs</span>
+            (2015): 7, 977-991.
+            <a href="https://www.tandfonline.com/doi/full/10.1080/19420862.2016.1216742?scroll=top&needAccess=true#abstract" class="reference-doi" target="_blank">doi: 10.1080/19420862.2016.1216742</a>
+          </div>
+
+          <div class="reference-item" id="ref11">
+            <span class="reference-number">[11]</span>
+            <span class="reference-authors">Addgene Educational Resources.</span>
+            <span class="reference-title">"Plasmids 101: Cre-Lox recombination system."</span>
+            <span class="reference-journal">Addgene Blog</span>
+            (2023).
+            <a href="https://blog.addgene.org/plasmids-101-cre-lox" class="reference-doi" target="_blank">Available at: blog.addgene.org/plasmids-101-cre-lox</a>
+          </div>
+
+          <div class="reference-item" id="ref12">
+            <span class="reference-number">[12]</span>
+            <span class="reference-authors">iGEM Registry.</span>
+            <span class="reference-title">"BioBrick Part: BBa_K2560271 - Engineered OMV production system."</span>
+            <span class="reference-journal">Registry of Standard Biological Parts</span>
+            (2023).
+            <a href="https://parts.igem.org/Part:BBa_K2560271" class="reference-doi" target="_blank">Available at: parts.igem.org/Part:BBa_K2560271</a>
+          </div>
+
+          <div class="reference-item" id="ref13">
+            <span class="reference-number">[13]</span>
+            <span class="reference-authors">Addgene Plasmid Repository.</span>
+            <span class="reference-title">"pFREE-P1-Cre plasmid #92050."</span>
+            <span class="reference-journal">Addgene</span>
+            (2017).
+            <a href="https://www.addgene.org/92050/" class="reference-doi" target="_blank">Available at: addgene.org/92050/</a>
+          </div>
+
+          <div class="reference-item" id="ref14">
+            <span class="reference-number">[14]</span>
+            <span class="reference-authors">Addgene Plasmid Repository.</span>
+            <span class="reference-title">"pCryptDel4.8 plasmid #141293."</span>
+            <span class="reference-journal">Addgene</span>
+            (2020).
+            <a href="https://www.addgene.org/141293/" class="reference-doi" target="_blank">Available at: addgene.org/141293/</a>
+          </div>
+
+          <div class="reference-item" id="ref15">
+            <span class="reference-number">[15]</span>
+            <span class="reference-authors">Addgene Plasmid Repository.</span>
+            <span class="reference-title">"pMUT2-pTcpP-mCherry plasmid #192861."</span>
+            <span class="reference-journal">Addgene</span>
+            (2022).
+            <a href="https://www.addgene.org/192861/" class="reference-doi" target="_blank">Available at: addgene.org/192861/</a>
+          </div>
+
+          <div class="reference-item" id="ref16">
+            <span class="reference-number">[16]</span>
+            <span class="reference-authors">Addgene Plasmid Repository.</span>
+            <span class="reference-title">"pM1s3AsG plasmid #137921."</span>
+            <span class="reference-journal">Addgene</span>
+            (2020).
+            <a href="https://www.addgene.org/137921/" class="reference-doi" target="_blank">Available at: addgene.org/137921/</a>
+          </div>
+
+        </div>
+        <div class="reference-item" id="ref10">
+          <span class="reference-number">[10]</span>
+          <span class="reference-authors">Yagi, Y.; Teramoto, T.; Kaieda, S.; Imai, T.; Sasaki, T.; Yagi, M.; Maekawa, N.; Nakamura, T.</span>
+          <span class="reference-title">"Construction of a Versatile, Programmable RNA-Binding Protein Using Designer PPR Proteins and Its Application for Splicing Control in Mammalian Cells."</span>
+          <span class="reference-journal">Cells</span>
+          2022, 11, 3529.
+          <a href="https://doi.org/10.3390/cells11223529" class="reference-doi" target="_blank">doi: 10.3390/cells11223529</a>
+        </div>
+
+        <div class="reference-item" id="ref11">
+          <span class="reference-number">[11]</span>
+          <span class="reference-authors">Singh P, Sharma L, Kulothungan SR, Adkar BV, Prajapati RS, Ali PS, Krishnan B, Varadarajan R.</span>
+          <span class="reference-title">"Effect of signal peptide on stability and folding of Escherichia coli thioredoxin."</span>
+          <span class="reference-journal">PLoS One</span>
+          2013 May 7;8(5):e63442.
+          <a href="https://doi.org/10.1371/journal.pone.0063442" class="reference-doi" target="_blank">doi: 10.1371/journal.pone.0063442</a>
+        </div>
+
+        <div class="reference-item" id="ref12">
+          <span class="reference-number">[12]</span>
+          <span class="reference-authors">Kijanka, M., et al.</span>
+          <span class="reference-title">"Nanobody-based cancer therapy of solid tumors."</span>
+          <span class="reference-journal">mAbs</span>
+          (2015): 7, 977-991.
+          <a href="https://www.tandfonline.com/doi/full/10.1080/19420862.2016.1216742?scroll=top&needAccess=true#abstract" class="reference-doi" target="_blank">doi: 10.1080/19420862.2016.1216742</a>
+        </div>
+
+        <div class="reference-item" id="ref13">
+          <span class="reference-number">[13]</span>
+          <span class="reference-authors">Addgene Educational Resources.</span>
+          <span class="reference-title">"Plasmids 101: Cre-Lox recombination system."</span>
+          <span class="reference-journal">Addgene Blog</span>
+          (2023).
+          <a href="https://blog.addgene.org/plasmids-101-cre-lox" class="reference-doi" target="_blank">Available at: blog.addgene.org/plasmids-101-cre-lox</a>
+        </div>
+
+        <div class="reference-item" id="ref14">
+          <span class="reference-number">[14]</span>
+          <span class="reference-authors">iGEM Registry.</span>
+          <span class="reference-title">"BioBrick Part: BBa_K2560271 - Engineered OMV production system."</span>
+          <span class="reference-journal">Registry of Standard Biological Parts</span>
+          (2023).
+          <a href="https://parts.igem.org/Part:BBa_K2560271" class="reference-doi" target="_blank">Available at: parts.igem.org/Part:BBa_K2560271</a>
+        </div>
+
+        <div class="reference-item" id="ref15">
+          <span class="reference-number">[15]</span>
+          <span class="reference-authors">Addgene Plasmid Repository.</span>
+          <span class="reference-title">"pFREE-P1-Cre plasmid #92050."</span>
+          <span class="reference-journal">Addgene</span>
+          (2017).
+          <a href="https://www.addgene.org/92050/" class="reference-doi" target="_blank">Available at: addgene.org/92050/</a>
+        </div>
+
+        <div class="reference-item" id="ref16">
+          <span class="reference-number">[16]</span>
+          <span class="reference-authors">Addgene Plasmid Repository.</span>
+          <span class="reference-title">"pCryptDel4.8 plasmid #141293."</span>
+          <span class="reference-journal">Addgene</span>
+          (2020).
+          <a href="https://www.addgene.org/141293/" class="reference-doi" target="_blank">Available at: addgene.org/141293/</a>
+        </div>
+
+        <div class="reference-item" id="ref17">
+          <span class="reference-number">[17]</span>
+          <span class="reference-authors">Addgene Plasmid Repository.</span>
+          <span class="reference-title">"pMUT2-pTcpP-mCherry plasmid #192861."</span>
+          <span class="reference-journal">Addgene</span>
+          (2022).
+          <a href="https://www.addgene.org/192861/" class="reference-doi" target="_blank">Available at: addgene.org/192861/</a>
+        </div>
+
+        <div class="reference-item" id="ref18">
+          <span class="reference-number">[18]</span>
+          <span class="reference-authors">Addgene Plasmid Repository.</span>
+          <span class="reference-title">"pM1s3AsG plasmid #137921."</span>
+          <span class="reference-journal">Addgene</span>
+          (2020).
+          <a href="https://www.addgene.org/137921/" class="reference-doi" target="_blank">Available at: addgene.org/137921/</a>
+        </div>
+
+        <div class="reference-item" id="ref19">
+          <span class="reference-number">[19]</span>
+          <span class="reference-authors">Zainuddin HS, Bai Y, Mansell TJ.</span>
+          <span class="reference-title">"CRISPR-based curing and analysis of metabolic burden of cryptic plasmids in Escherichia coli Nissle 1917."</span>
+          <span class="reference-journal">Eng Life Sci.</span>
+          2019 Jun 3;19(6):478-485.
+          <a href="https://doi.org/10.1002/elsc.201900003" class="reference-doi" target="_blank">doi: 10.1002/elsc.201900003</a>
+        </div>
+
+        <div class="reference-item" id="ref20">
+          <span class="reference-number">[20]</span>
+          <span class="reference-authors">Chen H, Lei P, Ji H, Yang Q, Peng B, Ma J, Fang Y, Qu L, Li H, Wu W, Jin L, Sun D.</span>
+          <span class="reference-title">"Advances in Escherichia coli Nissle 1917 as a customizable drug delivery system for disease treatment and diagnosis strategies."</span>
+          <span class="reference-journal">Mater Today Bio.</span>
+          2023 Jan 6;18:100543.
+          <a href="https://doi.org/10.1016/j.mtbio.2023.100543" class="reference-doi" target="_blank">doi: 10.1016/j.mtbio.2023.100543</a>
+        </div>
+
+        <div class="reference-item" id="ref21">
+          <span class="reference-number">[21]</span>
+          <span class="reference-authors">Ibrahim, A.F., et al.</span>
+          <span class="reference-title">"MicroRNA replacement therapy for miR-145 and miR-33a is efficacious in a model of colon carcinoma."</span>
+          <span class="reference-journal">Cancer Research</span>
+          (2011): 71(15), 5214-5224.
+          <a href="https://doi.org/10.1158/0008-5472.CAN-10-4645" class="reference-doi" target="_blank">doi: 10.1158/0008-5472.CAN-10-4645</a>
+        </div>
+
+        <div class="reference-item" id="ref22">
+          <span class="reference-number">[22]</span>
+          <span class="reference-authors">Yu, Y., et al.</span>
+          <span class="reference-title">"miR-21 and miR-145 cooperation in regulation of colon cancer stem cells."</span>
+          <span class="reference-journal">Molecular Cancer</span>
+          (2015): 14, 98.
+          <a href="https://doi.org/10.1186/s12943-015-0372-7" class="reference-doi" target="_blank">doi: 10.1186/s12943-015-0372-7</a>
+        </div>
+
+        <div class="reference-item" id="ref23">
+          <span class="reference-number">[23]</span>
+          <span class="reference-authors">van Zandwijk, N., et al.</span>
+          <span class="reference-title">"Safety and activity of the microRNA-34a mimic MRX34 in patients with advanced solid tumours: a first-in-human, phase 1, dose-escalation study."</span>
+          <span class="reference-journal">The Lancet Oncology</span>
+          (2017): 18(8), 1116-1125.
+          <a href="https://doi.org/10.1016/S1470-2045(17)30459-1" class="reference-doi" target="_blank">doi: 10.1016/S1470-2045(17)30459-1</a>
+        </div>
+
+        <hr style="margin: 3rem 0; border: none; border-top: 1px solid var(--border-color);">
+
+        <p style="font-size: 0.9rem; color: var(--text-color); opacity: 0.7; text-align: center; margin-top: 2rem;"><strong>Image Attribution:</strong> The images used in this blog post have been sourced from various places including the internet, AI-generated content, and some of my own creation. I'm not particularly skilled at creating technical illustrations, so I've relied on publicly available resources and AI tools to help visualize the concepts discussed. If you are the creator of any image used here and would like proper attribution or removal, please <a href="./../contact.html">contact me</a>.</p>
+      </div>
+  </main>
+
+  <script>
+    function applyTheme(theme, isUserAction = false) {
+      if (theme === "dark") {
+        document.body.classList.remove("light-mode");
+        localStorage.setItem("theme", "dark");
+        document.getElementById("theme-icon").src = "./../pictures/sun.png";
+      } else {
+        document.body.classList.add("light-mode");
+        localStorage.setItem("theme", "light");
+        document.getElementById("theme-icon").src = "./../pictures/moon.png";
+      }
+
+      if (isUserAction) {
+        document.body.classList.add("theme-transition");
+      }
+    }
+
+    const savedTheme = localStorage.getItem("theme") || "dark";
+    const themeToggle = document.getElementById("theme-toggle");
+
+    applyTheme(savedTheme);
+
+    setTimeout(() => {
+      document.body.classList.add("theme-transition");
+    }, 100);
+
+    themeToggle.addEventListener("click", () => {
+      const currentTheme = document.body.classList.contains("light-mode") ? "dark" : "light";
+      applyTheme(currentTheme, true);
+    });
+
+    // Profile picture modal functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const profileImg = document.querySelector('.profile-img');
+      const modal = document.getElementById('profileModal');
+      const modalImg = document.getElementById('modalImage');
+      const closeButton = document.querySelector('.close-button');
+
+      if (profileImg && modal && modalImg && closeButton) {
+        profileImg.addEventListener('click', function() {
+          modalImg.src = this.src;
+          modal.style.display = 'block';
+          setTimeout(() => {
+            modal.classList.add('show');
+          }, 10);
+          document.body.style.overflow = 'hidden';
+        });
+
+        closeButton.addEventListener('click', function() {
+          closeModal();
+        });
+
+        modal.addEventListener('click', function(event) {
+          if (event.target === modal) {
+            closeModal();
+          }
+        });
+
+        document.addEventListener('keydown', function(event) {
+          if (event.key === 'Escape' && modal.classList.contains('show')) {
+            closeModal();
+          }
+        });
+
+        function closeModal() {
+          modal.classList.remove('show');
+          setTimeout(() => {
+            modal.style.display = 'none';
+            document.body.style.overflow = '';
+          }, 300);
+        }
+      }
+    });
+
+    // Nature nugget functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const nuggetHTML = `
+        <div class="nature-nugget">
+          <h3>Nature Nugget</h3>
+          <div class="nugget-content">
+            <i><p id="daily-trivia"></p></i>
+          </div>
+        </div>
+      `;
+
+      const sidebar = document.querySelector('.sidebar');
+      if (sidebar) {
+        const nuggetContainer = document.createElement('div');
+        nuggetContainer.innerHTML = nuggetHTML;
+        sidebar.appendChild(nuggetContainer);
+
+        const triviaItems = [
+          "Trees communicate with each other through an underground network of fungi called the \"Wood Wide Web,\" sharing nutrients and warning about threats.",
+          "The Turritopsis dohrnii jellyfish is biologically immortal, able to revert to its juvenile form after reaching maturity.",
+          "Octopuses have three hearts - two pump blood to the gills while the third pumps it to the rest of the body.",
+          "Hummingbirds have heart rates that can reach 1,200 beats per minute during flight.",
+          "The largest living organism is a single fungus in Oregon's Malheur National Forest, covering about 2,400 acres.",
+          "Some fungi can create their own wind to help spread their spores.",
+          "Dolphins sleep by shutting down only half their brain at a time, allowing them to remain alert.",
+          "Spider silk is five times stronger than steel of the same diameter."
+        ];
+
+        function displayRandomTrivia() {
+          const randomIndex = Math.floor(Math.random() * triviaItems.length);
+          const triviaElement = document.getElementById('daily-trivia');
+          if (triviaElement) {
+            triviaElement.textContent = triviaItems[randomIndex];
+          }
+        }
+
+        displayRandomTrivia();
+      }
+    });
+
+    // Sidebar functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const sidebar = document.querySelector('.sidebar');
+      const pullTab = document.getElementById('pull-tab');
+      const mainContent = document.querySelector('.main-content');
+      const isMobile = window.innerWidth < 768;
+
+      if (sidebar && pullTab && mainContent) {
+        if (isMobile) {
+          sidebar.classList.add('collapsed');
+          mainContent.style.marginLeft = '40px';
+          mainContent.style.width = 'calc(100% - 40px)';
+        } else {
+          sidebar.classList.remove('collapsed');
+          mainContent.style.marginLeft = '260px';
+          mainContent.style.width = 'calc(100% - 260px)';
+        }
+
+        pullTab.innerHTML = `
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        `;
+
+        function toggleSidebar() {
+          sidebar.classList.toggle('collapsed');
+          adjustMainContentMargin();
+        }
+
+        pullTab.addEventListener('click', toggleSidebar);
+
+        function adjustMainContentMargin() {
+          if (sidebar.classList.contains('collapsed')) {
+            mainContent.style.marginLeft = '40px';
+            mainContent.style.width = 'calc(100% - 40px)';
+          } else {
+            mainContent.style.marginLeft = '260px';
+            mainContent.style.width = 'calc(100% - 260px)';
+          }
+        }
+      }
+    });
+
+    // Citation functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      // Smooth scroll to references when citation is clicked
+      const citations = document.querySelectorAll('.citation');
+      citations.forEach(citation => {
+        citation.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            targetElement.scrollIntoView({
+              behavior: 'smooth',
+              block: 'center'
+            });
+            // Highlight the reference briefly
+            targetElement.style.backgroundColor = 'rgba(88, 166, 255, 0.2)';
+            setTimeout(() => {
+              targetElement.style.backgroundColor = 'transparent';
+            }, 2000);
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

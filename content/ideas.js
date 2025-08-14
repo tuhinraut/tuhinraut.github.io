@@ -10,12 +10,12 @@ const ideasData = [
   },
   {
     "title": "Capsule for Cancer",
-    "date": "TBD",
+    "date": "Aug 14, 2025",
     "image": "./pictures/capsule-cancer.png",
     "content": "<i>This would actually be a bit detailed as we came up with this as a team. Our intentions were to make engineered gut bacteria to find, target and cure Colorectal Cancer. Sadly never got a chance to actually work on it.</i>",
-    "link": "#",
-    "status": "coming soon",
-    "tags": ["cancer"]
+    "link": "./Unexplored Ideas/cancer_project_webpage.html",
+    "status": "posted",
+    "tags": ["cancer", "gene therapy", "probiotics"]
   },
 
   {
