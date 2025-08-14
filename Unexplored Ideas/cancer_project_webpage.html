@@ -1631,39 +1631,37 @@
       const modalImg = document.getElementById('modalImage');
       const closeButton = document.querySelector('.close-button');
 
-      if (profileImg && modal && modalImg && closeButton) {
-        profileImg.addEventListener('click', function() {
-          modalImg.src = this.src;
-          modal.style.display = 'block';
-          setTimeout(() => {
-            modal.classList.add('show');
-          }, 10);
-          document.body.style.overflow = 'hidden';
-        });
+      profileImg.addEventListener('click', function() {
+        modalImg.src = this.src;
+        modal.style.display = 'block';
+        setTimeout(() => {
+          modal.classList.add('show');
+        }, 10);
+        document.body.style.overflow = 'hidden';
+      });
 
-        closeButton.addEventListener('click', function() {
+      closeButton.addEventListener('click', function() {
+        closeModal();
+      });
+
+      modal.addEventListener('click', function(event) {
+        if (event.target === modal) {
           closeModal();
-        });
-
-        modal.addEventListener('click', function(event) {
-          if (event.target === modal) {
-            closeModal();
-          }
-        });
-
-        document.addEventListener('keydown', function(event) {
-          if (event.key === 'Escape' && modal.classList.contains('show')) {
-            closeModal();
-          }
-        });
-
-        function closeModal() {
-          modal.classList.remove('show');
-          setTimeout(() => {
-            modal.style.display = 'none';
-            document.body.style.overflow = '';
-          }, 300);
         }
+      });
+
+      document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape' && modal.classList.contains('show')) {
+          closeModal();
+        }
+      });
+
+      function closeModal() {
+        modal.classList.remove('show');
+        setTimeout(() => {
+          modal.style.display = 'none';
+          document.body.style.overflow = '';
+        }, 300);
       }
     });
 
@@ -1714,44 +1712,43 @@
       const mainContent = document.querySelector('.main-content');
       const isMobile = window.innerWidth < 768;
 
-      if (sidebar && pullTab && mainContent) {
-        if (isMobile) {
-          sidebar.classList.add('collapsed');
+      if (isMobile) {
+        sidebar.classList.add('collapsed');
+        mainContent.style.marginLeft = '40px';
+        mainContent.style.width = 'calc(100% - 40px)';
+      } else {
+        sidebar.classList.remove('collapsed');
+        mainContent.style.marginLeft = '260px';
+        mainContent.style.width = 'calc(100% - 260px)';
+      }
+
+      pullTab.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      `;
+
+      function toggleSidebar() {
+        sidebar.classList.toggle('collapsed');
+        adjustMainContentMargin();
+      }
+
+      pullTab.addEventListener('click', toggleSidebar);
+
+      function adjustMainContentMargin() {
+        if (sidebar.classList.contains('collapsed')) {
           mainContent.style.marginLeft = '40px';
           mainContent.style.width = 'calc(100% - 40px)';
         } else {
-          sidebar.classList.remove('collapsed');
           mainContent.style.marginLeft = '260px';
           mainContent.style.width = 'calc(100% - 260px)';
         }
-
-        pullTab.innerHTML = `
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="3" y1="6" x2="21" y2="6"></line>
-            <line x1="3" y1="12" x2="21" y2="12"></line>
-            <line x1="3" y1="18" x2="21" y2="18"></line>
-          </svg>
-        `;
-
-        function toggleSidebar() {
-          sidebar.classList.toggle('collapsed');
-          adjustMainContentMargin();
-        }
-
-        pullTab.addEventListener('click', toggleSidebar);
-
-        function adjustMainContentMargin() {
-          if (sidebar.classList.contains('collapsed')) {
-            mainContent.style.marginLeft = '40px';
-            mainContent.style.width = 'calc(100% - 40px)';
-          } else {
-            mainContent.style.marginLeft = '260px';
-            mainContent.style.width = 'calc(100% - 260px)';
-          }
-        }
       }
     });
-
+  </script>
+  <script>
     // Citation functionality
     document.addEventListener('DOMContentLoaded', function() {
       // Smooth scroll to references when citation is clicked
