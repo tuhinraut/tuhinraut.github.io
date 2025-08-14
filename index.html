@@ -1480,20 +1480,21 @@ document.addEventListener('DOMContentLoaded', function () {
     columnsWrapper.style.display = 'flex'; // Use flexbox for row layout
     columnsWrapper.style.gap = '1.5rem'; // Add spacing between columns
 
-    // Function to get the latest "posted" item from a data array
-    function getLatestPostedItem(data) {
-      return data
-        .filter(item => item.status === "posted") // Filter only "posted" items
-        .sort((a, b) => new Date(b.date) - new Date(a.date))[0]; // Sort by date and get the latest
-    }
+    // Combine all blog data and get the 3 newest posts across all categories
+    const allPosts = [
+      ...postsData.map(post => ({ ...post, category: "How Close Are We" })),
+      ...ideasData.map(post => ({ ...post, category: "Unexplored Ideas" })),
+      ...biologyData.map(post => ({ ...post, category: "Biology-with-Analogy" }))
+    ];
 
-    // Get the latest "posted" items from each section
-    const latestPost = getLatestPostedItem(postsData);
-    const latestPaper = getLatestPostedItem(ideasData);
-    const latestBiology = getLatestPostedItem(biologyData);
+    // Get the 3 newest "posted" items across all categories
+    const newest3Posts = allPosts
+      .filter(item => item.status === "posted")
+      .sort((a, b) => new Date(b.date) - new Date(a.date))
+      .slice(0, 3);
 
     // Function to create a column for a post
-    function createPostColumn(post, sectionTitle) {
+    function createPostColumn(post) {
       const column = document.createElement('div');
       column.className = 'post-column';
       column.style.flex = '1'; // Each column takes equal space
@@ -1501,7 +1502,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
       if (post) {
         column.innerHTML = `
-          <h2>${sectionTitle}</h2>
+          <h2>${post.category}</h2>
           <div class="post-placard">
             <img src="${post.image}" alt="${post.title}" class="post-image">
             <div class="post-date">${post.date}</div>
@@ -1515,7 +1516,6 @@ document.addEventListener('DOMContentLoaded', function () {
         `;
       } else {
         column.innerHTML = `
-          <h2>${sectionTitle}</h2>
           <p>No posts available at the moment. Check back soon!</p>
         `;
       }
@@ -1523,10 +1523,10 @@ document.addEventListener('DOMContentLoaded', function () {
       return column;
     }
 
-    // Add columns for each section
-    columnsWrapper.appendChild(createPostColumn(latestPost, "How Close Are We"));
-    columnsWrapper.appendChild(createPostColumn(latestPaper, "Unexplored Ideas"));
-    columnsWrapper.appendChild(createPostColumn(latestBiology, "Biology-with-Analogy"));
+    // Add columns for the 3 newest posts
+    newest3Posts.forEach(post => {
+      columnsWrapper.appendChild(createPostColumn(post));
+    });
 
     // Append the "New Posts" section after the Projects section
     const projectsSection = document.querySelector('#projects');
