@@ -821,6 +821,186 @@ body:not(.light-mode) .future-note {
     }
 }
 
+/* Like and Share Styles */
+.engagement-section {
+  margin: 2rem 0 1rem;
+  padding: 0;
+  text-align: center;
+}
+
+.share-container {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.share-button, .email-button {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 1rem;
+  background: transparent;
+  border: 1px solid var(--link-color);
+  border-radius: 20px;
+  color: var(--link-color);
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.share-button:hover, .email-button:hover {
+  background: rgba(88, 166, 255, 0.1);
+  border-color: var(--link-hover-color);
+  color: var(--link-hover-color);
+}
+
+.share-button svg, .email-button svg {
+  width: 16px;
+  height: 16px;
+  transition: all 0.2s ease;
+}
+
+/* Share Modal Styles */
+.share-modal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.share-modal.show {
+  display: block;
+  opacity: 1;
+}
+
+.share-modal-content {
+  background: var(--card-bg);
+  margin: 15% auto;
+  padding: 1.25rem;
+  border-radius: 8px;
+  width: 85%;
+  max-width: 400px;
+  position: relative;
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
+  border: 1px solid var(--border-color);
+}
+
+.share-modal.show .share-modal-content {
+  transform: scale(1);
+}
+
+.share-close {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  color: var(--text-color);
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.2s;
+  line-height: 1;
+}
+
+.share-close:hover {
+  color: var(--link-color);
+}
+
+.share-modal-content h3 {
+  color: var(--heading-color);
+  margin: 0 2rem 0.75rem 0;
+  font-size: 1.25rem;
+}
+
+.share-description {
+  color: var(--text-color);
+  margin-bottom: 1.25rem;
+  line-height: 1.5;
+  font-size: 0.9rem;
+}
+
+.share-text-container {
+  margin-bottom: 1rem;
+}
+
+#shareText {
+  width: 100%;
+  min-height: 100px;
+  padding: 0.6rem;
+  background: var(--body-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  color: var(--text-color);
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.85rem;
+  resize: vertical;
+  line-height: 1.4;
+}
+
+.copy-button-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+#copyTextButton {
+  padding: 0.6rem 1rem;
+  background: var(--link-color);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-size: 0.85rem;
+}
+
+#copyTextButton:hover {
+  background: var(--link-hover-color);
+}
+
+@media (max-width: 768px) {
+  .share-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  
+  .share-button, .email-button {
+    font-size: 0.85rem;
+    padding: 0.45rem 0.9rem;
+  }
+
+  .share-modal-content {
+    margin: 20% auto;
+    padding: 1rem;
+    width: 90%;
+  }
+
+  .share-close {
+    top: 1rem;
+    right: 1rem;
+    font-size: 22px;
+  }
+
+  .share-modal-content h3 {
+    margin: 0 1.5rem 0.5rem 0;
+  }
+  
+  .copy-button-container {
+    justify-content: center;
+  }
+}
+
   </style>
 </head>
 <body>
@@ -1213,6 +1393,39 @@ body:not(.light-mode) .future-note {
 </div>
         <hr style="margin: 3rem 0; border: none; border-top: 1px solid var(--border-color);">
 
+        <!-- Share and Email Section -->
+        <div class="engagement-section">
+          <div class="share-container">
+            <button class="share-button" id="shareButton">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+              </svg>
+              Share
+            </button>
+            <a href="./../contact.html" class="email-button">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+              </svg>
+              Email me your thoughts
+            </a>
+          </div>
+        </div>
+
+        <!-- Share Popup Modal -->
+        <div id="shareModal" class="share-modal">
+          <div class="share-modal-content">
+            <span class="share-close">&times;</span>
+            <h3>Share this blog post</h3>
+            <p class="share-description">Copy the text below to share this blog post:</p>
+            <div class="share-text-container">
+              <textarea id="shareText" readonly></textarea>
+            </div>
+            <div class="copy-button-container">
+              <button id="copyTextButton">Copy</button>
+            </div>
+          </div>
+        </div>
+
         <p style="font-size: 0.9rem; color: var(--text-color); opacity: 0.7; text-align: center; margin-top: 2rem;"><strong>Image Attribution:</strong> The images used in this blog post have been sourced from various places including the internet, AI-generated content, and some of my own creation. I'm not particularly skilled at creating technical illustrations, so I've relied on publicly available resources and AI tools to help visualize the concepts discussed. If you are the creator of any image used here and would like proper attribution or removal, please <a href="./../contact.html">contact me</a>.</p>
       </div>
   </main>
@@ -1396,6 +1609,82 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 });
+
+  // Share functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    const shareButton = document.getElementById('shareButton');
+    const shareModal = document.getElementById('shareModal');
+    const shareClose = document.querySelector('.share-close');
+    const shareText = document.getElementById('shareText');
+    const copyTextButton = document.getElementById('copyTextButton');
+
+    // Set the share text with description and URL
+    const currentUrl = window.location.href;
+    const shareContent = `Mind-Controlled Bacteria to Control Bionic Limbs
+
+Explore Tuhin's innovative (albeit failed) attempt at creating mind-controlled bacteria to restore motor function in paralyzed patients - a fascinating journey through optogenetics, bacterial engineering, and the humbling reality of biological constraints.
+
+Read more: ${currentUrl}`;
+
+    shareText.value = shareContent;
+
+    // Share button functionality
+    shareButton.addEventListener('click', function() {
+      shareModal.style.display = 'block';
+      setTimeout(() => {
+        shareModal.classList.add('show');
+      }, 10);
+      document.body.style.overflow = 'hidden';
+    });
+
+    // Close share modal
+    function closeShareModal() {
+      shareModal.classList.remove('show');
+      setTimeout(() => {
+        shareModal.style.display = 'none';
+        document.body.style.overflow = '';
+      }, 300);
+    }
+
+    shareClose.addEventListener('click', closeShareModal);
+
+    shareModal.addEventListener('click', function(event) {
+      if (event.target === shareModal) {
+        closeShareModal();
+      }
+    });
+
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape' && shareModal.classList.contains('show')) {
+        closeShareModal();
+      }
+    });
+
+    // Copy text functionality
+    copyTextButton.addEventListener('click', function() {
+      shareText.select();
+      shareText.setSelectionRange(0, 99999); // For mobile devices
+
+      navigator.clipboard.writeText(shareText.value).then(function() {
+        const originalText = copyTextButton.textContent;
+        copyTextButton.textContent = 'Copied!';
+        copyTextButton.style.background = '#28a745';
+
+        setTimeout(() => {
+          copyTextButton.textContent = originalText;
+          copyTextButton.style.background = 'var(--link-color)';
+        }, 2000);
+      }).catch(function() {
+        // Fallback for older browsers
+        document.execCommand('copy');
+        const originalText = copyTextButton.textContent;
+        copyTextButton.textContent = 'Copied!';
+        setTimeout(() => {
+          copyTextButton.textContent = originalText;
+        }, 2000);
+      });
+    });
+  });
 </script>
 </body>
 </html>
