@@ -1,0 +1,25 @@
+RewriteEngine On
+
+# Remove .html extension from URLs
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^\.]+)$ $1.html [NC,L]
+
+# Redirect .html extension to clean URLs
+RewriteCond %{THE_REQUEST} \s/+(.+)\.html[\s?] [NC]
+RewriteRule ^ /%1 [R=301,L]
+
+# Handle special case for "How Close Are We" file with spaces
+RewriteRule ^how-close-are-we/?$ "How Close Are We.html" [NC,L]
+RewriteRule ^unexplored-ideas/?$ "Unexplored Ideas.html" [NC,L]
+RewriteRule ^biology-with-analogy/?$ "Biology-with-Analogy.html" [NC,L]
+
+# Redirect spaced filenames to clean URLs
+RewriteCond %{THE_REQUEST} \s/+How\s+Close\s+Are\s+We\.html[\s?] [NC]
+RewriteRule ^ /how-close-are-we [R=301,L]
+
+RewriteCond %{THE_REQUEST} \s/+Unexplored\s+Ideas\.html[\s?] [NC]
+RewriteRule ^ /unexplored-ideas [R=301,L]
+
+RewriteCond %{THE_REQUEST} \s/+Biology-with-Analogy\.html[\s?] [NC]
+RewriteRule ^ /biology-with-analogy [R=301,L]
