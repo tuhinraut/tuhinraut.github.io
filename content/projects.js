@@ -67,9 +67,9 @@ const projects = [
         title: "A novel functional screening based method for generation of synthetic microbial community: Case study with control of Fusarium wilt in pigeonpea (2025)",
         authors: "Tyagi, R., Srivastava, S., Raut, T. K., Kartha, S., Sharma, S.",
         journal: "Plant Biology",
-        status: "accepted",
+        status: "published",
         type: "article",
-        link: "#"
+        link: "http://doi.org/10.1111/plb.70092"
       }
     ]
   },
