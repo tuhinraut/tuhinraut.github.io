@@ -1,7 +1,7 @@
 const ideasData = [
   {
     "title": "Bionic Arm",
-    "date": "Aug 12, 2025",
+    "date": "Aug 1, 2025",
     "image": "./pictures/bionic-arm.png",
     "content": "<i>Seen the hand of Arnold in Terminator? Well, this is not it :(. But I just had a thought, whether it is possible to reconnect the motor functions of reattached limbs to the person's brain signals. Apparently, the body happens to be a complex piece of machinery, go figure.</i>",
     "link": "./Unexplored Ideas/bionic_arm_blog.html",

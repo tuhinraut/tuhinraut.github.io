@@ -1,7 +1,7 @@
 const biologyData = [
   {
     "title": "Dogma as Grandma",
-    "date": "Aug 13, 2025",
+    "date": "Jul 13, 2025",
     "image": "./pictures/dogma-grandma.png",
     "content": "<i>We all might be familar with the central dogma of life, but I just wanted to start with a very light topic and a very tasty one in that.</i>",
     "link": "./Biology-with-Analogy/dogma-as-grandma.html",

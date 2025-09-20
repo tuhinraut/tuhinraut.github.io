@@ -3,7 +3,7 @@
 const postsData = [
     {
         "title": "... to making our own organism from scratch?",
-        "date": "Sept 5, 2025",
+        "date": "Oct 5, 2025",
         "author": "Tuhin Kumar Raut",
         "image": "./pictures/platypus.png",
         "content": "Imagine a world where we could custom-design organisms to our exact specifications. It seems like a fever dream, but the reality of how close we are might shock you.",
