@@ -47,9 +47,9 @@ const projects = [
         title: "Recent advancements in the application of biosurfactants for the treatment of textile waste and industrial effluents (2025)",
         authors: "Raut, T. K., Dhanoa, P., Jayakumar, A., Srivastava, P., Sundar, D.",
         journal: "Biosurfactants for a Sustainable Textiles Industry, Royal Society of Chemistry",
-        status: "under review",
+        status: "published",
         type: "chapter",
-        link: "#"
+        link: "https://doi.org/10.1039/9781837679744"
       }
     ]
   },
